@@ -2,7 +2,7 @@
 #include "vld.h"
 #include <SFML/Graphics.hpp>
 
-int main()
+void main()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 	sf::Texture texture;
@@ -30,6 +30,4 @@ int main()
 			window.display();
 		}
 	}
-
-	return 0;
 }
