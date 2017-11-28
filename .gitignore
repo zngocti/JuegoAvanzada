@@ -20,7 +20,7 @@
 x64/
 x86/
 bld/
-Proyecto Juego/[Bb]in/
+[Bb]in/*
 [Oo]bj/
 [Ll]og/
 
@@ -58,6 +58,7 @@ artifacts/
 *.meta
 *.obj
 *.pch
+*.pdb
 *.pgc
 *.pgd
 *.rsp
@@ -302,3 +303,7 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
+
+# Mis opciones
+!SFML-2.4.2/bin/*
+!Visual Leak Detector/bin/*
