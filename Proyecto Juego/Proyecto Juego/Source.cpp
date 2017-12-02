@@ -3,21 +3,20 @@
 #include <SFML/Graphics.hpp>
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
+#include "Juego.h"
 
 void main()
 {
+	Octavio::Juego* miJuego = new Octavio::Juego();
+
+	miJuego->Iniciar();
+	
+	delete (miJuego);
+
 	rapidxml::file<> xmlFile("../Assets/ships_sheet.xml");
 	rapidxml::xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 
-	/*std::cout << "X: " << doc.first_node()->first_node()->name() << std::endl;
-	std::cout << "X: " << doc.first_node()->first_node()->first_attribute()->name() << std::endl;
-	std::cout << "X: " << doc.first_node()->first_node()->first_attribute("x")->value() << std::endl;
-
-	std::cout << "X: " << doc.first_node()->first_node()->next_sibling() << std::endl;
-	std::cout << "X: " << doc.first_node()->first_node()->next_sibling()->first_attribute()->name() << std::endl;
-	std::cout << "X: " << doc.first_node()->first_node()->next_sibling()->first_attribute("x")->value() << std::endl;
-	*/
 	rapidxml::xml_node<char>* nodoActual = doc.first_node()->first_node();
 	bool seguirBuscando = true;
 	
@@ -28,7 +27,7 @@ void main()
 
 	do
 	{
-		if (0 == std::strcmp("ship (6).png", nodoActual->first_attribute("name")->value()))
+		if (0 == std::strcmp("ship (4).png", nodoActual->first_attribute("name")->value()))
 		{
 			std::cout << "x: " << nodoActual->first_attribute("x")->value() << std::endl;
 			std::cout << "y: " << nodoActual->first_attribute("y")->value() << std::endl;
@@ -66,7 +65,7 @@ void main()
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 	sf::Texture texture;
 
-	// cargo un rectangulo de 50x108 que inicia en el (0, 0) del archivo
+	// cargo un rectangulo de spriteW x spriteH que inicia en el (spriteX, spriteY) del archivo
 	if (!texture.loadFromFile("../Assets/ships_sheet.png", sf::IntRect(spriteX, spriteY, spriteW, spriteH)))
 	{
 		std::cout << "No cargo la imagen" << std::endl;
