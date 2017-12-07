@@ -47,8 +47,5 @@
     <ClInclude Include="Escena.h">
       <Filter>Archivos de origen</Filter>
     </ClInclude>
-    <ClInclude Include="Lista.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

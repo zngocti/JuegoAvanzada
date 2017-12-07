@@ -5,17 +5,19 @@
 
 namespace Octavio
 {
-	class Juego
-	{
-	private:
-		Jugador* jugador;
-		AdministradorDeEscenas* administradorEscenas;
 
-	public:
-		void Iniciar();
-		Juego();
-		~Juego();
-	};
+class Juego
+{
+private:
+	Jugador* jugador;
+	AdministradorDeEscenas* administradorEscenas;
+
+public:
+	void Iniciar();
+	Juego();
+	~Juego();
+};
+
 }
 
 #endif

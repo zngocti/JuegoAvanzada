@@ -148,7 +148,6 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
     <ClInclude Include="Escena.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Jugador.h" />
-    <ClInclude Include="Lista.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

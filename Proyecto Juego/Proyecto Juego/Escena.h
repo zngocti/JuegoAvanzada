@@ -3,12 +3,14 @@
 
 namespace Octavio
 {
-	class Escena
-	{
-	public:
-		Escena();
-		~Escena();
-	};
+
+class Escena
+{
+public:
+	Escena();
+	~Escena();
+};
+
 }
 
 #endif

@@ -3,14 +3,14 @@
 namespace Octavio
 {
 
-	Jugador::Jugador()
-	{
+Jugador::Jugador()
+{
 
-	}
+}
 
-	Jugador::~Jugador()
-	{
+Jugador::~Jugador()
+{
 
-	}
+}
 
 }

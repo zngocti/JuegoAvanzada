@@ -3,15 +3,17 @@
 
 namespace Octavio
 {
-	class Jugador
-	{
-	private:
-		bool jugando;
-		int vidas;
-	public:
-		Jugador();
-		~Jugador();
-	};
+
+class Jugador
+{
+private:
+	bool jugando;
+	int vidas;
+public:
+	Jugador();
+	~Jugador();
+};
+
 }
 
 #endif

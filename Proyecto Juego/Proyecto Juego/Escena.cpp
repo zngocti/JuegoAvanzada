@@ -2,13 +2,15 @@
 
 namespace Octavio
 {
-	Escena::Escena()
-	{
 
-	}
+Escena::Escena()
+{
 
-	Escena::~Escena()
-	{
+}
+
+Escena::~Escena()
+{
 		
-	}
+}
+
 }
