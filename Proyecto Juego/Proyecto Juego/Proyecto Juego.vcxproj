@@ -137,7 +137,9 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdministradorDeEscenas.cpp" />
+    <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Escena.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="Lista.cpp" />
@@ -145,7 +147,9 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdministradorDeEscenas.h" />
+    <ClInclude Include="Assets.h" />
     <ClInclude Include="Escena.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Jugador.h" />
   </ItemGroup>

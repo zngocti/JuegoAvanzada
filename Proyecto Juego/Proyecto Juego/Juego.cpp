@@ -16,7 +16,7 @@ Juego::~Juego()
 
 void Juego::Iniciar()
 {
-
+	administradorEscenas->IniciarUpdate();
 }
 
 }

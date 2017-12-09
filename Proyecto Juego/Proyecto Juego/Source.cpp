@@ -13,6 +13,7 @@ void main()
 	
 	delete (miJuego);
 
+	/*
 	rapidxml::file<> xmlFile("../Assets/ships_sheet.xml");
 	rapidxml::xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
@@ -108,6 +109,8 @@ void main()
 			}
 
 			window.display();
-		}
+		}		
 	}
+
+	*/
 }

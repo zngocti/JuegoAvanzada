@@ -30,16 +30,18 @@ GameObject::~GameObject()
 
 int GameObject::getMaximoZ()
 {
-	return maximoZ;
+	//return maximoZ;
+	return 0;
 }
 
+/*
 void GameObject::setMaximoZ(int z)
 {
 	if (maximoZ < z)
 	{
 		maximoZ = z;
 	}
-}
+}*/
 
 sf::Sprite GameObject::getSprite() const
 {
