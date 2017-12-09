@@ -2,7 +2,8 @@
 #define ADMINISTRADORDEESCENAS_H
 
 #include "Escena.h"
-#include <list>
+#include "Lista.cpp"
+#include <SFML/Graphics.hpp>
 
 namespace Octavio
 {
@@ -10,14 +11,15 @@ namespace Octavio
 	{
 	private:
 		Escena* primerEscena;
-		std::list<Escena*> listaDeEscenas;
+		Lista<Escena*> listaDeEscenas;
 
 	public:
 		AdministradorDeEscenas();
 		~AdministradorDeEscenas();
-		
+
 		Escena* CrearEscena();
-		void DestruirEscena(Escena* unaEscena);
+
+		void IniciarUpdate();
 	};
 }
 

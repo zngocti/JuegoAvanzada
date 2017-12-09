@@ -1,394 +1,399 @@
+#ifndef LISTA
+#define LISTA
+
 namespace Octavio
 {
-	template <typename T>
-	struct Node {
-		T guardado;
-		Node* nodoSiguiente = NULL;
-		Node* nodoAnterior = NULL;
-	};
 
-	template <typename T>
-	class Lista {
-	private:
-		Node<T>* primero;
-		Node<T>* ultimo;
+template <typename T>
+struct Node {
+	T guardado;
+	Node* nodoSiguiente = nullptr;
+	Node* nodoAnterior = nullptr;
+};
 
-		int cantidadDeNodos = 0;
+template <typename T>
+class Lista {
+private:
+	Node<T>* primero;
+	Node<T>* ultimo;
+
+	int cantidadDeNodos = 0;
 		
-		void actualizarPrimero(Node<T>* miNodo)
-		{
-			primero = miNodo;
-		}
+	void actualizarPrimero(Node<T>* miNodo)
+	{
+		primero = miNodo;
+	}
 
-		void actualizarUltimo(Node<T>* miNodo)
-		{
-			ultimo = miNodo;
-		}
+	void actualizarUltimo(Node<T>* miNodo)
+	{
+		ultimo = miNodo;
+	}
 
-	public:
-		Lista(T dato) :
-			cantidadDeNodos(1),
-			primero(new Node<T>),
-			primero->guardado(dato),
-			primero->nodoAnterior(nullptr),
-			primero->nodoSiguiente(nullptr)
-		{
-			actualizarUltimo(primero);
-		}
+public:
+	Lista(T dato) :	cantidadDeNodos(1),	primero(new Node<T>)
+	{
+		primero->guardado = dato;
+		primero->nodoAnterior = nullptr;
+		primero->nodoSiguiente = nullptr;
+		actualizarUltimo(primero);
+	}
 
-		virtual ~Lista()
-		{
-			removeAll();
-		}
+	virtual ~Lista()
+	{
+		removeAll();
+	}
 
-		bool sum(double &total)
+	bool sum(double &total)
+	{
+		if (primero != nullptr)
 		{
-			if (primero != NULL)
+			Node<T>* nodoActual = primero;
+			total = primero->guardado;
+
+			while (nodoActual->nodoSiguiente != nullptr)
 			{
-				Node<T>* nodoActual = primero;
-				total = primero->guardado;
+				nodoActual = nodoActual->nodoSiguiente;
+				total = total + nodoActual->guardado;
+			}
 
-				while (nodoActual->nodoSiguiente != NULL)
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool average(double &total)
+	{
+		if (primero != nullptr)
+		{
+			Node<T>* nodoActual = primero;
+			total = primero->guardado;
+			double contador = 1;
+
+			while (nodoActual->nodoSiguiente != nullptr)
+			{
+				nodoActual = nodoActual->nodoSiguiente;
+				total = total + nodoActual->guardado;
+				contador++;
+			}
+
+			total = (total / contador);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool min(double &min)
+	{
+		if (primero != nullptr)
+		{
+			Node<T>* nodoActual = primero;
+			min = primero->guardado;
+
+			while (nodoActual->nodoSiguiente != nullptr)
+			{
+				nodoActual = nodoActual->nodoSiguiente;
+				if (nodoActual->guardado < min)
 				{
-					nodoActual = nodoActual->nodoSiguiente;
-					total = total + nodoActual->guardado;
+					min = nodoActual->guardado;
 				}
+			}
 
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return true;
 		}
-
-		bool average(double &total)
+		else
 		{
-			if (primero != NULL)
-			{
-				Node<T>* nodoActual = primero;
-				total = primero->guardado;
-				double contador = 1;
+			return false;
+		}
+	}
 
-				while (nodoActual->nodoSiguiente != NULL)
+	bool max(double &max)
+	{
+		if (primero != nullptr)
+		{
+			Node<T>* nodoActual = primero;
+			max = primero->guardado;
+
+			while (nodoActual->nodoSiguiente != nullptr)
+			{
+				nodoActual = nodoActual->nodoSiguiente;
+				if (nodoActual->guardado > max)
 				{
-					nodoActual = nodoActual->nodoSiguiente;
-					total = total + nodoActual->guardado;
-					contador++;
+					max = nodoActual->guardado;
 				}
+			}
 
-				total = (total / contador);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return true;
 		}
-
-		bool min(double &min)
+		else
 		{
-			if (primero != NULL)
-			{
-				Node<T>* nodoActual = primero;
-				min = primero->guardado;
-
-				while (nodoActual->nodoSiguiente != NULL)
-				{
-					nodoActual = nodoActual->nodoSiguiente;
-					if (nodoActual->guardado < min)
-					{
-						min = nodoActual->guardado;
-					}
-				}
-
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return false;
 		}
+	}
 
-		bool max(double &max)
+	int count() const
+	{
+		return cantidadDeNodos;
+	}
+
+	Node<T>* first() const
+	{
+		return primero;
+	}
+
+	Node<T>* last() const
+	{
+		return ultimo;
+	}
+
+	void addFront(T dato)
+	{
+		Node<T>* nuevoNodo = new Node<T>;
+		nuevoNodo->guardado = dato;
+		if (cantidadDeNodos != 0)
 		{
-			if (primero != NULL)
-			{
-				Node<T>* nodoActual = primero;
-				max = primero->guardado;
-
-				while (nodoActual->nodoSiguiente != NULL)
-				{
-					nodoActual = nodoActual->nodoSiguiente;
-					if (nodoActual->guardado > max)
-					{
-						max = nodoActual->guardado;
-					}
-				}
-
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			primero->nodoAnterior = nuevoNodo;
+			nuevoNodo->nodoSiguiente = primero;
+			nuevoNodo->nodoAnterior = nullptr;
 		}
-
-		int count() const
+		else
 		{
-			return cantidadDeNodos;
-		}
-
-		Node<T>* first() const
-		{
-			return primero;
-		}
-
-		Node<T>* last() const
-		{
-			return ultimo;
-		}
-
-		void addFront(T dato)
-		{
-			Node<T>* nuevoNodo = new Node<T>;
-			nuevoNodo->guardado = dato;
-			if (cantidadDeNodos != 0)
-			{
-				primero->nodoAnterior = nuevoNodo;
-				nuevoNodo->nodoSiguiente = primero;
-				nuevoNodo->nodoAnterior = NULL;
-			}
-			else
-			{
-				actualizarUltimo(nuevoNodo);
-				nuevoNodo->nodoAnterior = NULL;
-				nuevoNodo->nodoSiguiente = NULL;
-			}
-			cantidadDeNodos++;
-			actualizarPrimero(nuevoNodo);
-		}
-
-		void addBack(T dato)
-		{
-			Node<T>* nuevoNodo = new Node<T>;
-			nuevoNodo->guardado = dato;
-			if (cantidadDeNodos != 0)
-			{
-				ultimo->nodoSiguiente = nuevoNodo;
-				nuevoNodo->nodoAnterior = ultimo;
-				nuevoNodo->nodoSiguiente = NULL;
-			}
-			else
-			{
-				actualizarPrimero(nuevoNodo);
-				nuevoNodo->nodoAnterior = NULL;
-				nuevoNodo->nodoSiguiente = NULL;
-			}
-			cantidadDeNodos++;
 			actualizarUltimo(nuevoNodo);
+			nuevoNodo->nodoAnterior = nullptr;
+			nuevoNodo->nodoSiguiente = nullptr;
+		}
+		cantidadDeNodos++;
+		actualizarPrimero(nuevoNodo);
+	}
+
+	void addBack(T dato)
+	{
+		Node<T>* nuevoNodo = new Node<T>;
+		nuevoNodo->guardado = dato;
+		if (cantidadDeNodos != 0)
+		{
+			ultimo->nodoSiguiente = nuevoNodo;
+			nuevoNodo->nodoAnterior = ultimo;
+			nuevoNodo->nodoSiguiente = nullptr;
+		}
+		else
+		{
+			actualizarPrimero(nuevoNodo);
+			nuevoNodo->nodoAnterior = nullptr;
+			nuevoNodo->nodoSiguiente = nullptr;
+		}
+		cantidadDeNodos++;
+		actualizarUltimo(nuevoNodo);
+	}
+
+	bool addAt(int posicion, T nuevoDato)
+	{
+		if (posicion == 0)
+		{
+			addFront(nuevoDato);
+			return true;
+		}
+		else if (posicion == cantidadDeNodos)
+		{
+			addBack(nuevoDato);
+			return true;
+		}
+		else if (posicion > cantidadDeNodos)
+		{
+			return false;
 		}
 
-		bool addAt(int posicion, T nuevoDato)
+		else
 		{
-			if (posicion == 0)
+			Node<T>* nodoActual = primero;
+			Node<T>* tAnterior = primero;
+			for (int i = 0; i < posicion; i++)
 			{
-				addFront(nuevoDato);
-				return true;
-			}
-			else if (posicion == cantidadDeNodos)
-			{
-				addBack(nuevoDato);
-				return true;
-			}
-			else if (posicion > cantidadDeNodos)
-			{
-				return false;
+				tAnterior = nodoActual;
+				nodoActual = nodoActual->nodoSiguiente;
 			}
 
+			Node<T>* nuevoNodo = new Node<T>;
+			nuevoNodo->guardado = nuevoDato;
+			nuevoNodo->nodoAnterior = nodoActual->nodoAnterior;
+			nuevoNodo->nodoSiguiente = nodoActual;
+			nodoActual->nodoAnterior = nuevoNodo;
+			tAnterior->nodoSiguiente = nuevoNodo;
+			cantidadDeNodos++;
+			return true;
+		}
+	}
+
+	void removeFirst()
+	{
+		if (cantidadDeNodos > 0)
+		{
+			cantidadDeNodos--;
+			if (primero->nodoSiguiente != nullptr)
+			{
+				Node<T>* temporal = primero->nodoSiguiente;
+				delete(primero);
+				temporal->nodoAnterior = nullptr;
+				actualizarPrimero(temporal);
+			}
 			else
 			{
-				Node<T>* nodoActual = primero;
-				Node<T>* tAnterior = primero;
-				for (int i = 0; i < posicion; i++)
-				{
-					tAnterior = nodoActual;
-					nodoActual = nodoActual->nodoSiguiente;
-				}
-
-				Node<T>* nuevoNodo = new Node<T>;
-				nuevoNodo->guardado = nuevoDato;
-				nuevoNodo->nodoAnterior = nodoActual->nodoAnterior;
-				nuevoNodo->nodoSiguiente = nodoActual;
-				nodoActual->nodoAnterior = nuevoNodo;
-				tAnterior->nodoSiguiente = nuevoNodo;
-				cantidadDeNodos++;
-				return true;
+				delete(primero);
+				actualizarPrimero(nullptr);
+				actualizarUltimo(nullptr);
 			}
 		}
+	}
 
-		void removeFirst()
+	void removeLast()
+	{
+		if (cantidadDeNodos > 0)
 		{
-			if (cantidadDeNodos > 0)
+			cantidadDeNodos--;
+			if (ultimo->nodoAnterior != nullptr)
 			{
-				cantidadDeNodos--;
-				if (primero->nodoSiguiente != NULL)
-				{
-					Node<T>* temporal = primero->nodoSiguiente;
-					delete(primero);
-					temporal->nodoAnterior = NULL;
-					actualizarPrimero(temporal);
-				}
-				else
-				{
-					delete(primero);
-					actualizarPrimero(NULL);
-					actualizarUltimo(NULL);
-				}
+				Node<T>* temporal = ultimo->nodoAnterior;
+				delete(ultimo);
+				temporal->nodoSiguiente = nullptr;
+				actualizarUltimo(temporal);
 			}
-		}
-
-		void removeLast()
-		{
-			if (cantidadDeNodos > 0)
+			else
 			{
-				cantidadDeNodos--;
-				if (ultimo->nodoAnterior != NULL)
-				{
-					Node<T>* temporal = ultimo->nodoAnterior;
-					delete(ultimo);
-					temporal->nodoSiguiente = NULL;
-					actualizarUltimo(temporal);
-				}
-				else
-				{
-					delete(ultimo);
-					actualizarPrimero(NULL);
-					actualizarUltimo(NULL);
-				}
+				delete(ultimo);
+				actualizarPrimero(nullptr);
+				actualizarUltimo(nullptr);
 			}
 		}
+	}
 
-		void removeAll()
+	void removeAll()
+	{
+		int contador = cantidadDeNodos;
+		for (int i = 0; i < contador; i++)
 		{
-			int contador = cantidadDeNodos;
-			for (int i = 0; i < contador; i++)
+			removeFirst();
+		}
+	}
+
+	bool removeAt(int num)
+	{
+		if (num < cantidadDeNodos)
+		{
+			if (num == 0)
 			{
 				removeFirst();
 			}
+			else if (num == cantidadDeNodos - 1)
+			{
+				removeLast();
+			}
+			else if (num <= cantidadDeNodos / 2)
+			{
+				Node<T>* temporal = primero;
+				for (int i = 0; i < num; i++)
+				{
+					temporal = temporal->nodoSiguiente;
+				}
+				cantidadDeNodos--;
+				Node<T>* tSiguiente = temporal->nodoSiguiente;
+				Node<T>* tAnterior = temporal->nodoAnterior;
+				tSiguiente->nodoAnterior = tAnterior;
+				tAnterior->nodoSiguiente = tSiguiente;
+				temporal->nodoAnterior = nullptr;
+				temporal->nodoSiguiente = nullptr;
+				delete(temporal);
+			}
+			else
+			{
+				num = cantidadDeNodos - num;
+				Node<T>* temporal = ultimo;
+				for (int i = 0; i < num - 1; i++)
+				{
+					temporal = temporal->nodoAnterior;
+				}
+				cantidadDeNodos--;
+				Node<T>* tSiguiente = temporal->nodoSiguiente;
+				Node<T>* tAnterior = temporal->nodoAnterior;
+				tSiguiente->nodoAnterior = tAnterior;
+				tAnterior->nodoSiguiente = tSiguiente;
+				temporal->nodoAnterior = nullptr;
+				temporal->nodoSiguiente = nullptr;
+				delete(temporal);
+			}
+
+			return true;
 		}
 
-		bool removeAt(int num)
+		else
 		{
-			if (num < cantidadDeNodos)
+			return false;
+		}
+	}
+
+	void removeValue(double num)
+	{
+		if (cantidadDeNodos > 0)
+		{
+			Node<T>* temporal = primero;
+			for (size_t i = 0; i < cantidadDeNodos; i++)
 			{
-				if (num == 0)
+				if (temporal->guardado == num)
 				{
-					removeFirst();
+					removeAt(i);
+					i = cantidadDeNodos;
 				}
-				else if (num == cantidadDeNodos - 1)
+			}
+		}
+	}
+
+	bool showList()
+	{
+		if (cantidadDeNodos > 0)
+		{
+			Node<T>* temporal = primero;
+
+			for (int i = 0; i < cantidadDeNodos; i++)
+			{
+				if (temporal != nullptr)
 				{
-					removeLast();
-				}
-				else if (num <= cantidadDeNodos / 2)
-				{
-					Node<T>* temporal = primero;
-					for (int i = 0; i < num; i++)
+					std::cout << temporal->guardado << " ";
+					if (i != cantidadDeNodos - 1)
 					{
 						temporal = temporal->nodoSiguiente;
 					}
-					cantidadDeNodos--;
-					Node<T>* tSiguiente = temporal->nodoSiguiente;
-					Node<T>* tAnterior = temporal->nodoAnterior;
-					tSiguiente->nodoAnterior = tAnterior;
-					tAnterior->nodoSiguiente = tSiguiente;
-					temporal->nodoAnterior = NULL;
-					temporal->nodoSiguiente = NULL;
-					delete(temporal);
 				}
-				else
-				{
-					num = cantidadDeNodos - num;
-					Node<T>* temporal = ultimo;
-					for (int i = 0; i < num - 1; i++)
-					{
-						temporal = temporal->nodoAnterior;
-					}
-					cantidadDeNodos--;
-					Node<T>* tSiguiente = temporal->nodoSiguiente;
-					Node<T>* tAnterior = temporal->nodoAnterior;
-					tSiguiente->nodoAnterior = tAnterior;
-					tAnterior->nodoSiguiente = tSiguiente;
-					temporal->nodoAnterior = NULL;
-					temporal->nodoSiguiente = NULL;
-					delete(temporal);
-				}
-
-				return true;
 			}
+			std::cout << std::endl;
 
-			else
-			{
-				return false;
-			}
+			return true;
 		}
 
-		void removeValue(double num)
+		else
 		{
-			if (cantidadDeNodos > 0)
-			{
-				Node<T>* temporal = primero;
-				for (size_t i = 0; i < cantidadDeNodos; i++)
-				{
-					if (temporal->guardado == num)
-					{
-						removeAt(i);
-						i = cantidadDeNodos;
-					}
-				}
-			}
+			return false;
 		}
+	}
 
-		bool showList()
+	T operator [](int num)
+	{
+		if (cantidadDeNodos != 0 && num < cantidadDeNodos)
 		{
-			if (cantidadDeNodos > 0)
+			Node<T>* actual = primero;
+			for (int i = 0; i < num; i++)
 			{
-				Node<T>* temporal = primero;
-
-				for (int i = 0; i < cantidadDeNodos; i++)
-				{
-					if (temporal != NULL)
-					{
-						std::cout << temporal->guardado << " ";
-						if (i != cantidadDeNodos - 1)
-						{
-							temporal = temporal->nodoSiguiente;
-						}
-					}
-				}
-				std::cout << std::endl;
-
-				return true;
+				actual = actual->nodoSiguiente;
 			}
 
-			else
-			{
-				return false;
-			}
+			return actual->guardado;
 		}
+	}
+};
 
-		T operator [](int num)
-		{
-			if (cantidadDeNodos != 0 && num < cantidadDeNodos)
-			{
-				Node<T>* actual = primero;
-				for (int i = 0; i < num; i++)
-				{
-					actual = actual->nodoSiguiente;
-				}
-
-				return actual->guardado;
-			}
-		}
-	};
 }
+
+#endif

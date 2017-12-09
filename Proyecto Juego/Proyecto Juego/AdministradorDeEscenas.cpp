@@ -2,26 +2,25 @@
 
 namespace Octavio
 {
-	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena)
+	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena), listaDeEscenas(Lista<Escena*>(primerEscena))
 	{
-		listaDeEscenas.push_front(primerEscena);
+
 	}
 
 	AdministradorDeEscenas::~AdministradorDeEscenas()
 	{
-		for (int i = 0; i < listaDeEscenas.size; i++)
-		{
-			
-		}
+		listaDeEscenas.removeAll();
 	}
 
 	Escena* AdministradorDeEscenas::CrearEscena()
 	{
-		return new Escena();
+		Escena* nuevaEscena = new Escena();
+		listaDeEscenas.addBack(nuevaEscena);
+		return nuevaEscena;
 	}
 
-	void AdministradorDeEscenas::DestruirEscena(Escena* unaEscena)
+	void AdministradorDeEscenas::IniciarUpdate()
 	{
-		delete (unaEscena);
+
 	}
 }
