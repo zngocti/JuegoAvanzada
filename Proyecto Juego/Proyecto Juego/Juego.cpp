@@ -14,9 +14,9 @@ Juego::~Juego()
 	delete(administradorEscenas);
 }
 
-void Juego::Iniciar()
+void Juego::iniciar()
 {
-	administradorEscenas->IniciarUpdate();
+	administradorEscenas->iniciarUpdate();
 }
 
 }

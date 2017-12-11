@@ -9,7 +9,7 @@ void main()
 {
 	Octavio::Juego* miJuego = new Octavio::Juego();
 
-	miJuego->Iniciar();
+	miJuego->iniciar();
 	
 	delete (miJuego);
 

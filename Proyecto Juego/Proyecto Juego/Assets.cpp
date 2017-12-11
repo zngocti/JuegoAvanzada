@@ -381,4 +381,209 @@ bool Assets::velaGrandeAmarillaRota3(sf::Texture &textura)
 	return Assets::cargarAsset("sailLarge (18).png", textura);
 }
 
+bool Assets::velaChicaRojaNueva(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (3).png", textura);
+}
+
+bool Assets::velaChicaRojaRota1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (7).png", textura);
+}
+
+bool Assets::velaChicaRojaRota2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (11).png", textura);
+}
+
+bool Assets::velaChicaVerdeNueva(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (4).png", textura);
+}
+
+bool Assets::velaChicaVerdeRota1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (8).png", textura);
+}
+
+bool Assets::velaChicaVerdeRota2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (12).png", textura);
+}
+
+bool Assets::velaChicaAzulNueva(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (5).png", textura);
+}
+
+bool Assets::velaChicaAzulRota1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (9).png", textura);
+}
+
+bool Assets::velaChicaAzulRota2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (13).png", textura);
+}
+
+bool Assets::velaChicaAmarillaNueva(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (6).png", textura);
+}
+
+bool Assets::velaChicaAmarillaRota1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (10).png", textura);
+}
+
+bool Assets::velaChicaAmarillaRota2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (1).png", textura);
+}
+
+bool Assets::velaChicaNegra(sf::Texture &textura)
+{
+	return Assets::cargarAsset("sailSmall (2).png", textura);
+}
+
+bool Assets::barcoBlancoNuevo(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (1).png", textura);
+}
+
+bool Assets::barcoBlancoRoto1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (7).png", textura);
+}
+
+bool Assets::barcoBlancoRoto2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (13).png", textura);
+}
+
+bool Assets::barcoBlancoRoto3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (19).png", textura);
+}
+
+bool Assets::barcoNegroNuevo(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (2).png", textura);
+}
+
+bool Assets::barcoNegroRoto1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (8).png", textura);
+}
+
+bool Assets::barcoNegroRoto2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (14).png", textura);
+}
+
+bool Assets::barcoNegroRoto3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (20).png", textura);
+}
+
+bool Assets::barcoRojoNuevo(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (3).png", textura);
+}
+
+bool Assets::barcoRojoRoto1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (9).png", textura);
+}
+
+bool Assets::barcoRojoRoto2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (15).png", textura);
+}
+
+bool Assets::barcoRojoRoto3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (21).png", textura);
+}
+
+bool Assets::barcoVerdeNuevo(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (4).png", textura);
+}
+
+bool Assets::barcoVerdeRoto1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (10).png", textura);
+}
+
+bool Assets::barcoVerdeRoto2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (16).png", textura);
+}
+
+bool Assets::barcoVerdeRoto3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (22).png", textura);
+}
+
+bool Assets::barcoAzulNuevo(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (5).png", textura);
+}
+
+bool Assets::barcoAzulRoto1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (11).png", textura);
+}
+
+bool Assets::barcoAzulRoto2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (17).png", textura);
+}
+
+bool Assets::barcoAzulRoto3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (23).png", textura);
+}
+
+bool Assets::barcoAmarilloNuevo(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (6).png", textura);
+}
+
+bool Assets::barcoAmarilloRoto1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (12).png", textura);
+}
+
+bool Assets::barcoAmarilloRoto2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (18).png", textura);
+}
+
+bool Assets::barcoAmarilloRoto3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("ship (24).png", textura);
+}
+
+bool Assets::madera1(sf::Texture &textura)
+{
+	return Assets::cargarAsset("wood (1).png", textura);
+}
+
+bool Assets::madera2(sf::Texture &textura)
+{
+	return Assets::cargarAsset("wood (2).png", textura);
+}
+
+bool Assets::madera3(sf::Texture &textura)
+{
+	return Assets::cargarAsset("wood (3).png", textura);
+}
+
+bool Assets::madera4(sf::Texture &textura)
+{
+	return Assets::cargarAsset("wood (4	).png", textura);
+}
+
 }

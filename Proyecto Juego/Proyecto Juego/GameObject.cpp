@@ -3,6 +3,8 @@
 namespace Octavio
 {
 
+int GameObject::maximoZ = 0;
+
 GameObject::GameObject() : esDibujable(false), posX(0), posY(0), posZ(0)
 {
 	
@@ -30,18 +32,18 @@ GameObject::~GameObject()
 
 int GameObject::getMaximoZ()
 {
-	//return maximoZ;
+	return maximoZ;
 	return 0;
 }
 
-/*
+
 void GameObject::setMaximoZ(int z)
 {
 	if (maximoZ < z)
 	{
 		maximoZ = z;
 	}
-}*/
+}
 
 sf::Sprite GameObject::getSprite() const
 {

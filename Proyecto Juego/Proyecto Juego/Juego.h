@@ -13,7 +13,7 @@ private:
 	AdministradorDeEscenas* administradorEscenas;
 
 public:
-	void Iniciar();
+	void iniciar();
 	Juego();
 	~Juego();
 };

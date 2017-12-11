@@ -10,7 +10,7 @@ class GameObject
 {
 
 private:
-	//static int maximoZ;
+	static int maximoZ;
 
 	sf::Sprite miSprite;
 
@@ -20,7 +20,7 @@ private:
 
 	bool esDibujable;
 
-	//static void setMaximoZ(int z);
+	static void setMaximoZ(int z);
 
 public:
 	GameObject();

@@ -20,13 +20,10 @@ namespace Octavio
 		return nuevaEscena;
 	}
 
-	void AdministradorDeEscenas::IniciarUpdate()
+	void AdministradorDeEscenas::iniciarUpdate()
 	{
 		sf::Texture* miTextura = new sf::Texture();
 		sf::Sprite miSprite;
-
-		sf::Texture* miTextura2 = new sf::Texture();
-		sf::Sprite miSprite2;
 
 		sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 
@@ -34,9 +31,6 @@ namespace Octavio
 		{
 			miSprite.setTexture(*miTextura);
 			miSprite.setPosition(-350, 0);
-
-			Assets::dinghyLarge1(*miTextura2);
-			miSprite2.setTexture(*miTextura2);
 
 			while (window.isOpen())
 			{
@@ -49,7 +43,6 @@ namespace Octavio
 				window.clear();
 
 				window.draw(miSprite);
-				window.draw(miSprite2);
 
 				window.display();
 			}

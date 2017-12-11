@@ -19,7 +19,7 @@ namespace Octavio
 
 		Escena* CrearEscena();
 
-		void IniciarUpdate();
+		void iniciarUpdate();
 	};
 }
 
