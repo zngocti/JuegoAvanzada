@@ -3,49 +3,105 @@
 
 namespace Octavio
 {
-	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena), listaDeEscenas(Lista<Escena*>(primerEscena))
+
+	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena), listaDeEscenas(Lista<Escena*>(primerEscena)),
+													   escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
+													   miInput(AdministradorDeInput::crearAdministradorDeInput()),
+													   ventana(sf::VideoMode(1024, 768), "SFML works!")
 	{
 
 	}
 
 	AdministradorDeEscenas::~AdministradorDeEscenas()
 	{
+		for (int i = 0; i < listaDeEscenas.count(); i++)
+		{
+			delete (listaDeEscenas[i]);
+		}
+
 		listaDeEscenas.removeAll();
+		delete(miInput);
+
 	}
 
-	Escena* AdministradorDeEscenas::CrearEscena()
+	Escena* AdministradorDeEscenas::crearEscena()
 	{
 		Escena* nuevaEscena = new Escena();
 		listaDeEscenas.addBack(nuevaEscena);
 		return nuevaEscena;
 	}
 
+	Escena* AdministradorDeEscenas::getEscenaActal() const
+	{
+		return escenaActual;
+	}
+
+	Escena* AdministradorDeEscenas::getPrimerEscena() const
+	{
+		return primerEscena;
+	}
+
 	void AdministradorDeEscenas::iniciarUpdate()
 	{
-		sf::Texture* miTextura = new sf::Texture();
-		sf::Sprite miSprite;
+		gameObjectsActuales = escenaActual->getGameObjects();
 
-		sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-
-		if (Assets::menuBackground(*miTextura))
+		while (ventana.isOpen())
 		{
-			miSprite.setTexture(*miTextura);
-			miSprite.setPosition(-350, 0);
-
-			while (window.isOpen())
+			sf::Event event;
+			while (ventana.pollEvent(event))
 			{
-				sf::Event event;
-				while (window.pollEvent(event))
+				if (event.type == sf::Event::Closed)
+					ventana.close();
+			}
+			ventana.clear();
+
+			if (escenaActual->getBotones().count() > 0)
+			{
+				miInput->verificarMouse(*escenaActual, event);
+				verificarBotones();
+			}
+
+			dibujarEscena(&ventana);
+
+			ventana.display();
+		}
+	}
+
+	void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
+	{
+		for (int i = GameObject::getMaximoZ(); i >= 0; i--)
+		{
+			for (int c = 0; c < gameObjectsActuales.count(); c++)
+			{
+				if (gameObjectsActuales[c]->getZ() == i)
 				{
-					if (event.type == sf::Event::Closed)
-						window.close();
+					window->draw(gameObjectsActuales[c]->getSprite());
 				}
-				window.clear();
-
-				window.draw(miSprite);
-
-				window.display();
 			}
 		}
+	}
+
+	void AdministradorDeEscenas::cerrarJuego()
+	{
+		ventana.close();
+	}
+
+	void AdministradorDeEscenas::verificarBotones()
+	{
+		for (int i = 0; i < escenaActual->getBotones().count(); i++)
+		{
+			if ((escenaActual->getBotones())[i]->getEstaActivado())
+			{
+				(escenaActual->getBotones())[i]->apagarBoton();
+				cambiarEscena((escenaActual->getBotones())[i]->getEscenaObjetivo());
+				return;
+			}
+		}
+	}
+
+	void AdministradorDeEscenas::cambiarEscena(Escena* const &proximaEscena)
+	{
+		escenaActual = proximaEscena;
+		gameObjectsActuales = escenaActual->getGameObjects();
 	}
 }

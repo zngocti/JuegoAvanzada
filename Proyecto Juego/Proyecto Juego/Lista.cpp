@@ -40,7 +40,7 @@ public:
 
 	virtual ~Lista()
 	{
-		removeAll();
+	//	removeAll();
 	}
 
 	bool sum(double &total)
@@ -390,6 +390,10 @@ public:
 			}
 
 			return actual->guardado;
+		}
+		else
+		{
+			return 0;
 		}
 	}
 };

@@ -144,9 +144,34 @@ public:
 	static bool madera3(sf::Texture &textura);
 	static bool madera4(sf::Texture &textura);
 
+	static bool botonJugarNormal(sf::Texture &textura);
+	static bool botonJugarOver(sf::Texture &textura);
+	static bool botonJugarApretado(sf::Texture &textura);
+
+	static bool botonControlesNormal(sf::Texture &textura);
+	static bool botonControlesOver(sf::Texture &textura);
+	static bool botonControlesApretado(sf::Texture &textura);
+
+	static bool botonPuntajesNormal(sf::Texture &textura);
+	static bool botonPuntajesOver(sf::Texture &textura);
+	static bool botonPuntajesApretado(sf::Texture &textura);
+
+	static bool botonCreditosNormal(sf::Texture &textura);
+	static bool botonCreditosOver(sf::Texture &textura);
+	static bool botonCreditosApretado(sf::Texture &textura);
+
+	static bool botonVolverNormal(sf::Texture &textura);
+	static bool botonVolverOver(sf::Texture &textura);
+	static bool botonVolverApretado(sf::Texture &textura);
+
+	static bool botonSalirNormal(sf::Texture &textura);
+	static bool botonSalirOver(sf::Texture &textura);
+	static bool botonSalirApretado(sf::Texture &textura);
+
 private:
 	Assets();
 	static bool cargarAsset(const char* nombreAsset, sf::Texture &textura);
+	static bool cargarBoton(int num, sf::Texture &textura);
 
 };
 

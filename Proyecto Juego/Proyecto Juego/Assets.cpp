@@ -76,6 +76,62 @@ bool Assets::cargarAsset(const char* nombreAsset, sf::Texture &textura)
 	} while (seguirBuscando);
 }
 
+bool Assets::cargarBoton(int num, sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	int texturaX = 0;
+	int texturaY = 0;
+	int texturaW = 400;
+	int texturaH = 174;
+
+	if (num == 2 || num == 5 || num == 8 || num == 11 || num == 14 || num == 17)
+	{
+		texturaX = texturaW;
+	}
+
+	else if (num == 3 || num == 6 || num == 9 || num == 12 || num == 15 || num == 18)
+	{
+		texturaX = texturaW*2;
+	}
+
+	if (num == 4 || num == 5 || num == 6)
+	{
+		texturaY = texturaH;
+	}
+
+	else if (num == 7 || num == 8 || num == 9)
+	{
+		texturaY = texturaH * 2;
+	}
+
+	else if (num == 10 || num == 11 || num == 12)
+	{
+		texturaY = texturaH * 3;
+	}
+
+	else if (num == 13 || num == 14 || num == 15)
+	{
+		texturaY = texturaH * 4;
+	}
+
+	else if (num == 16 || num == 17 || num == 18)
+	{
+		texturaY = texturaH * 5;
+	}
+
+	if (!miTextura.loadFromFile("../Assets/botones.png", sf::IntRect(texturaX, texturaY, texturaW, texturaH)))
+	{
+		std::cout << "No cargo la imagen del boton." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
 bool Assets::cannon(sf::Texture &textura)
 {
 	return Assets::cargarAsset("cannon.png", textura);
@@ -584,6 +640,96 @@ bool Assets::madera3(sf::Texture &textura)
 bool Assets::madera4(sf::Texture &textura)
 {
 	return Assets::cargarAsset("wood (4	).png", textura);
+}
+
+bool Assets::botonJugarNormal(sf::Texture &textura)
+{
+	return Assets::cargarBoton(1, textura);
+}
+
+bool Assets::botonJugarOver(sf::Texture &textura)
+{
+	return Assets::cargarBoton(2, textura);
+}
+
+bool Assets::botonJugarApretado(sf::Texture &textura)
+{
+	return Assets::cargarBoton(3, textura);
+}
+
+bool Assets::botonControlesNormal(sf::Texture &textura)
+{
+	return Assets::cargarBoton(4, textura);
+}
+
+bool Assets::botonControlesOver(sf::Texture &textura)
+{
+	return Assets::cargarBoton(5, textura);
+}
+
+bool Assets::botonControlesApretado(sf::Texture &textura)
+{
+	return Assets::cargarBoton(6, textura);
+}
+
+bool Assets::botonPuntajesNormal(sf::Texture &textura)
+{
+	return Assets::cargarBoton(7, textura);
+}
+
+bool Assets::botonPuntajesOver(sf::Texture &textura)
+{
+	return Assets::cargarBoton(8, textura);
+}
+
+bool Assets::botonPuntajesApretado(sf::Texture &textura)
+{
+	return Assets::cargarBoton(9, textura);
+}
+
+bool Assets::botonCreditosNormal(sf::Texture &textura)
+{
+	return Assets::cargarBoton(10, textura);
+}
+
+bool Assets::botonCreditosOver(sf::Texture &textura)
+{
+	return Assets::cargarBoton(11, textura);
+}
+
+bool Assets::botonCreditosApretado(sf::Texture &textura)
+{
+	return Assets::cargarBoton(12, textura);
+}
+
+bool Assets::botonVolverNormal(sf::Texture &textura)
+{
+	return Assets::cargarBoton(13, textura);
+}
+
+bool Assets::botonVolverOver(sf::Texture &textura)
+{
+	return Assets::cargarBoton(14, textura);
+}
+
+bool Assets::botonVolverApretado(sf::Texture &textura)
+{
+	return Assets::cargarBoton(15, textura);
+}
+
+bool Assets::botonSalirNormal(sf::Texture &textura)
+{
+	return Assets::cargarBoton(16, textura);
+}
+
+bool Assets::botonSalirOver(sf::Texture &textura)
+{
+	return Assets::cargarBoton(17, textura);
+}
+
+bool Assets::botonSalirApretado(sf::Texture &textura)
+{
+	return Assets::cargarBoton(18, textura);
 }
 
 }

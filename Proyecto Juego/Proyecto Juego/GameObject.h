@@ -12,7 +12,7 @@ class GameObject
 private:
 	static int maximoZ;
 
-	sf::Sprite miSprite;
+	sf::Sprite* miSprite;
 
 	float posX;
 	float posY;
@@ -25,16 +25,20 @@ private:
 public:
 	GameObject();
 	GameObject(float x, float y, int z);
-	GameObject(sf::Texture miTextura, float x, float y, int z);
-	GameObject(sf::Sprite unSprite, float x, float y, int z);
-	~GameObject();
+	GameObject(const sf::Texture &miTextura, float x, float y, int z);
+	GameObject(const sf::Sprite &unSprite, float x, float y, int z);
+	virtual ~GameObject();
 
 	static int getMaximoZ();
 
-	void setSprite(sf::Sprite unSprite);
-	void setSprite(sf::Texture miTextura);
+	void setSprite(const sf::Sprite &unSprite);
+	void setSprite(const sf::Texture &miTextura);
 	sf::Sprite getSprite() const;
 
+	void setEscala(float x, float y);
+	void setPosition(float x, float y);
+
+	int getZ() const;
 
 };
 
