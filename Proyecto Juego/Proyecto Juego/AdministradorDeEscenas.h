@@ -29,7 +29,7 @@ public:
 	~AdministradorDeEscenas();
 
 	Escena* crearEscena();
-	Escena* getEscenaActal() const;
+	Escena* getEscenaActual() const;
 	Escena* getPrimerEscena() const;
 
 	void iniciarUpdate();

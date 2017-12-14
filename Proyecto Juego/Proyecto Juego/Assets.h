@@ -168,10 +168,15 @@ public:
 	static bool botonSalirOver(sf::Texture &textura);
 	static bool botonSalirApretado(sf::Texture &textura);
 
+	static bool islaCompleta(sf::Texture &textura);
+	static bool agua(sf::Texture &textura);
+
 private:
 	Assets();
 	static bool cargarAsset(const char* nombreAsset, sf::Texture &textura);
 	static bool cargarBoton(int num, sf::Texture &textura);
+	static bool cargarIsla(sf::Texture &textura);
+	static bool cargarTile(int num, sf::Texture &textura);
 
 };
 

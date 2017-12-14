@@ -31,7 +31,7 @@ namespace Octavio
 		return nuevaEscena;
 	}
 
-	Escena* AdministradorDeEscenas::getEscenaActal() const
+	Escena* AdministradorDeEscenas::getEscenaActual() const
 	{
 		return escenaActual;
 	}
@@ -93,8 +93,15 @@ namespace Octavio
 			if ((escenaActual->getBotones())[i]->getEstaActivado())
 			{
 				(escenaActual->getBotones())[i]->apagarBoton();
-				cambiarEscena((escenaActual->getBotones())[i]->getEscenaObjetivo());
-				return;
+				if ((escenaActual->getBotones())[i]->getEscenaObjetivo() == nullptr)
+				{
+					ventana.close();
+				}
+				else
+				{
+					cambiarEscena((escenaActual->getBotones())[i]->getEscenaObjetivo());
+					return;
+				}
 			}
 		}
 	}

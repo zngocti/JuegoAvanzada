@@ -132,6 +132,72 @@ bool Assets::cargarBoton(int num, sf::Texture &textura)
 	}
 }
 
+bool Assets::cargarIsla(sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	if (!miTextura.loadFromFile("../Assets/tiles_sheet.png", sf::IntRect(0, 0, 64*3, 64*3)))
+	{
+		std::cout << "No cargo la imagen de la isla." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
+bool Assets::cargarTile(int num, sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	int x = 0;
+	int y = 0;
+
+	if (num < 17)
+	{
+		x = 64*(num - 1);
+		y = 0;
+	}
+	else if (num < 33)
+	{
+		x = 64 * (num - 17);
+		y = 64;
+	}
+	else if (num < 49)
+	{
+		x = 64 * (num - 33);
+		y = 128;
+	}
+	else if (num < 65)
+	{
+		x = 64 * (num - 49);
+		y = 192;
+	}
+	else if (num < 81)
+	{
+		x = 64 * (num - 65);
+		y = 256;
+	}
+	else if (num < 97)
+	{
+		x = 64 * (num - 81);
+		y = 320;
+	}
+
+	if (!miTextura.loadFromFile("../Assets/tiles_sheet.png", sf::IntRect(x, y, 64, 64)))
+	{
+		std::cout << "No cargo la imagen de la isla." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
 bool Assets::cannon(sf::Texture &textura)
 {
 	return Assets::cargarAsset("cannon.png", textura);
@@ -730,6 +796,16 @@ bool Assets::botonSalirOver(sf::Texture &textura)
 bool Assets::botonSalirApretado(sf::Texture &textura)
 {
 	return Assets::cargarBoton(18, textura);
+}
+
+bool Assets::islaCompleta(sf::Texture &textura)
+{
+	return Assets::cargarIsla(textura);
+}
+
+bool Assets::agua(sf::Texture &textura)
+{
+	return Assets::cargarTile(73, textura);
 }
 
 }

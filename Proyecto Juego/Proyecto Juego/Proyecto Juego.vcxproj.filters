@@ -45,6 +45,12 @@
     <ClCompile Include="AdministradorDeInput.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Barco.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Bala.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -69,6 +75,12 @@
       <Filter>Archivos de origen</Filter>
     </ClInclude>
     <ClInclude Include="AdministradorDeInput.h">
+      <Filter>Archivos de origen</Filter>
+    </ClInclude>
+    <ClInclude Include="Barco.h">
+      <Filter>Archivos de origen</Filter>
+    </ClInclude>
+    <ClInclude Include="Bala.h">
       <Filter>Archivos de origen</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,16 +12,16 @@ Juego::~Juego()
 {
 	delete(jugador);
 	delete(administradorEscenas);
-	destruirMenu();
+	destruirTexturas();
 }
 
 void Juego::iniciar()
 {
-	crearMenu();
+	crearEscenas();
 	administradorEscenas->iniciarUpdate();
 }
 
-void Juego::crearMenu()
+void Juego::crearEscenas()
 {
 	sf::Texture* fondo = new sf::Texture();
 
@@ -45,7 +45,9 @@ void Juego::crearMenu()
 
 	Boton* bJugar = administradorEscenas->getPrimerEscena()->crearBoton(*botonJugar1, *botonJugar2, *botonJugar3, 50, 350, 0);
 	bJugar->setEscalaBoton(0.5f, 0.5f);
-	bJugar->setEscenaObjetivo(administradorEscenas->crearEscena());
+	Escena* primerNivel = administradorEscenas->crearEscena();
+	bJugar->setEscenaObjetivo(primerNivel);
+	generarNiveles(primerNivel);
 
 	sf::Texture* botonControles1 = new sf::Texture();
 	sf::Texture* botonControles2 = new sf::Texture();
@@ -61,7 +63,6 @@ void Juego::crearMenu()
 
 	Boton* bControles = administradorEscenas->getPrimerEscena()->crearBoton(*botonControles1, *botonControles2, *botonControles3, 50, 500, 0);
 	bControles->setEscalaBoton(0.5f, 0.5f);
-	bControles->setEscenaObjetivo(administradorEscenas->crearEscena());
 
 	sf::Texture* botonPuntajes1 = new sf::Texture();
 	sf::Texture* botonPuntajes2 = new sf::Texture();
@@ -77,7 +78,6 @@ void Juego::crearMenu()
 
 	Boton* bPuntajes = administradorEscenas->getPrimerEscena()->crearBoton(*botonPuntajes1, *botonPuntajes2, *botonPuntajes3, 50, 650, 0);
 	bPuntajes->setEscalaBoton(0.5f, 0.5f);
-	bPuntajes->setEscenaObjetivo(administradorEscenas->crearEscena());
 
 	sf::Texture* botonCreditos1 = new sf::Texture();
 	sf::Texture* botonCreditos2 = new sf::Texture();
@@ -93,7 +93,6 @@ void Juego::crearMenu()
 
 	Boton* bCreditos = administradorEscenas->getPrimerEscena()->crearBoton(*botonCreditos1, *botonCreditos2, *botonCreditos3, 350, 650, 0);
 	bCreditos->setEscalaBoton(0.5f, 0.5f);
-	bCreditos->setEscenaObjetivo(administradorEscenas->crearEscena());
 
 	sf::Texture* botonSalir1 = new sf::Texture();
 	sf::Texture* botonSalir2 = new sf::Texture();
@@ -109,11 +108,54 @@ void Juego::crearMenu()
 
 	Boton* bSalir = administradorEscenas->getPrimerEscena()->crearBoton(*botonSalir1, *botonSalir2, *botonSalir3, 650, 650, 0);
 	bSalir->setEscalaBoton(0.5f, 0.5f);
-	bSalir->setEscenaObjetivo(nullptr);
 
+	sf::Texture* botonVolver1 = new sf::Texture();
+	sf::Texture* botonVolver2 = new sf::Texture();
+	sf::Texture* botonVolver3 = new sf::Texture();
+
+	listaDeTexturas.addBack(botonVolver1);
+	listaDeTexturas.addBack(botonVolver2);
+	listaDeTexturas.addBack(botonVolver3);
+
+	Assets::botonVolverNormal(*botonVolver1);
+	Assets::botonVolverOver(*botonVolver2);
+	Assets::botonVolverApretado(*botonVolver3);
+
+	Boton* bVolverControles = pantallaControles(bControles, fondo)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
+	bVolverControles->setEscalaBoton(0.5f, 0.5f);
+	bVolverControles->setEscenaObjetivo(administradorEscenas->getPrimerEscena());
+
+	Boton* bVolverPuntajes = pantallaPuntajes(bPuntajes, fondo)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
+	bVolverPuntajes->setEscalaBoton(0.5f, 0.5f);
+	bVolverPuntajes->setEscenaObjetivo(administradorEscenas->getPrimerEscena());
+
+	Boton* bVolverCreditos = pantallaCreditos(bCreditos, fondo)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
+	bVolverCreditos->setEscalaBoton(0.5f, 0.5f);
+	bVolverCreditos->setEscenaObjetivo(administradorEscenas->getPrimerEscena());
+
+	bSalir->setEscenaObjetivo(nullptr);
 }
 
-void Juego::destruirMenu()
+void Juego::generarNiveles(Escena* const &miEscena)
+{
+	sf::Texture* tileAgua = new sf::Texture();
+	listaDeTexturas.addBack(tileAgua);
+	Assets::agua(*tileAgua);
+	
+	int num1 = 768 / 128;
+	int num2 = 1024 / 128;
+
+	for (int i = 0; i < num1; i++)
+	{
+		for (int c = 0; c < num2; c++)
+		{
+			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * 128, i * 128, 5);
+			nuevoObjeto->setEscala(2, 2);
+		}
+	}
+}
+
+void Juego::destruirTexturas()
 {
 	for (int i = 0; i < listaDeTexturas.count(); i++)
 	{
@@ -121,6 +163,30 @@ void Juego::destruirMenu()
 	}
 
 	listaDeTexturas.removeAll();
+}
+
+Escena* Juego::pantallaControles(Boton* const &miBoton, sf::Texture* const &miTextura)
+{
+	Escena* controles = administradorEscenas->crearEscena();
+	controles->crearGameObject(*miTextura, -200, 0, 2);
+	miBoton->setEscenaObjetivo(controles);
+	return controles;
+}
+
+Escena* Juego::pantallaPuntajes(Boton* const &miBoton, sf::Texture* const &miTextura)
+{
+	Escena* puntajes = administradorEscenas->crearEscena();
+	puntajes->crearGameObject(*miTextura, -200, 0, 2);
+	miBoton->setEscenaObjetivo(puntajes);
+	return puntajes;
+}
+
+Escena* Juego::pantallaCreditos(Boton* const &miBoton, sf::Texture* const &miTextura)
+{
+	Escena* creditos = administradorEscenas->crearEscena();
+	creditos->crearGameObject(*miTextura, -200, 0, 2);
+	miBoton->setEscenaObjetivo(creditos);
+	return creditos;
 }
 
 }
