@@ -51,6 +51,9 @@
     <ClCompile Include="Bala.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Datos.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -81,6 +84,9 @@
       <Filter>Archivos de origen</Filter>
     </ClInclude>
     <ClInclude Include="Bala.h">
+      <Filter>Archivos de origen</Filter>
+    </ClInclude>
+    <ClInclude Include="Datos.h">
       <Filter>Archivos de origen</Filter>
     </ClInclude>
   </ItemGroup>

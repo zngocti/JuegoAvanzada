@@ -142,14 +142,14 @@ void Juego::generarNiveles(Escena* const &miEscena)
 	listaDeTexturas.addBack(tileAgua);
 	Assets::agua(*tileAgua);
 	
-	int num1 = 768 / 128;
-	int num2 = 1024 / 128;
+	int num1 = Datos::getAltoPantalla() / Datos::getAnchoDeTitleAgua();
+	int num2 = (Datos::getAnchoPantalla() / Datos::getAnchoDeTitleAgua()) + Datos::getTilesExtra();
 
 	for (int i = 0; i < num1; i++)
 	{
 		for (int c = 0; c < num2; c++)
 		{
-			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * 128, i * 128, 5);
+			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTitleAgua(), i * Datos::getAnchoDeTitleAgua(), 5);
 			nuevoObjeto->setEscala(2, 2);
 		}
 	}

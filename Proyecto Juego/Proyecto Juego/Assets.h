@@ -1,5 +1,5 @@
 #ifndef ASSETS_H
-#define ASSETS
+#define ASSETS_H
 
 #include <SFML/Graphics.hpp>
 #include "rapidxml.hpp"

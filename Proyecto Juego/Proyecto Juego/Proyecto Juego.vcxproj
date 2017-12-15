@@ -142,6 +142,7 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Barco.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="Datos.cpp" />
     <ClCompile Include="Escena.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Juego.cpp" />
@@ -156,6 +157,7 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Barco.h" />
     <ClInclude Include="Boton.h" />
+    <ClInclude Include="Datos.h" />
     <ClInclude Include="Escena.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Juego.h" />
