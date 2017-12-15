@@ -38,6 +38,9 @@ public:
 	void setEscala(float x, float y);
 	void setPosition(float x, float y);
 
+	float getX();
+	float getY();
+
 	int getZ() const;
 
 };

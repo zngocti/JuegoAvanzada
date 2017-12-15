@@ -1,5 +1,5 @@
 #include "AdministradorDeEscenas.h"
-
+#include <iostream>
 namespace Octavio
 {
 
@@ -60,11 +60,30 @@ namespace Octavio
 				verificarBotones();
 			}
 
-
+			revisarFondo();
 
 			dibujarEscena(&ventana);
 
 			ventana.display();
+		}
+	}
+
+	void AdministradorDeEscenas::revisarFondo()
+	{
+		for (int i = 0; i < gameObjectsActuales.count(); i++)
+		{
+			if (gameObjectsActuales[i]->getZ() == Datos::getZDelAgua())
+			{
+				if (gameObjectsActuales[i]->getX() < -(Datos::getAnchoDeTitleAgua()))
+				{
+					gameObjectsActuales[i]->setPosition(Datos::getAnchoPantalla() + (Datos::getTilesExtra())* (Datos::getAnchoDeTitleAgua()), gameObjectsActuales[i]->getX());
+					std::cout << Datos::getAnchoPantalla() + (Datos::getTilesExtra())* (Datos::getAnchoDeTitleAgua()) << std::endl;
+				}
+				else
+				{
+					gameObjectsActuales[i]->setPosition(gameObjectsActuales[i]->getX() - 0.1, gameObjectsActuales[i]->getY());
+				}
+			}
 		}
 	}
 

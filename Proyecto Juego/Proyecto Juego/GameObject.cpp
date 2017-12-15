@@ -77,4 +77,14 @@ void GameObject::setPosition(float x, float y)
 	miSprite->setPosition(x, y);
 }
 
+float GameObject::getX()
+{
+	return miSprite->getPosition().x;
+}
+
+float GameObject::getY()
+{
+	return miSprite->getPosition().y;
+}
+
 }

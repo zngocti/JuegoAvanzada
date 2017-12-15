@@ -26,6 +26,8 @@ private:
 
 	void verificarBotones();
 
+	void revisarFondo();
+
 public:
 	AdministradorDeEscenas();
 	~AdministradorDeEscenas();
