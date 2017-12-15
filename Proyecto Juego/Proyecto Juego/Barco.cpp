@@ -63,7 +63,7 @@ sf::Time Barco::getCDAbordaje() const
 	return cdAbordaje;
 }
 
-bool Barco::estaEnUso() const
+bool Barco::getEstaEnUso() const
 {
 	return estaEnUso;
 }

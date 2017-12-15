@@ -1,5 +1,4 @@
 #include "AdministradorDeEscenas.h"
-#include "Assets.h"
 
 namespace Octavio
 {
@@ -7,7 +6,7 @@ namespace Octavio
 	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena), listaDeEscenas(Lista<Escena*>(primerEscena)),
 													   escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
 													   miInput(AdministradorDeInput::crearAdministradorDeInput()),
-													   ventana(sf::VideoMode(1024, 768), "SFML works!")
+													   ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!")
 	{
 
 	}
@@ -60,6 +59,8 @@ namespace Octavio
 				miInput->verificarMouse(*escenaActual, event);
 				verificarBotones();
 			}
+
+
 
 			dibujarEscena(&ventana);
 

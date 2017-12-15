@@ -3,6 +3,7 @@
 #include "Jugador.h"
 #include "AdministradorDeEscenas.h"
 #include "Assets.h"
+#include "Datos.h"
 
 namespace Octavio
 {

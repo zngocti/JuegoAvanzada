@@ -4,8 +4,10 @@
 #include "Escena.h"
 #include "GameObject.h"
 #include "Lista.cpp"
+#include "Assets.h"
 #include <SFML/Graphics.hpp>
 #include "AdministradorDeInput.h"
+#include "Datos.h"
 
 
 namespace Octavio

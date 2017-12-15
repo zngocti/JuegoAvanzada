@@ -48,7 +48,7 @@ public:
 	bool getEstaPoseido() const;
 	sf::Time getCDRecuperacion() const;
 	sf::Time getCDAbordaje() const;
-	bool estaEnUso() const;
+	bool getEstaEnUso() const;
 	bool getEstaVivo() const;
 	sf::Time getTiempoDeMuerte() const;
 	bool getPuedeAbordar() const;
