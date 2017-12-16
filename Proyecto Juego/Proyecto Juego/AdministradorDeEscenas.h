@@ -25,8 +25,7 @@ private:
 	sf::RenderWindow ventana;
 
 	void verificarBotones();
-
-	void revisarFondo();
+	void verificarComportamientos();
 
 public:
 	AdministradorDeEscenas();

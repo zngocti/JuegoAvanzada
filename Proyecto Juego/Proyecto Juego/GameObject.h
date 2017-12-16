@@ -2,6 +2,7 @@
 #define GAMEOBJECT_H
 
 #include <SFML/Graphics.hpp>
+#include "IComportamientoDelObjeto.h"
 
 namespace Octavio
 {
@@ -20,6 +21,8 @@ private:
 
 	bool esDibujable;
 
+	IComportamientoDelObjeto* miComportamiento;
+
 	static void setMaximoZ(int z);
 
 public:
@@ -37,11 +40,15 @@ public:
 
 	void setEscala(float x, float y);
 	void setPosition(float x, float y);
+	void move(float x, float y);
 
 	float getX();
 	float getY();
 
 	int getZ() const;
+
+	void setComportamiento(IComportamientoDelObjeto* comportamiento);
+	void activarComportamiento();
 
 };
 

@@ -4,6 +4,7 @@
 #include "AdministradorDeEscenas.h"
 #include "Assets.h"
 #include "Datos.h"
+#include "TileIzquierdaEnLoop.h"
 
 namespace Octavio
 {

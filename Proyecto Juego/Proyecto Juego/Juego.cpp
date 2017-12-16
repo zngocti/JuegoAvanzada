@@ -21,6 +21,7 @@ void Juego::iniciar()
 	administradorEscenas->iniciarUpdate();
 }
 
+
 void Juego::crearEscenas()
 {
 	sf::Texture* fondo = new sf::Texture();
@@ -151,6 +152,8 @@ void Juego::generarNiveles(Escena* const &miEscena)
 		{
 			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTitleAgua(), i * Datos::getAnchoDeTitleAgua(), 5);
 			nuevoObjeto->setEscala(2, 2);
+			TileIzquierdaEnLoop* unComportamiento = new TileIzquierdaEnLoop();
+			nuevoObjeto->setComportamiento(unComportamiento);
 		}
 	}
 }

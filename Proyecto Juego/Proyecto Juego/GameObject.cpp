@@ -62,6 +62,11 @@ void GameObject::setSprite(const sf::Texture &miTextura)
 	miSprite->setTexture(miTextura);
 }
 
+void GameObject::move(float x, float y)
+{
+	miSprite->move(x, y);
+}
+
 int GameObject::getZ() const
 {
 	return posZ;
@@ -85,6 +90,19 @@ float GameObject::getX()
 float GameObject::getY()
 {
 	return miSprite->getPosition().y;
+}
+
+void GameObject::setComportamiento(IComportamientoDelObjeto* comportamiento)
+{
+	miComportamiento = comportamiento;
+}
+
+void GameObject::activarComportamiento()
+{
+	if (miComportamiento != nullptr)
+	{
+		miComportamiento->iniciarComportamiento();
+	}
 }
 
 }
