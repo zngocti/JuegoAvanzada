@@ -1,10 +1,10 @@
 #ifndef ICOMPORTAMIENTODELOBJETO_H
 #define ICOMPORTAMIENTODELOBJETO_H
 
-#include "GameObject.h"
-
 namespace Octavio
 {
+
+class GameObject;
 
 class IComportamientoDelObjeto
 {

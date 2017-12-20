@@ -1,7 +1,9 @@
 #include "TileIzquierdaEnLoop.h"
+#include "GameObject.h"
 
 namespace Octavio
 {
+
 	void TileIzquierdaEnLoop::iniciarComportamiento(GameObject* miGameObject)
 	{
 		if (miGameObject->getX() < -(Datos::getAnchoDeTitleAgua()))
@@ -10,7 +12,7 @@ namespace Octavio
 		}
 		else
 		{
-			miGameObject->move(-0.1, 0);
+			miGameObject->move(-0.01, 0);
 		}
 	}
 }

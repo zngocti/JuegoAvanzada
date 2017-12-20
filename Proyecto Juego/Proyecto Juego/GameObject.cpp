@@ -31,6 +31,7 @@ GameObject::GameObject(const sf::Texture &miTextura, float x, float y, int z) : 
 GameObject::~GameObject()
 {
 	delete(miSprite);
+	delete(miComportamiento);
 }
 
 int GameObject::getMaximoZ()
@@ -101,7 +102,7 @@ void GameObject::activarComportamiento()
 {
 	if (miComportamiento != nullptr)
 	{
-		miComportamiento->iniciarComportamiento();
+		miComportamiento->iniciarComportamiento(this);
 	}
 }
 
