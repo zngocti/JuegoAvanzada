@@ -1,6 +1,8 @@
 #ifndef DATOS_H
 #define DATOS_H
 
+#include <SFML\System.hpp>
+
 namespace Octavio
 {
 
@@ -13,12 +15,20 @@ private:
 	static int anchoDeTileAgua;
 	static int zDelAgua;
 	static int tilesExtra;
+	static int maxAltoSprite;
+	
+	static float velocidad;
 public:
 	static int getAnchoPantalla();
 	static int getAltoPantalla();
 	static int getAnchoDeTitleAgua();
 	static int getZDelAgua();
 	static int getTilesExtra();
+	static int getMaxAltoSprite();
+
+	static float getVelocidad();
+
+	static sf::Clock timerJuego;
 };
 
 }

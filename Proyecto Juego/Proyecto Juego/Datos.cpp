@@ -8,6 +8,11 @@ int Datos::altoPantalla = 768;
 int Datos::anchoDeTileAgua = 128;
 int Datos::zDelAgua = 5;
 int Datos::tilesExtra = 2;
+int Datos::maxAltoSprite = 128;
+
+float Datos::velocidad = 0.05;
+
+sf::Clock Datos::timerJuego = sf::Clock();
 
 int Datos::getAnchoPantalla()
 {
@@ -31,6 +36,16 @@ int Datos::getZDelAgua()
 int Datos::getTilesExtra()
 {
 	return tilesExtra;
+}
+
+int Datos::getMaxAltoSprite()
+{
+	return maxAltoSprite;
+}
+
+float Datos::getVelocidad()
+{
+	return velocidad;
 }
 
 }
