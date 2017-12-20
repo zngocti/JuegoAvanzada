@@ -8,7 +8,8 @@ int Datos::altoPantalla = 768;
 int Datos::anchoDeTileAgua = 128;
 int Datos::zDelAgua = 5;
 int Datos::tilesExtra = 2;
-int Datos::maxAltoSprite = 128;
+int Datos::maxAltoSprite = 64;
+int Datos::maxAnchoSprite = 128;
 
 float Datos::velocidad = 0.05;
 
@@ -41,6 +42,11 @@ int Datos::getTilesExtra()
 int Datos::getMaxAltoSprite()
 {
 	return maxAltoSprite;
+}
+
+int Datos::getMaxAnchoSprite()
+{
+	return maxAnchoSprite;
 }
 
 float Datos::getVelocidad()

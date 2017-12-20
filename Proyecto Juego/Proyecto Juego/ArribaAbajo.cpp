@@ -6,7 +6,7 @@ namespace Octavio
 	const float ArribaAbajo::distanciaCorta = 150;
 	sf::Time ArribaAbajo::cdAtaque = sf::seconds(1.5f);
 
-	ArribaAbajo::ArribaAbajo() : avanzando(false), arriba(false), abajo(false), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false)
+	ArribaAbajo::ArribaAbajo() : avanzando(false), arriba(false), abajo(false), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(false)
 	{
 
 	}
@@ -25,7 +25,7 @@ namespace Octavio
 		{
 			if (recorrido < distanciaCorta)
 			{
-				miGameObject->move(Datos::getVelocidad(), 0);
+				miGameObject->move(-(Datos::getVelocidad()), 0);
 				recorrido = recorrido + Datos::getVelocidad();
 			}
 		}
@@ -56,6 +56,11 @@ namespace Octavio
 		{
 			atacar = true;
 		}
+
+		if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
+		{
+			reciclar = true;
+		}
 	}
 
 	bool ArribaAbajo::getAtaque() const
@@ -67,5 +72,10 @@ namespace Octavio
 	{
 		atacar = false;
 		ultimoTiempo = Datos::timerJuego.getElapsedTime();
+	}
+
+	bool ArribaAbajo::getReciclar() const
+	{
+		return reciclar;
 	}
 }

@@ -1,5 +1,5 @@
-#ifndef ARRIBAABAJO_H
-#define ARRIBAABAJO_H
+#ifndef CENTROVOLVER_H
+#define CENTROVOLVER_H
 
 #include "IComportamientoDelObjeto.h"
 #include "Datos.h"
@@ -10,12 +10,11 @@ namespace Octavio
 
 	class GameObject;
 
-	class ArribaAbajo : public IComportamientoDelObjeto
+	class CentroVolver : public IComportamientoDelObjeto
 	{
 	private:
 		bool avanzando;
-		bool arriba;
-		bool abajo;
+		bool entrando;
 
 		float recorrido;
 		sf::Time ultimoTiempo;
@@ -24,17 +23,15 @@ namespace Octavio
 		bool reciclar;
 
 		static sf::Time cdAtaque;
-				
-	public:
-		static const float distanciaCorta;
 
+	public:
 		bool getAtaque() const;
 		void resetAtaque();
 
 		bool getReciclar() const;
 
 		virtual void iniciarComportamiento(GameObject* miGameObject) override;
-		ArribaAbajo();
+		CentroVolver();
 
 	};
 

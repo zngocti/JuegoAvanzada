@@ -16,6 +16,7 @@ private:
 	static int zDelAgua;
 	static int tilesExtra;
 	static int maxAltoSprite;
+	static int maxAnchoSprite;
 	
 	static float velocidad;
 public:
@@ -25,6 +26,7 @@ public:
 	static int getZDelAgua();
 	static int getTilesExtra();
 	static int getMaxAltoSprite();
+	static int getMaxAnchoSprite();
 
 	static float getVelocidad();
 
