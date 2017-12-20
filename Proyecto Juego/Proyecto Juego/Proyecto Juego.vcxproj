@@ -136,12 +136,15 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbiertoCerrado.cpp" />
     <ClCompile Include="AdministradorDeEscenas.cpp" />
     <ClCompile Include="AdministradorDeInput.cpp" />
+    <ClCompile Include="ArribaAbajo.cpp" />
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Barco.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="CentroVolver.cpp" />
     <ClCompile Include="Datos.cpp" />
     <ClCompile Include="Escena.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -153,12 +156,15 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbiertoCerrado.h" />
     <ClInclude Include="AdministradorDeEscenas.h" />
     <ClInclude Include="AdministradorDeInput.h" />
+    <ClInclude Include="ArribaAbajo.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Barco.h" />
     <ClInclude Include="Boton.h" />
+    <ClInclude Include="CentroVolver.h" />
     <ClInclude Include="Datos.h" />
     <ClInclude Include="Escena.h" />
     <ClInclude Include="GameObject.h" />

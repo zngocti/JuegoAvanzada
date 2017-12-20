@@ -14,6 +14,10 @@ class TileIzquierdaEnLoop : public IComportamientoDelObjeto
 public:
 	virtual void iniciarComportamiento(GameObject* miGameObject) override;
 
+	bool getAtaque() const override;
+	void resetAtaque() override;
+	bool getReciclar() const override;
+
 };
 
 }

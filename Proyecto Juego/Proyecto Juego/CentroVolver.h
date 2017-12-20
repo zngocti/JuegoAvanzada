@@ -25,10 +25,10 @@ namespace Octavio
 		static sf::Time cdAtaque;
 
 	public:
-		bool getAtaque() const;
-		void resetAtaque();
+		bool getAtaque() const override;
+		void resetAtaque() override;
 
-		bool getReciclar() const;
+		bool getReciclar() const override;
 
 		virtual void iniciarComportamiento(GameObject* miGameObject) override;
 		CentroVolver();

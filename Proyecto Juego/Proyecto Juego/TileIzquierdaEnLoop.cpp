@@ -15,4 +15,19 @@ namespace Octavio
 			miGameObject->move(-0.01, 0);
 		}
 	}
+
+	bool TileIzquierdaEnLoop::getAtaque() const
+	{
+		return false;
+	}
+
+	void TileIzquierdaEnLoop::resetAtaque()
+	{
+
+	}
+
+	bool TileIzquierdaEnLoop::getReciclar() const
+	{
+		return false;
+	}
 }
