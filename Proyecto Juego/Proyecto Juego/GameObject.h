@@ -41,6 +41,7 @@ public:
 	void setEscala(float x, float y);
 	void setPosition(float x, float y);
 	void move(float x, float y);
+	void setRotation(float num);
 
 	float getX();
 	float getY();
@@ -57,6 +58,8 @@ public:
 
 	bool getAtaque() const;
 	void resetAtaque();
+
+	void setMedio();
 
 };
 

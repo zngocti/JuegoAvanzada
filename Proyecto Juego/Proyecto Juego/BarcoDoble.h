@@ -17,6 +17,8 @@ public:
 	~BarcoDoble();
 	void setSprite2(const sf::Sprite &unSprite);
 	void setSprite2(const sf::Texture &miTextura);
+	void setMedio2();
+	void setRotation2(float num);
 
 };
 

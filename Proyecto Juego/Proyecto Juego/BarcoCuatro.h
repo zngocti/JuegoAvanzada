@@ -21,7 +21,10 @@ public:
 	void setSprite2(const sf::Texture &miTextura);
 	void setSprite3(const sf::Sprite &unSprite);
 	void setSprite3(const sf::Texture &miTextura);
-
+	void setMedio2();
+	void setMedio3();
+	void setRotation2(float num);
+	void setRotation3(float num);
 };
 
 }

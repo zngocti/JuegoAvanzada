@@ -13,7 +13,7 @@ namespace Octavio
 
 	void CentroVolver::iniciarComportamiento(GameObject* miGameObject)
 	{
-		if (miGameObject->getX() > Datos::getAnchoPantalla() - Datos::getMaxAnchoSprite())
+		if (miGameObject->getX() > Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite())
 		{
 			miGameObject->move(-(Datos::getVelocidad()), 0);
 		}

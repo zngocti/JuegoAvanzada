@@ -13,11 +13,7 @@ namespace Octavio
 
 	void AbiertoCerrado::iniciarComportamiento(GameObject* miGameObject)
 	{
-		if (miGameObject->getX() > Datos::getAnchoPantalla() - Datos::getMaxAnchoSprite())
-		{
-			miGameObject->move(-(Datos::getVelocidad()), 0);
-		}
-		else if (cerrando1)
+		if (cerrando1)
 		{
 			if (miGameObject->getY() > (Datos::getAltoPantalla() / 4) * 3 + Datos::getMaxAltoSprite())
 			{

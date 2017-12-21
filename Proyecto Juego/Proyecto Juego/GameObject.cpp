@@ -136,4 +136,14 @@ void GameObject::resetAtaque()
 	miComportamiento->resetAtaque();
 }
 
+void GameObject::setMedio()
+{
+	miSprite->setOrigin(sf::Vector2f(miSprite->getLocalBounds().width, miSprite->getLocalBounds().height) / 2.f);
+}
+
+void GameObject::setRotation(float num)
+{
+	miSprite->setRotation(num);
+}
+
 }

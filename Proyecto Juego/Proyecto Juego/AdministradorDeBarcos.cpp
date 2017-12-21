@@ -36,15 +36,27 @@ namespace Octavio
 		{
 			listaDeBarcos[i]->setSprite(*barco);
 			listaDeBarcos[i]->setZ(Datos::getZDeBarcos());
+			listaDeBarcos[i]->setMedio();
+			listaDeBarcos[i]->setRotation(90);
 
 			listaDeBarcosDobles[i]->setSprite(*barcoDoble1);
 			listaDeBarcosDobles[i]->setSprite2(*barcoDoble2);
 			listaDeBarcosDobles[i]->setZ(Datos::getZDeBarcos());
+			listaDeBarcosDobles[i]->setMedio();
+			listaDeBarcosDobles[i]->setMedio2();
+			listaDeBarcosDobles[i]->setRotation(90);
+			listaDeBarcosDobles[i]->setRotation2(90);
 
 			listaDeBarcosCuatro[i]->setSprite(*barcoCuatro1);
 			listaDeBarcosCuatro[i]->setSprite2(*barcoCuatro2);
 			listaDeBarcosCuatro[i]->setSprite3(*barcoCuatro3);
 			listaDeBarcosCuatro[i]->setZ(Datos::getZDeBarcos());
+			listaDeBarcosCuatro[i]->setMedio();
+			listaDeBarcosCuatro[i]->setMedio2();
+			listaDeBarcosCuatro[i]->setMedio3();
+			listaDeBarcosCuatro[i]->setRotation(90);
+			listaDeBarcosCuatro[i]->setRotation2(90);
+			listaDeBarcosCuatro[i]->setRotation3(90);
 		}
 	}
 
@@ -165,12 +177,12 @@ namespace Octavio
 				{
 					if (listaDeBarcos[contador1]->getPrimero())
 					{
-						listaDeBarcos[contador1]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
+						listaDeBarcos[contador1]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
 						listaDeBarcos[contador1]->cambiarPrimero();
 					}
 					else
 					{
-						listaDeBarcos[contador1]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
+						listaDeBarcos[contador1]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
 						listaDeBarcos[contador1]->cambiarPrimero();
 					}
 					contador1++;
@@ -196,12 +208,12 @@ namespace Octavio
 				{
 					if (listaDeBarcosDobles[contador2]->getPrimero())
 					{
-						listaDeBarcosDobles[contador2]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
+						listaDeBarcosDobles[contador2]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
 						listaDeBarcosDobles[contador2]->cambiarPrimero();
 					}
 					else
 					{
-						listaDeBarcosDobles[contador2]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
+						listaDeBarcosDobles[contador2]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
 						listaDeBarcosDobles[contador2]->cambiarPrimero();
 					}
 					contador2++;
@@ -227,12 +239,12 @@ namespace Octavio
 				{
 					if (listaDeBarcosDobles[contador3]->getPrimero())
 					{
-						listaDeBarcosDobles[contador3]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
+						listaDeBarcosDobles[contador3]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
 						listaDeBarcosDobles[contador3]->cambiarPrimero();
 					}
 					else
 					{
-						listaDeBarcosDobles[contador3]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
+						listaDeBarcosDobles[contador3]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
 						listaDeBarcosDobles[contador3]->cambiarPrimero();
 					}
 					contador3++;
