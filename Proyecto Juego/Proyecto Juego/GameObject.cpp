@@ -5,7 +5,7 @@ namespace Octavio
 
 int GameObject::maximoZ = 0;
 
-GameObject::GameObject() : esDibujable(false), posX(0), posY(0), posZ(0)
+GameObject::GameObject() : miSprite(new sf::Sprite()), esDibujable(false), posX(0), posY(0), posZ(0)
 {
 	setMaximoZ(posZ);
 }
@@ -95,6 +95,11 @@ float GameObject::getY()
 
 void GameObject::setComportamiento(IComportamientoDelObjeto* comportamiento)
 {
+	if (miComportamiento != nullptr)
+	{
+		delete(miComportamiento);
+	}
+
 	miComportamiento = comportamiento;
 }
 
@@ -104,6 +109,31 @@ void GameObject::activarComportamiento()
 	{
 		miComportamiento->iniciarComportamiento(this);
 	}
+}
+
+void GameObject::setZ(int num)
+{
+	posZ = num;
+}
+
+bool GameObject::getPrimero() const
+{
+	return miComportamiento->getPrimero();
+}
+
+void GameObject::cambiarPrimero()
+{
+	miComportamiento->cambiarPrimero();
+}
+
+bool GameObject::getAtaque() const
+{
+	return miComportamiento->getAtaque();
+}
+
+void GameObject::resetAtaque()
+{
+	miComportamiento->resetAtaque();
 }
 
 }

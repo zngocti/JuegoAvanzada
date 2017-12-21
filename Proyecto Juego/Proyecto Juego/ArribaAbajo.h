@@ -13,6 +13,8 @@ namespace Octavio
 	class ArribaAbajo : public IComportamientoDelObjeto
 	{
 	private:
+		static bool primero;
+
 		bool avanzando;
 		bool arriba;
 		bool abajo;
@@ -30,8 +32,10 @@ namespace Octavio
 
 		bool getAtaque() const override;
 		void resetAtaque() override;
+		void cambiarPrimero() override;
 
 		bool getReciclar() const override;
+		bool getPrimero() const override;
 
 		virtual void iniciarComportamiento(GameObject* miGameObject) override;
 		ArribaAbajo();

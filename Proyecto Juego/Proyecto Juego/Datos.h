@@ -17,18 +17,33 @@ private:
 	static int tilesExtra;
 	static int maxAltoSprite;
 	static int maxAnchoSprite;
-	
+	static int cantidadDeCadaBarco;
+	static int zDeBarcos;
+	static int zDelJugador;
+	static int disparosBarco;
+	static int disparosBarcoDoble;
+	static int disparosBarcoCuatro;
+
 	static float velocidad;
+	static float tiempoEntreBarcos;
+
 public:
 	static int getAnchoPantalla();
 	static int getAltoPantalla();
-	static int getAnchoDeTitleAgua();
+	static int getAnchoDeTileAgua();
 	static int getZDelAgua();
 	static int getTilesExtra();
 	static int getMaxAltoSprite();
 	static int getMaxAnchoSprite();
+	static int getCantidadBarcos();
+	static int getZDeBarcos();
+	static int getZDelJugador();
+	static int getDisparosBarco();
+	static int getDisparosBarcoDoble();
+	static int getDisparosBarcoCuatro();
 
 	static float getVelocidad();
+	static float getTiempoEntreBarcos();
 
 	static sf::Clock timerJuego;
 };

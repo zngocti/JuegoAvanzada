@@ -6,7 +6,8 @@ namespace Octavio
 	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena), listaDeEscenas(Lista<Escena*>(primerEscena)),
 													   escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
 													   miInput(AdministradorDeInput::crearAdministradorDeInput()),
-													   ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!")
+													   ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!"),
+													   misBarcos(AdministradorDeBarcos::crearAdministradorDeBarcos())
 	{
 
 	}
@@ -20,6 +21,7 @@ namespace Octavio
 
 		listaDeEscenas.removeAll();
 		delete(miInput);
+		delete(misBarcos);
 
 	}
 
@@ -70,10 +72,16 @@ namespace Octavio
 
 	void AdministradorDeEscenas::verificarComportamientos()
 	{
+		misBarcos->setearComportamientos();
+		misBarcos->posicionarBarcos();
+
+
 		for (int i = 0; i < gameObjectsActuales.count(); i++)
 		{
 			gameObjectsActuales[i]->activarComportamiento();
 		}
+
+		misBarcos->checkAtaques();
 	}
 
 	void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
@@ -119,5 +127,10 @@ namespace Octavio
 	{
 		escenaActual = proximaEscena;
 		gameObjectsActuales = escenaActual->getGameObjects();
+	}
+
+	void AdministradorDeEscenas::administrarBarcos(Escena* &escena)
+	{
+		misBarcos->agregarBarcos(escena);
 	}
 }

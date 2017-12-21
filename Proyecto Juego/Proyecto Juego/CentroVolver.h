@@ -13,6 +13,8 @@ namespace Octavio
 	class CentroVolver : public IComportamientoDelObjeto
 	{
 	private:
+		static bool primero;
+
 		bool avanzando;
 		bool entrando;
 
@@ -27,8 +29,10 @@ namespace Octavio
 	public:
 		bool getAtaque() const override;
 		void resetAtaque() override;
+		void cambiarPrimero() override;
 
 		bool getReciclar() const override;
+		bool getPrimero() const override;
 
 		virtual void iniciarComportamiento(GameObject* miGameObject) override;
 		CentroVolver();

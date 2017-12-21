@@ -3,6 +3,7 @@
 
 namespace Octavio
 {
+	bool CentroVolver::primero = true;
 	sf::Time CentroVolver::cdAtaque = sf::seconds(2.5f);
 
 	CentroVolver::CentroVolver() : avanzando(false), entrando(true), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(false)
@@ -80,5 +81,15 @@ namespace Octavio
 	bool CentroVolver::getReciclar() const
 	{
 		return reciclar;
+	}
+
+	bool CentroVolver::getPrimero() const
+	{
+		return primero;
+	}
+
+	void CentroVolver::cambiarPrimero()
+	{
+		primero = !primero;
 	}
 }

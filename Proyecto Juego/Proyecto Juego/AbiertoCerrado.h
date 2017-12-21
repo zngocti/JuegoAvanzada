@@ -13,6 +13,8 @@ namespace Octavio
 	class AbiertoCerrado : public IComportamientoDelObjeto
 	{
 	private:
+		static bool primero;
+
 		bool avanzando;
 		bool cerrando1;
 		bool cerrando2;
@@ -28,8 +30,10 @@ namespace Octavio
 	public:
 		bool getAtaque() const override;
 		void resetAtaque() override;
+		void cambiarPrimero() override;
 
 		bool getReciclar() const override;
+		bool getPrimero() const override;
 
 		virtual void iniciarComportamiento(GameObject* miGameObject) override;
 		AbiertoCerrado();

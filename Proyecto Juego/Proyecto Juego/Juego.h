@@ -1,5 +1,6 @@
 #ifndef JUEGO_H
 #define JUEGO_H
+
 #include "Jugador.h"
 #include "AdministradorDeEscenas.h"
 #include "Assets.h"

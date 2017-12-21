@@ -6,9 +6,9 @@ namespace Octavio
 
 	void TileIzquierdaEnLoop::iniciarComportamiento(GameObject* miGameObject)
 	{
-		if (miGameObject->getX() < -(Datos::getAnchoDeTitleAgua()))
+		if (miGameObject->getX() < -(Datos::getAnchoDeTileAgua()))
 		{
-			miGameObject->setPosition(Datos::getAnchoPantalla() + (Datos::getTilesExtra() - 1)* (Datos::getAnchoDeTitleAgua()), miGameObject->getY());
+			miGameObject->setPosition(Datos::getAnchoPantalla() + (Datos::getTilesExtra() - 1)* (Datos::getAnchoDeTileAgua()), miGameObject->getY());
 		}
 		else
 		{
@@ -29,5 +29,15 @@ namespace Octavio
 	bool TileIzquierdaEnLoop::getReciclar() const
 	{
 		return false;
+	}
+
+	bool TileIzquierdaEnLoop::getPrimero() const
+	{
+		return false;
+	}
+
+	void TileIzquierdaEnLoop::cambiarPrimero()
+	{
+
 	}
 }

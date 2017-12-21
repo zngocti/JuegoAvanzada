@@ -15,6 +15,8 @@ public:
 	virtual bool getAtaque() const = 0;
 	virtual void resetAtaque() = 0;
 	virtual bool getReciclar() const = 0;
+	virtual bool getPrimero() const = 0;
+	virtual void cambiarPrimero() = 0;
 
 };
 

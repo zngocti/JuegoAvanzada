@@ -47,8 +47,16 @@ public:
 
 	int getZ() const;
 
+	void setZ(int num);
+
 	void setComportamiento(IComportamientoDelObjeto* comportamiento);
 	void activarComportamiento();
+
+	bool getPrimero() const;
+	void cambiarPrimero();
+
+	bool getAtaque() const;
+	void resetAtaque();
 
 };
 

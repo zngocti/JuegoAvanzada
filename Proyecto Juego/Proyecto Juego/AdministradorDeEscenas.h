@@ -7,8 +7,8 @@
 #include "Assets.h"
 #include <SFML/Graphics.hpp>
 #include "AdministradorDeInput.h"
+#include "AdministradorDeBarcos.h"
 #include "Datos.h"
-
 
 namespace Octavio
 {
@@ -21,6 +21,7 @@ private:
 	Escena* escenaActual;
 	Lista<GameObject*> gameObjectsActuales;
 	AdministradorDeInput* miInput;
+	AdministradorDeBarcos* misBarcos;
 
 	sf::RenderWindow ventana;
 
@@ -39,6 +40,8 @@ public:
 	void dibujarEscena(sf::RenderWindow* window);
 
 	void cambiarEscena(Escena* const &proximaEscena);
+
+	void administrarBarcos(Escena* &escena);
 
 	void cerrarJuego();
 };

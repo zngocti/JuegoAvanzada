@@ -50,6 +50,8 @@ void Juego::crearEscenas()
 	bJugar->setEscenaObjetivo(primerNivel);
 	generarNiveles(primerNivel);
 
+	administradorEscenas->administrarBarcos(primerNivel);
+
 	sf::Texture* botonControles1 = new sf::Texture();
 	sf::Texture* botonControles2 = new sf::Texture();
 	sf::Texture* botonControles3 = new sf::Texture();
@@ -143,14 +145,14 @@ void Juego::generarNiveles(Escena* const &miEscena)
 	listaDeTexturas.addBack(tileAgua);
 	Assets::agua(*tileAgua);
 	
-	int num1 = Datos::getAltoPantalla() / Datos::getAnchoDeTitleAgua();
-	int num2 = (Datos::getAnchoPantalla() / Datos::getAnchoDeTitleAgua()) + Datos::getTilesExtra();
+	int num1 = Datos::getAltoPantalla() / Datos::getAnchoDeTileAgua();
+	int num2 = (Datos::getAnchoPantalla() / Datos::getAnchoDeTileAgua()) + Datos::getTilesExtra();
 
 	for (int i = 0; i < num1; i++)
 	{
 		for (int c = 0; c < num2; c++)
 		{
-			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTitleAgua(), i * Datos::getAnchoDeTitleAgua(), 5);
+			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTileAgua(), i * Datos::getAnchoDeTileAgua(), 5);
 			nuevoObjeto->setEscala(2, 2);
 			TileIzquierdaEnLoop* unComportamiento = new TileIzquierdaEnLoop();
 			nuevoObjeto->setComportamiento(unComportamiento);

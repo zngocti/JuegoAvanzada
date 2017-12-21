@@ -18,6 +18,9 @@ public:
 	void resetAtaque() override;
 	bool getReciclar() const override;
 
+	void cambiarPrimero() override;
+	bool getPrimero() const override;
+
 };
 
 }

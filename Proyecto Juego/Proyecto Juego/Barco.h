@@ -4,6 +4,9 @@
 #include "GameObject.h"
 #include <SFML\Window.hpp>
 #include <SFML\System.hpp>
+#include "Bala.h"
+#include "Lista.cpp"
+#include "Datos.h"
 
 namespace Octavio
 {
@@ -11,11 +14,8 @@ namespace Octavio
 class Barco : public GameObject
 {
 private:
-	static sf::Sprite elSprite;
-
 	int disparos;
 	int resistencia;
-	float velocidad;
 	int valorPuntos;
 	bool esBarcoDeAtaque;
 	bool puedeAtacar;
@@ -28,11 +28,7 @@ private:
 	bool estaEnUso;
 	bool estaVivo;
 	sf::Time tiempoDeMuerte;
-
-	sf::Clock timerAtaque;
-	sf::Clock timerRecuperacion;
-	sf::Clock timerAbordaje;
-	sf::Clock timerMorir;
+	float velocidad;
 
 public:
 	Barco();
@@ -40,7 +36,6 @@ public:
 
 	int getDisparos() const;
 	int getResistencia() const;
-	float getVelocidad() const;
 	int getValorPuntos() const;
 	bool getEsBarcoDeAtaque() const;
 	bool getPuedeAtacar() const;
@@ -53,6 +48,9 @@ public:
 	sf::Time getTiempoDeMuerte() const;
 	bool getPuedeAbordar() const;
 	bool getPuedeSerGolpeado() const;
+	float getVelocidad() const;
+
+	void setDisparos(int num);
 
 	void mover(sf::Keyboard::Key tecla);
 	void atacar();

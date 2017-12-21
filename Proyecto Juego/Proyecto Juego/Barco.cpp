@@ -3,7 +3,7 @@
 namespace Octavio
 {
 
-Barco::Barco() : GameObject()
+Barco::Barco() : disparos(Datos::getDisparosBarco())
 {
 
 }
@@ -21,11 +21,6 @@ int Barco::getDisparos() const
 int Barco::getResistencia() const
 {
 	return resistencia;
-}
-
-float Barco::getVelocidad() const
-{
-	return velocidad;
 }
 
 int Barco::getValorPuntos() const
@@ -88,6 +83,11 @@ bool Barco::getPuedeSerGolpeado() const
 	return puedeSerGolpeado;
 }
 
+float Barco::getVelocidad() const
+{
+	return velocidad;
+}
+
 void Barco::mover(sf::Keyboard::Key tecla)
 {
 	if (tecla == sf::Keyboard::D)
@@ -108,6 +108,11 @@ void Barco::mover(sf::Keyboard::Key tecla)
 	}
 }
 
+void Barco::setDisparos(int num)
+{
+	disparos = num;
+}
+
 void Barco::atacar()
 {
 
@@ -119,6 +124,7 @@ void abordar();
 
 void Barco::checkTimers()
 {
+	/*
 	if (timerAbordaje.getElapsedTime() >= cdAbordaje && !puedeAbordar)
 	{
 		puedeAbordar = true;
@@ -136,6 +142,7 @@ void Barco::checkTimers()
 	{
 		puedeSerGolpeado = true;
 	}
+	*/
 }
 
 }
