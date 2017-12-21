@@ -40,4 +40,9 @@ namespace Octavio
 	{
 
 	}
+
+	void TileIzquierdaEnLoop::noReciclar()
+	{
+
+	}
 }

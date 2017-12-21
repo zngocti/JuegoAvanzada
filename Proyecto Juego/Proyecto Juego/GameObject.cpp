@@ -118,22 +118,42 @@ void GameObject::setZ(int num)
 
 bool GameObject::getPrimero() const
 {
-	return miComportamiento->getPrimero();
+	if (miComportamiento != nullptr)
+	{
+		return miComportamiento->getPrimero();
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void GameObject::cambiarPrimero()
 {
-	miComportamiento->cambiarPrimero();
+	if (miComportamiento != nullptr)
+	{
+		miComportamiento->cambiarPrimero();
+	}
 }
 
 bool GameObject::getAtaque() const
 {
-	return miComportamiento->getAtaque();
+	if (miComportamiento != nullptr)
+	{
+		return miComportamiento->getAtaque();
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void GameObject::resetAtaque()
 {
-	miComportamiento->resetAtaque();
+	if (miComportamiento != nullptr)
+	{
+		miComportamiento->resetAtaque();
+	}
 }
 
 void GameObject::setMedio()
@@ -144,6 +164,26 @@ void GameObject::setMedio()
 void GameObject::setRotation(float num)
 {
 	miSprite->setRotation(num);
+}
+
+bool GameObject::getUso() const
+{
+	if (miComportamiento != nullptr)
+	{
+		return !miComportamiento->getReciclar();
+	}
+	else
+	{
+		true;
+	}
+}
+
+void GameObject::restartUso()
+{
+	if (miComportamiento != nullptr)
+	{
+
+	}
 }
 
 }

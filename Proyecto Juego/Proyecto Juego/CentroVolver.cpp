@@ -92,4 +92,9 @@ namespace Octavio
 	{
 		primero = !primero;
 	}
+
+	void CentroVolver::noReciclar()
+	{
+		reciclar = false;
+	}
 }

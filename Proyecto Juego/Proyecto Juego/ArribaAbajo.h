@@ -40,6 +40,8 @@ namespace Octavio
 		virtual void iniciarComportamiento(GameObject* miGameObject) override;
 		ArribaAbajo();
 
+		void noReciclar() override;
+
 	};
 
 }

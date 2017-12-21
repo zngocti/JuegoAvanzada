@@ -97,4 +97,9 @@ namespace Octavio
 	{
 		primero = !primero;
 	}
+
+	void AbiertoCerrado::noReciclar()
+	{
+		reciclar = false;
+	}
 }

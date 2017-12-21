@@ -93,4 +93,9 @@ namespace Octavio
 	{
 		primero = !primero;
 	}
+
+	void ArribaAbajo::noReciclar()
+	{
+		reciclar = false;
+	}
 }

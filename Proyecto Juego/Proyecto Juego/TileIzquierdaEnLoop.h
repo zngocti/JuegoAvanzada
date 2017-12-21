@@ -20,6 +20,7 @@ public:
 
 	void cambiarPrimero() override;
 	bool getPrimero() const override;
+	void noReciclar() override;
 
 };
 

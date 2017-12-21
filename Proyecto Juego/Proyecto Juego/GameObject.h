@@ -61,6 +61,8 @@ public:
 
 	void setMedio();
 
+	bool getUso() const;
+	void restartUso();
 };
 
 }
