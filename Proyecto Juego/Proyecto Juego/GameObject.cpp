@@ -170,7 +170,7 @@ bool GameObject::getUso() const
 {
 	if (miComportamiento != nullptr)
 	{
-		return !miComportamiento->getReciclar();
+		return !(miComportamiento->getReciclar());
 	}
 	else
 	{
@@ -182,7 +182,7 @@ void GameObject::restartUso()
 {
 	if (miComportamiento != nullptr)
 	{
-
+		miComportamiento->noReciclar();
 	}
 }
 

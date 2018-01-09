@@ -4,6 +4,7 @@ namespace Octavio
 {
 
 	AdministradorDeBarcos* AdministradorDeBarcos::elAdministradorDeBarcos = nullptr;
+	int AdministradorDeBarcos::numeroWave = 1;
 
 	AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new Barco())),
 												     listaDeBarcosDobles(Lista<BarcoDoble*>(new BarcoDoble())),
@@ -12,7 +13,8 @@ namespace Octavio
 													 barcoDoble2(new sf::Texture), barcoCuatro1(new sf::Texture),
 													 barcoCuatro2(new sf::Texture), barcoCuatro3(new sf::Texture),
 													 wave1(false), wave2(false), wave3(false),
-													 preparandoW1(false), preparandoW2(false), preparandoW3(false),
+													 preparandoW1(true), preparandoW2(true), preparandoW3(true),
+													 posicionandoW1(false), posicionandoW2(false), posicionandoW3(false),
 													 contador1(0), contador2(0), contador3(0),
 													 tiempo1(sf::seconds(0)), tiempo2(sf::seconds(0)), tiempo3(sf::seconds(0))
 	{
@@ -100,23 +102,37 @@ namespace Octavio
 	void AdministradorDeBarcos::setearComportamientos()
 	{
 		int num = 0;
-		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+		if (preparandoW1 && numeroWave == 1)
 		{
 			num = rand() % 3;
-			setBarco(listaDeBarcos[i], num);
-
+			for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+			{
+				setBarco(listaDeBarcos[i], num);				
+			}
+			preparandoW1 = false;
+			posicionandoW1 = true;
 		}
 
-		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+		else if (preparandoW2 && numeroWave == 2)
 		{
 			num = rand() % 3;
-			setBarco(listaDeBarcosDobles[i], num);
+			for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+			{
+				setBarco(listaDeBarcosDobles[i], num);
+			}
+			preparandoW2 = false;
+			posicionandoW2 = true;
 		}
 		
-		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+		if (preparandoW3 && numeroWave == 3)
 		{
 			num = rand() % 3;
-			setBarco(listaDeBarcosCuatro[i], num);
+			for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+			{
+				setBarco(listaDeBarcosCuatro[i], num);
+			}
+			preparandoW3 = false;
+			posicionandoW3 = true;
 		}
 	}
 
@@ -143,101 +159,81 @@ namespace Octavio
 
 		if (Datos::timerJuego.getElapsedTime().asSeconds() - tiempo1.asSeconds() >= Datos::getTiempoEntreBarcos())
 		{
-			if (contador1 >= Datos::getCantidadBarcos())
+			if (contador1 >= Datos::getCantidadBarcos() && posicionandoW1)
 			{
 				contador1 = 0;
+				posicionandoW1 = false;
 			}
-			if (contador2 >= Datos::getCantidadBarcos())
+			if (contador2 >= Datos::getCantidadBarcos() && posicionandoW2)
 			{
 				contador2 = 0;
+				posicionandoW2 = false;
 			}
-			if (contador3 >= Datos::getCantidadBarcos())
+			if (contador3 >= Datos::getCantidadBarcos() && posicionandoW3)
 			{
 				contador3 = 0;
+				posicionandoW3 = false;
 			}
 
-			switch (num)
+			if (numeroWave == 1 && posicionandoW1)
 			{
-			case 1:
 				if (listaDeBarcos[contador1]->getEstaPoseido())
 				{
 					contador1++;
 				}
-				else if (!listaDeBarcos[contador1]->getUso())
+				else if (!(listaDeBarcos[contador1]->getUso()) && posicionandoW1)
 				{
-					if (listaDeBarcos[contador1]->getPrimero())
-					{
-						listaDeBarcos[contador1]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
-						listaDeBarcos[contador1]->cambiarPrimero();
-					}
-					else
-					{
-						listaDeBarcos[contador1]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
-						listaDeBarcos[contador1]->cambiarPrimero();
-					}
+					posicionInicial(listaDeBarcos[contador1]);
+					listaDeBarcos[contador1]->cambiarPrimero();
 					listaDeBarcos[contador1]->restartUso();
 					contador1++;
 					tiempo1 = Datos::timerJuego.getElapsedTime();
 				}
-				else
-				{
-					contador1++;
-				}
-				break;
-			case 2:
+			}
+			
+			else if (numeroWave == 2 && posicionandoW2)
+			{
 				if (listaDeBarcosDobles[contador2]->getEstaPoseido())
 				{
 					contador2++;
 				}
-				else if (!listaDeBarcosDobles[contador2]->getUso())
+				else if (!(listaDeBarcosDobles[contador2]->getUso()) && posicionandoW2)
 				{
-					if (listaDeBarcos[contador2]->getPrimero())
-					{
-						listaDeBarcos[contador2]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
-						listaDeBarcos[contador2]->cambiarPrimero();
-					}
-					else
-					{
-						listaDeBarcos[contador2]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
-						listaDeBarcos[contador2]->cambiarPrimero();
-					}
-					listaDeBarcos[contador2]->restartUso();
+					posicionInicial(listaDeBarcosDobles[contador2]);
+					listaDeBarcosDobles[contador2]->cambiarPrimero();
+					listaDeBarcosDobles[contador2]->restartUso();
 					contador2++;
-					tiempo1 = Datos::timerJuego.getElapsedTime();
+					tiempo2 = Datos::timerJuego.getElapsedTime();
 				}
-				else
-				{
-					contador2++;
-				}
-				break;
-			default:
+			}
+
+			else if (posicionandoW3)
+			{
 				if (listaDeBarcosCuatro[contador3]->getEstaPoseido())
 				{
 					contador3++;
 				}
-				else if(!listaDeBarcosCuatro[contador3]->getUso())
+				else if (!(listaDeBarcosCuatro[contador3]->getUso()) && posicionandoW3)
 				{
-					if (listaDeBarcos[contador3]->getPrimero())
-					{
-						listaDeBarcos[contador3]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
-						listaDeBarcos[contador3]->cambiarPrimero();
-					}
-					else
-					{
-						listaDeBarcos[contador3]->setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
-						listaDeBarcos[contador3]->cambiarPrimero();
-					}
-					listaDeBarcos[contador3]->restartUso();
+					posicionInicial(listaDeBarcosCuatro[contador3]);
+					listaDeBarcosCuatro[contador3]->cambiarPrimero();
+					listaDeBarcosCuatro[contador3]->restartUso();
 					contador3++;
-					tiempo1 = Datos::timerJuego.getElapsedTime();
+					tiempo3 = Datos::timerJuego.getElapsedTime();
 				}
-				else
-				{
-					contador3++;
-				}
-				break;
 			}
-			
+		}
+	}
+
+	void AdministradorDeBarcos::posicionInicial(Barco* const &miBarco)
+	{
+		if (miBarco->getPrimero())
+		{
+			miBarco->getSprite().setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), 0 - (Datos::getMaxAltoSprite()));
+		}
+		else
+		{
+			miBarco->getSprite().setPosition(Datos::getAnchoPantalla() + Datos::getMaxAnchoSprite(), Datos::getAltoPantalla() + Datos::getMaxAltoSprite());
 		}
 	}
 
@@ -245,17 +241,65 @@ namespace Octavio
 	{
 		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 		{
-			if (!listaDeBarcos[i]->getEstaPoseido() && listaDeBarcos[i]->getAtaque())
+			if (!(listaDeBarcos[i]->getEstaPoseido()) && listaDeBarcos[i]->getAtaque())
 			{
 				listaDeBarcos[i]->atacar();
 			}
-			if (!listaDeBarcosDobles[i]->getEstaPoseido() && listaDeBarcosDobles[i]->getAtaque())
+			if (!(listaDeBarcosDobles[i]->getEstaPoseido()) && listaDeBarcosDobles[i]->getAtaque())
 			{
 				listaDeBarcosDobles[i]->atacar();
 			}
-			if (!listaDeBarcosCuatro[i]->getEstaPoseido() && listaDeBarcosCuatro[i]->getAtaque())
+			if (!(listaDeBarcosCuatro[i]->getEstaPoseido()) && listaDeBarcosCuatro[i]->getAtaque())
 			{
 				listaDeBarcosCuatro[i]->atacar();
+			}
+		}
+	}
+
+	void AdministradorDeBarcos::checkUso()
+	{
+		bool cambioDeWave = true;
+		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+		{
+			if (numeroWave == 1)
+			{
+				if (!(listaDeBarcos[i]->getEstaPoseido()) && listaDeBarcos[i]->getUso())
+				{
+					cambioDeWave = false;
+				}
+			}
+			else if (numeroWave == 2)
+			{
+				if (!(listaDeBarcosDobles[i]->getEstaPoseido()) && listaDeBarcosDobles[i]->getUso())
+				{
+					cambioDeWave = false;
+				}
+			}
+			else
+			{
+				if (!(listaDeBarcosCuatro[i]->getEstaPoseido()) && listaDeBarcosCuatro[i]->getUso())
+				{
+					cambioDeWave = false;
+				}
+			}
+		}
+
+		if (cambioDeWave)
+		{
+			if (numeroWave == 1)
+			{
+				numeroWave = 2;
+				preparandoW2 = true;
+			}
+			else if (numeroWave == 2)
+			{
+				numeroWave = 3;
+				preparandoW3 = true;
+			}
+			else
+			{
+				numeroWave = 1;
+				preparandoW1 = true;
 			}
 		}
 	}
@@ -288,5 +332,20 @@ namespace Octavio
 	bool AdministradorDeBarcos::getPreparandoW3() const
 	{
 		return preparandoW3;
+	}
+
+	bool AdministradorDeBarcos::getPosicionandoW1() const
+	{
+		return posicionandoW1;
+	}
+
+	bool AdministradorDeBarcos::getPosicionandoW2() const
+	{
+		return posicionandoW2;
+	}
+
+	bool AdministradorDeBarcos::getPosicionandoW3() const
+	{
+		return posicionandoW3;
 	}
 }

@@ -75,12 +75,12 @@ namespace Octavio
 		misBarcos->setearComportamientos();
 		misBarcos->posicionarBarcos();
 
-
 		for (int i = 0; i < gameObjectsActuales.count(); i++)
 		{
 			gameObjectsActuales[i]->activarComportamiento();
 		}
 
+		misBarcos->checkUso();
 		misBarcos->checkAtaques();
 	}
 
@@ -90,9 +90,12 @@ namespace Octavio
 		{
 			for (int c = 0; c < gameObjectsActuales.count(); c++)
 			{
-				if (gameObjectsActuales[c]->getZ() == i)
+				if (gameObjectsActuales[c]->getUso())
 				{
-					window->draw(gameObjectsActuales[c]->getSprite());
+					if (gameObjectsActuales[c]->getZ() == i)
+					{
+						window->draw(gameObjectsActuales[c]->getSprite());
+					}
 				}
 			}
 		}

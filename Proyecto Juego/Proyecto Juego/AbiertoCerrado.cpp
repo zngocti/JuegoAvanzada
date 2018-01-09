@@ -13,62 +13,65 @@ namespace Octavio
 
 	void AbiertoCerrado::iniciarComportamiento(GameObject* miGameObject)
 	{
-		if (cerrando1)
+		if (reciclar == false)
 		{
-			if (miGameObject->getY() > (Datos::getAltoPantalla() / 4) * 3 + Datos::getMaxAltoSprite())
+			if (cerrando1)
 			{
-				miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
+				if (miGameObject->getY() > (Datos::getAltoPantalla() / 4) * 3 + Datos::getMaxAltoSprite())
+				{
+					miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
+				}
+				else if (miGameObject->getY() < (Datos::getAltoPantalla() / 4) - Datos::getMaxAltoSprite())
+				{
+					miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
+				}
+				else
+				{
+					cerrando1 = false;
+					avanzando = true;
+				}
 			}
-			else if (miGameObject->getY() < (Datos::getAltoPantalla() / 4) - Datos::getMaxAltoSprite())
+			else if (avanzando)
 			{
-				miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
+				if (miGameObject->getX() > (Datos::getAnchoPantalla() / 2))
+				{
+					miGameObject->move(-(Datos::getVelocidad()), 0);
+				}
+				else
+				{
+					avanzando = false;
+					cerrando2 = true;
+				}
+			}
+			else if (cerrando2)
+			{
+				if (miGameObject->getY() > (Datos::getAltoPantalla() / 2) + Datos::getMaxAltoSprite())
+				{
+					miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
+				}
+				else if (miGameObject->getY() < (Datos::getAltoPantalla() / 2) - Datos::getMaxAltoSprite())
+				{
+					miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
+				}
+				else
+				{
+					cerrando2 = false;
+				}
 			}
 			else
 			{
-				cerrando1 = false;
-				avanzando = true;
+				miGameObject->move(-(Datos::getVelocidad()), 0);
 			}
-		}
-		else if (avanzando)
-		{
-			if (miGameObject->getX() > (Datos::getAnchoPantalla() / 2))
-			{
-				miGameObject->move(- (Datos::getVelocidad()), 0);
-			}
-			else
-			{
-				avanzando = false;
-				cerrando2 = true;
-			}
-		}
-		else if (cerrando2)
-		{
-			if (miGameObject->getY() > (Datos::getAltoPantalla() / 2) + Datos::getMaxAltoSprite())
-			{
-				miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
-			}
-			else if (miGameObject->getY() < (Datos::getAltoPantalla() / 2) - Datos::getMaxAltoSprite())
-			{
-				miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
-			}
-			else
-			{
-				cerrando2 = false;
-			}
-		}
-		else
-		{
-			miGameObject->move(-(Datos::getVelocidad()), 0);
-		}
 
-		if (Datos::timerJuego.getElapsedTime() - ultimoTiempo >= cdAtaque)
-		{
-			atacar = true;
-		}
+			if (Datos::timerJuego.getElapsedTime() - ultimoTiempo >= cdAtaque)
+			{
+				atacar = true;
+			}
 
-		if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
-		{
-			reciclar = true;
+			if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
+			{
+				reciclar = true;
+			}
 		}
 	}
 

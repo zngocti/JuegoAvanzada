@@ -24,6 +24,7 @@ class AdministradorDeBarcos
 {
 private:
 	static AdministradorDeBarcos* elAdministradorDeBarcos;
+	static int numeroWave;
 
 	Lista<Barco*> listaDeBarcos;
 	Lista<BarcoDoble*> listaDeBarcosDobles;
@@ -45,6 +46,10 @@ private:
 	bool preparandoW1;
 	bool preparandoW2;
 	bool preparandoW3;
+
+	bool posicionandoW1;
+	bool posicionandoW2;
+	bool posicionandoW3;
 	
 	int contador1;
 	int contador2;
@@ -55,6 +60,7 @@ private:
 	sf::Time tiempo3;
 
 	void setBarco(Barco* const &miBarco, int num);
+	void posicionInicial(Barco* const &miBarco);
 
 public:
 	~AdministradorDeBarcos();
@@ -73,7 +79,12 @@ public:
 	bool getPreparandoW2() const;
 	bool getPreparandoW3() const;
 
+	bool getPosicionandoW1() const;
+	bool getPosicionandoW2() const;
+	bool getPosicionandoW3() const;
+
 	void checkAtaques();
+	void checkUso();
 };
 
 }

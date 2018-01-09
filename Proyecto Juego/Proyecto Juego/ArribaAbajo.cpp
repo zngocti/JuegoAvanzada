@@ -15,56 +15,59 @@ namespace Octavio
 
 	void ArribaAbajo::iniciarComportamiento(GameObject* miGameObject)
 	{
-		if ((miGameObject->getY() > Datos::getAltoPantalla() + Datos::getMaxAltoSprite() || miGameObject->getY() < 0 - (Datos::getMaxAltoSprite())) && avanzando)
+		if (reciclar == false)
 		{
-			if (recorrido < distanciaCorta)
+			if ((miGameObject->getY() > Datos::getAltoPantalla() + Datos::getMaxAltoSprite() || miGameObject->getY() < 0 - (Datos::getMaxAltoSprite())) && avanzando)
 			{
-				miGameObject->move(-(Datos::getVelocidad()), 0);
-				recorrido = recorrido + Datos::getVelocidad();
+				if (recorrido < distanciaCorta)
+				{
+					miGameObject->move(-(Datos::getVelocidad()), 0);
+					recorrido = recorrido + Datos::getVelocidad();
+				}
+				else
+				{
+					recorrido = 0;
+					avanzando = false;
+				}
 			}
-			else
+			else if (miGameObject->getY() > Datos::getAltoPantalla() + Datos::getMaxAltoSprite())
 			{
-				recorrido = 0;
-				avanzando = false;
+				arriba = true;
 			}
-		}
-		else if (miGameObject->getY() > Datos::getAltoPantalla() + Datos::getMaxAltoSprite())
-		{
-			arriba = true;
-		}
-		else if (miGameObject->getY() < 0 - (Datos::getMaxAltoSprite()))
-		{
-			abajo = true;
-		}
+			else if (miGameObject->getY() < 0 - (Datos::getMaxAltoSprite()))
+			{
+				abajo = true;
+			}
 
-		if (arriba && miGameObject->getY() > 0 - (Datos::getMaxAltoSprite()))
-		{
-			miGameObject->move(0, -(Datos::getVelocidad()));
-		}
-		else if (arriba)
-		{
-			arriba = false;
-			avanzando = true;
-		}
+			if (arriba && miGameObject->getY() > 0 - (Datos::getMaxAltoSprite()))
+			{
+				miGameObject->move(0, -(Datos::getVelocidad()));
+			}
+			else if (arriba)
+			{
+				arriba = false;
+				avanzando = true;
+			}
 
-		if (abajo && miGameObject->getY() < Datos::getAltoPantalla() + Datos::getMaxAltoSprite())
-		{
-			miGameObject->move(0, Datos::getVelocidad());
-		}
-		else if (abajo)
-		{
-			abajo = false;
-			avanzando = true;
-		}
+			if (abajo && miGameObject->getY() < Datos::getAltoPantalla() + Datos::getMaxAltoSprite())
+			{
+				miGameObject->move(0, Datos::getVelocidad());
+			}
+			else if (abajo)
+			{
+				abajo = false;
+				avanzando = true;
+			}
 
-		if (Datos::timerJuego.getElapsedTime() - ultimoTiempo >= cdAtaque)
-		{
-			atacar = true;
-		}
+			if (Datos::timerJuego.getElapsedTime() - ultimoTiempo >= cdAtaque)
+			{
+				atacar = true;
+			}
 
-		if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
-		{
-			reciclar = true;
+			if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
+			{
+				reciclar = true;
+			}
 		}
 	}
 
