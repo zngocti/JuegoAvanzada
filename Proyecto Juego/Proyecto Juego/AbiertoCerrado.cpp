@@ -6,7 +6,7 @@ namespace Octavio
 	bool AbiertoCerrado::primero = true;
 	sf::Time AbiertoCerrado::cdAtaque = sf::seconds(2.5f);
 
-	AbiertoCerrado::AbiertoCerrado() : avanzando(false), cerrando1(true), cerrando2(false), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(false)
+	AbiertoCerrado::AbiertoCerrado() : avanzando(false), cerrando1(true), cerrando2(false), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(true)
 	{
 
 	}

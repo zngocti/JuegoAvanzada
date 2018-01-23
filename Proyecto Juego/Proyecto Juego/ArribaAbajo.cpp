@@ -3,12 +3,12 @@
 
 namespace Octavio
 {
-	const float ArribaAbajo::distanciaCorta = 150;
+	const float ArribaAbajo::distanciaCorta = 410;
 	sf::Time ArribaAbajo::cdAtaque = sf::seconds(1.5f);
 	bool ArribaAbajo::primero = true;
 
 	ArribaAbajo::ArribaAbajo() : avanzando(true), arriba(false), abajo(false), recorrido(0),
-								 ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(false)
+								 ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(true), primerMovimiento(true)
 	{
 
 	}
@@ -17,7 +17,7 @@ namespace Octavio
 	{
 		if (reciclar == false)
 		{
-			if ((miGameObject->getY() > Datos::getAltoPantalla() + Datos::getMaxAltoSprite() || miGameObject->getY() < 0 - (Datos::getMaxAltoSprite())) && avanzando)
+			if ((miGameObject->getY() >= Datos::getAltoPantalla() + Datos::getMaxAltoSprite()) && avanzando)
 			{
 				if (recorrido < distanciaCorta)
 				{
@@ -28,15 +28,42 @@ namespace Octavio
 				{
 					recorrido = 0;
 					avanzando = false;
+					arriba = true;
 				}
+
+				primerMovimiento = false;
 			}
-			else if (miGameObject->getY() > Datos::getAltoPantalla() + Datos::getMaxAltoSprite())
+			else if ((miGameObject->getY() <= 0 - (Datos::getMaxAltoSprite())) && avanzando)
 			{
-				arriba = true;
-			}
-			else if (miGameObject->getY() < 0 - (Datos::getMaxAltoSprite()))
-			{
-				abajo = true;
+				if (!primerMovimiento)
+				{
+					if (recorrido < distanciaCorta)
+					{
+						miGameObject->move(-(Datos::getVelocidad()), 0);
+						recorrido = recorrido + Datos::getVelocidad();
+					}
+					else
+					{
+						recorrido = 0;
+						avanzando = false;
+						abajo = true;
+					}
+				}
+				else
+				{
+					if (recorrido < distanciaCorta/2)
+					{
+						miGameObject->move(-(Datos::getVelocidad()), 0);
+						recorrido = recorrido + Datos::getVelocidad();
+					}
+					else
+					{
+						recorrido = 0;
+						avanzando = false;
+						abajo = true;
+						primerMovimiento = false;
+					}
+				}
 			}
 
 			if (arriba && miGameObject->getY() > 0 - (Datos::getMaxAltoSprite()))

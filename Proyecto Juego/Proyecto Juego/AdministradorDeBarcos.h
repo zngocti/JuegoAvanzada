@@ -38,10 +38,6 @@ private:
 	sf::Texture* barcoCuatro3;
 
 	AdministradorDeBarcos();
-
-	bool wave1;
-	bool wave2;
-	bool wave3;
 	
 	bool preparandoW1;
 	bool preparandoW2;

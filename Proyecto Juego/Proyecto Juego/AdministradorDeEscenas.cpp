@@ -90,12 +90,9 @@ namespace Octavio
 		{
 			for (int c = 0; c < gameObjectsActuales.count(); c++)
 			{
-				if (gameObjectsActuales[c]->getUso())
+				if (gameObjectsActuales[c]->getUso() && gameObjectsActuales[c]->getZ() == i)
 				{
-					if (gameObjectsActuales[c]->getZ() == i)
-					{
-						window->draw(gameObjectsActuales[c]->getSprite());
-					}
+					window->draw(gameObjectsActuales[c]->getSprite());
 				}
 			}
 		}

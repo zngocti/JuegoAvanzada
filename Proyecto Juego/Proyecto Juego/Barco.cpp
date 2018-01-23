@@ -3,9 +3,9 @@
 namespace Octavio
 {
 
-Barco::Barco() : disparos(Datos::getDisparosBarco())
+Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), estaEnUso(false)
 {
-
+	setPosition(-500, -500);
 }
 
 Barco::~Barco()

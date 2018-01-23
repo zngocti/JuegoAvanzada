@@ -18,6 +18,7 @@ namespace Octavio
 		bool avanzando;
 		bool arriba;
 		bool abajo;
+		bool primerMovimiento;
 
 		float recorrido;
 		sf::Time ultimoTiempo;
