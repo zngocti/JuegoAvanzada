@@ -14,11 +14,14 @@ int Datos::cantidadDeCadaBarco = 5;
 int Datos::zDeBarcos = 3;
 int Datos::zDelJugador = 2;
 int Datos::disparosBarco = 8;
-int Datos::disparosBarcoDoble = 6;
-int Datos::disparosBarcoCuatro = 4;
+int Datos::disparosBarcoDoble = 5;
+int Datos::disparosBarcoCuatro = 3;
+int Datos::balasPorBarco = 12;
 
-float Datos::velocidad = 0.05;
+float Datos::velocidad = 0.2;
 float Datos::tiempoEntreBarcos = 2;
+
+float Datos::velocidadBala = 0.5;
 
 sf::Clock Datos::timerJuego = sf::Clock();
 
@@ -94,6 +97,16 @@ int Datos::getDisparosBarcoDoble()
 int Datos::getDisparosBarcoCuatro()
 {
 	return disparosBarcoCuatro;
+}
+
+int Datos::getBalasPorBarco()
+{
+	return balasPorBarco;
+}
+
+float Datos::getVelocidadBala()
+{
+	return velocidadBala;
 }
 
 }

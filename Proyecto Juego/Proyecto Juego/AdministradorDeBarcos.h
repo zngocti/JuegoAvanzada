@@ -67,10 +67,6 @@ public:
 	void agregarBarcos(Escena* &miEscena);
 	void posicionarBarcos();
 
-	bool getWave1() const;
-	bool getWave2() const;
-	bool getWave3() const;
-
 	bool getPreparandoW1() const;
 	bool getPreparandoW2() const;
 	bool getPreparandoW3() const;

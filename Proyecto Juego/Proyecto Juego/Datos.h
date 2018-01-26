@@ -23,9 +23,12 @@ private:
 	static int disparosBarco;
 	static int disparosBarcoDoble;
 	static int disparosBarcoCuatro;
+	static int balasPorBarco;
 
 	static float velocidad;
 	static float tiempoEntreBarcos;
+
+	static float velocidadBala;
 
 public:
 	static int getAnchoPantalla();
@@ -41,9 +44,12 @@ public:
 	static int getDisparosBarco();
 	static int getDisparosBarcoDoble();
 	static int getDisparosBarcoCuatro();
+	static int getBalasPorBarco();
 
 	static float getVelocidad();
 	static float getTiempoEntreBarcos();
+
+	static float getVelocidadBala();
 
 	static sf::Clock timerJuego;
 };

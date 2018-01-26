@@ -3,106 +3,118 @@
 
 namespace Octavio
 {
-	bool AbiertoCerrado::primero = true;
-	sf::Time AbiertoCerrado::cdAtaque = sf::seconds(2.5f);
 
-	AbiertoCerrado::AbiertoCerrado() : avanzando(false), cerrando1(true), cerrando2(false), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(true)
+bool AbiertoCerrado::primero = true;
+sf::Time AbiertoCerrado::cdAtaque = sf::seconds(2.5f);
+
+AbiertoCerrado::AbiertoCerrado() : avanzando(false), cerrando1(true), cerrando2(false), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(true)
+{
+
+}
+
+void AbiertoCerrado::iniciarComportamiento(GameObject* miGameObject)
+{
+	if (reciclar == false)
 	{
-
-	}
-
-	void AbiertoCerrado::iniciarComportamiento(GameObject* miGameObject)
-	{
-		if (reciclar == false)
+		if (cerrando1)
 		{
-			if (cerrando1)
+			if (miGameObject->getY() > (Datos::getAltoPantalla() / 4) * 3 + Datos::getMaxAltoSprite())
 			{
-				if (miGameObject->getY() > (Datos::getAltoPantalla() / 4) * 3 + Datos::getMaxAltoSprite())
-				{
-					miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
-				}
-				else if (miGameObject->getY() < (Datos::getAltoPantalla() / 4) - Datos::getMaxAltoSprite())
-				{
-					miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
-				}
-				else
-				{
-					cerrando1 = false;
-					avanzando = true;
-				}
+				miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
 			}
-			else if (avanzando)
+			else if (miGameObject->getY() < (Datos::getAltoPantalla() / 4) - Datos::getMaxAltoSprite())
 			{
-				if (miGameObject->getX() > (Datos::getAnchoPantalla() / 2))
-				{
-					miGameObject->move(-(Datos::getVelocidad()), 0);
-				}
-				else
-				{
-					avanzando = false;
-					cerrando2 = true;
-				}
-			}
-			else if (cerrando2)
-			{
-				if (miGameObject->getY() > (Datos::getAltoPantalla() / 2) + Datos::getMaxAltoSprite())
-				{
-					miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
-				}
-				else if (miGameObject->getY() < (Datos::getAltoPantalla() / 2) - Datos::getMaxAltoSprite())
-				{
-					miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
-				}
-				else
-				{
-					cerrando2 = false;
-				}
+				miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
 			}
 			else
 			{
-				miGameObject->move(-(Datos::getVelocidad()), 0);
-			}
-
-			if (Datos::timerJuego.getElapsedTime() - ultimoTiempo >= cdAtaque)
-			{
-				atacar = true;
-			}
-
-			if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
-			{
-				reciclar = true;
+				cerrando1 = false;
+				avanzando = true;
 			}
 		}
-	}
+		else if (avanzando)
+		{
+			if (miGameObject->getX() > (Datos::getAnchoPantalla() / 2))
+			{
+				miGameObject->move(-(Datos::getVelocidad()), 0);
+			}
+			else
+			{
+				avanzando = false;
+				cerrando2 = true;
+			}
+		}
+		else if (cerrando2)
+		{
+			if (miGameObject->getY() > (Datos::getAltoPantalla() / 2) + Datos::getMaxAltoSprite())
+			{
+				miGameObject->move(-(Datos::getVelocidad()), -(Datos::getVelocidad()));
+			}
+			else if (miGameObject->getY() < (Datos::getAltoPantalla() / 2) - Datos::getMaxAltoSprite())
+			{
+				miGameObject->move(-(Datos::getVelocidad()), Datos::getVelocidad());
+			}
+			else
+			{
+				cerrando2 = false;
+			}
+		}
+		else
+		{
+			miGameObject->move(-(Datos::getVelocidad()), 0);
+		}
 
-	bool AbiertoCerrado::getAtaque() const
-	{
-		return atacar;
-	}
+		if (Datos::timerJuego.getElapsedTime() - ultimoTiempo >= cdAtaque)
+		{
+			atacar = true;
+		}
 
-	void AbiertoCerrado::resetAtaque()
-	{
-		atacar = false;
-		ultimoTiempo = Datos::timerJuego.getElapsedTime();
+		if (miGameObject->getX() < 0 - Datos::getMaxAnchoSprite())
+		{
+			reciclar = true;
+		}
 	}
+}
 
-	bool AbiertoCerrado::getReciclar() const
-	{
-		return reciclar;
-	}
+bool AbiertoCerrado::getAtaque() const
+{
+	return atacar;
+}
 
-	bool AbiertoCerrado::getPrimero() const
-	{
-		return primero;
-	}
+void AbiertoCerrado::resetAtaque()
+{
+	atacar = false;
+	ultimoTiempo = Datos::timerJuego.getElapsedTime();
+}
 
-	void AbiertoCerrado::cambiarPrimero()
-	{
-		primero = !primero;
-	}
+bool AbiertoCerrado::getReciclar() const
+{
+	return reciclar;
+}
 
-	void AbiertoCerrado::noReciclar()
-	{
-		reciclar = false;
-	}
+bool AbiertoCerrado::getPrimero() const
+{
+	return primero;
+}
+
+void AbiertoCerrado::cambiarPrimero()
+{
+	primero = !primero;
+}
+
+void AbiertoCerrado::noReciclar()
+{
+	reciclar = false;
+}
+
+void AbiertoCerrado::setData(int num, bool enemigo)
+{
+
+}
+
+bool AbiertoCerrado::getEsEnemigo() const
+{
+	return false;
+}
+
 }

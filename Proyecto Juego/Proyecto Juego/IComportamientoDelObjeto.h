@@ -18,6 +18,8 @@ public:
 	virtual bool getPrimero() const = 0;
 	virtual void cambiarPrimero() = 0;
 	virtual void noReciclar() = 0;
+	virtual void setData(int num, bool enemigo) = 0;
+	virtual bool getEsEnemigo() const = 0;
 
 };
 

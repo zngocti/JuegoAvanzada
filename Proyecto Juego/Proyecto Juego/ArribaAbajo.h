@@ -8,42 +8,43 @@
 namespace Octavio
 {
 
-	class GameObject;
+class GameObject;
 
-	class ArribaAbajo : public IComportamientoDelObjeto
-	{
-	private:
-		static bool primero;
+class ArribaAbajo : public IComportamientoDelObjeto
+{
+private:
+	static bool primero;
 
-		bool avanzando;
-		bool arriba;
-		bool abajo;
-		bool primerMovimiento;
+	bool avanzando;
+	bool arriba;
+	bool abajo;
+	bool primerMovimiento;
 
-		float recorrido;
-		sf::Time ultimoTiempo;
-		bool atacar;
+	float recorrido;
+	sf::Time ultimoTiempo;
+	bool atacar;
 
-		bool reciclar;
+	bool reciclar;
 
-		static sf::Time cdAtaque;
+	static sf::Time cdAtaque;
 				
-	public:
-		static const float distanciaCorta;
+public:
+	static const float distanciaCorta;
 
-		bool getAtaque() const override;
-		void resetAtaque() override;
-		void cambiarPrimero() override;
+	bool getAtaque() const override;
+	void resetAtaque() override;
+	void cambiarPrimero() override;
 
-		bool getReciclar() const override;
-		bool getPrimero() const override;
+	bool getReciclar() const override;
+	bool getPrimero() const override;
 
-		virtual void iniciarComportamiento(GameObject* miGameObject) override;
-		ArribaAbajo();
+	virtual void iniciarComportamiento(GameObject* miGameObject) override;
+	ArribaAbajo();
 
-		void noReciclar() override;
-
-	};
+	void noReciclar() override;
+	void setData(int num, bool enemigo) override;
+	bool getEsEnemigo() const override;
+};
 
 }
 

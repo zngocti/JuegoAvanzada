@@ -3,14 +3,18 @@
 namespace Octavio
 {
 
-Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), estaEnUso(false)
+Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), estaEnUso(false), listaDeBalas(Lista<Bala*>(new Bala()))
 {
 	setPosition(-500, -500);
+	for (int i = 0; i < Datos::getBalasPorBarco() - 1; i++)
+	{
+		listaDeBalas.addBack(new Bala());
+	}
 }
 
 Barco::~Barco()
 {
-
+	listaDeBalas.removeAll();
 }
 
 int Barco::getDisparos() const
@@ -143,6 +147,11 @@ void Barco::checkTimers()
 		puedeSerGolpeado = true;
 	}
 	*/
+}
+
+Lista<Bala*> Barco::getListaDeBalas() const
+{
+	return listaDeBalas;
 }
 
 }

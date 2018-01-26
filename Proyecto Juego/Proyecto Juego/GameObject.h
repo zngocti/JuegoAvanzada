@@ -21,9 +21,10 @@ private:
 
 	bool esDibujable;
 
-	IComportamientoDelObjeto* miComportamiento;
-
 	static void setMaximoZ(int z);
+
+protected:
+	IComportamientoDelObjeto* miComportamiento;
 
 public:
 	GameObject();

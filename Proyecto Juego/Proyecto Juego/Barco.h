@@ -30,6 +30,9 @@ private:
 	sf::Time tiempoDeMuerte;
 	float velocidad;
 
+protected:
+	Lista<Bala*> listaDeBalas;
+
 public:
 	Barco();
 	virtual ~Barco();
@@ -53,11 +56,13 @@ public:
 	void setDisparos(int num);
 
 	void mover(sf::Keyboard::Key tecla);
-	void atacar();
+	virtual void atacar();
 	void impacto();
 	void morir();
 	void abordar();
 	void checkTimers();
+
+	Lista<Bala*> getListaDeBalas() const;
 };
 
 }

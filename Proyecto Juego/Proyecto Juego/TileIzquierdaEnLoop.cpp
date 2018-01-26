@@ -45,4 +45,14 @@ namespace Octavio
 	{
 
 	}
+
+	void TileIzquierdaEnLoop::setData(int num, bool enemigo)
+	{
+
+	}
+
+	bool TileIzquierdaEnLoop::getEsEnemigo() const
+	{
+		return false;
+	}
 }

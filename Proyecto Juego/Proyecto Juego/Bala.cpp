@@ -3,29 +3,28 @@
 namespace Octavio
 {
 
-Bala::Bala() : velocidad(0.2), estaEnUso(false)
-{
+sf::Texture* Bala::texturaBala = nullptr;
 
+Bala::Bala() : estaEnUso(false)
+{
+	if (texturaBala == nullptr)
+	{
+		texturaBala = new sf::Texture();
+		Assets::cannonBall(*texturaBala);
+	}
+
+	setSprite(*texturaBala);
+	setMedio();
+	setPosition(-500, -500);
 }
 
 Bala::~Bala()
 {
-
-}
-
-bool Bala::getEstaEnUso() const
-{
-	return estaEnUso;
-}
-
-float Bala::getVelocidad() const
-{
-	return velocidad;
-}
-
-void Bala::mover(int num)
-{
-
+	if (texturaBala != nullptr)
+	{
+		delete(texturaBala);
+		texturaBala = nullptr;
+	}
 }
 
 }

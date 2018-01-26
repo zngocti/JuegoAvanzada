@@ -2,6 +2,7 @@
 #define BALA_H
 
 #include "GameObject.h"
+#include "Assets.h"
 
 namespace Octavio
 {
@@ -10,17 +11,13 @@ class Bala : public GameObject
 {
 
 private:
-	float velocidad;
 	bool estaEnUso;
+
+	static sf::Texture* texturaBala;
 
 public:
 	Bala();
 	~Bala();
-
-	float getVelocidad() const;
-	bool getEstaEnUso() const;
-
-	void mover(int num);
 
 };
 
