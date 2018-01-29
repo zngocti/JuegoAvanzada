@@ -13,7 +13,7 @@ namespace Octavio
 
 class Barco : public GameObject
 {
-private:
+protected:
 	int disparos;
 	int resistencia;
 	int valorPuntos;
@@ -25,12 +25,9 @@ private:
 	bool estaPoseido;
 	sf::Time cdRecuperacion;
 	sf::Time cdAbordaje;
-	bool estaEnUso;
 	bool estaVivo;
 	sf::Time tiempoDeMuerte;
 	float velocidad;
-
-protected:
 	Lista<Bala*> listaDeBalas;
 
 public:
@@ -46,7 +43,6 @@ public:
 	bool getEstaPoseido() const;
 	sf::Time getCDRecuperacion() const;
 	sf::Time getCDAbordaje() const;
-	bool getEstaEnUso() const;
 	bool getEstaVivo() const;
 	sf::Time getTiempoDeMuerte() const;
 	bool getPuedeAbordar() const;

@@ -103,6 +103,11 @@ void GameObject::setComportamiento(IComportamientoDelObjeto* comportamiento)
 	miComportamiento = comportamiento;
 }
 
+IComportamientoDelObjeto* GameObject::getComportamiento() const
+{
+	return miComportamiento;
+}
+
 void GameObject::activarComportamiento()
 {
 	if (miComportamiento != nullptr)

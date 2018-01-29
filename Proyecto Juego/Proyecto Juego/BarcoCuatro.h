@@ -25,6 +25,8 @@ public:
 	void setMedio3();
 	void setRotation2(float num);
 	void setRotation3(float num);
+
+	virtual void atacar() override;
 };
 
 }

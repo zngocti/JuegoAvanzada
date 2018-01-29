@@ -37,11 +37,19 @@ void MovimientoBala::iniciarComportamiento(GameObject* miGameObject)
 			miGameObject->move(-(Datos::getVelocidadBala()), 0);
 			break;
 		case 8:
-			miGameObject->move(0, Datos::getVelocidadBala());
+			miGameObject->move(-(Datos::getVelocidadBala()), -(Datos::getVelocidadBala()));
 			break;
 		default:
 			break;
 		}
+	}
+
+	if (miGameObject->getX() <= 0 - miGameObject->getSprite().getLocalBounds().width / 2 ||
+		miGameObject->getX() >= Datos::getAnchoPantalla() + miGameObject->getSprite().getLocalBounds().width / 2 ||
+		miGameObject->getY() <= 0 - miGameObject->getSprite().getLocalBounds().height / 2 ||
+		miGameObject->getY() >= Datos::getAltoPantalla() - miGameObject->getSprite().getLocalBounds().height / 2)
+	{
+		reciclar = true;
 	}
 }
 
@@ -64,6 +72,31 @@ bool MovimientoBala::getReciclar() const
 void MovimientoBala::noReciclar()
 {
 	reciclar = false;
+}
+
+void MovimientoBala::activarReciclar()
+{
+	reciclar = true;
+}
+
+bool MovimientoBala::getAtaque() const
+{
+	return false;
+}
+
+void MovimientoBala::resetAtaque()
+{
+
+}
+
+bool MovimientoBala::getPrimero() const
+{
+	return false;
+}
+
+void MovimientoBala::cambiarPrimero()
+{
+
 }
 
 }

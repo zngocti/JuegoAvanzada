@@ -3,12 +3,13 @@
 namespace Octavio
 {
 
-Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), estaEnUso(false), listaDeBalas(Lista<Bala*>(new Bala()))
+Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), listaDeBalas(Lista<Bala*>(new Bala()))
 {
 	setPosition(-500, -500);
 	for (int i = 0; i < Datos::getBalasPorBarco() - 1; i++)
 	{
 		listaDeBalas.addBack(new Bala());
+		listaDeBalas[i]->setBarcoOrigen(this);
 	}
 }
 
@@ -60,11 +61,6 @@ sf::Time Barco::getCDRecuperacion() const
 sf::Time Barco::getCDAbordaje() const
 {
 	return cdAbordaje;
-}
-
-bool Barco::getEstaEnUso() const
-{
-	return estaEnUso;
 }
 
 bool Barco::getEstaVivo() const
@@ -119,10 +115,27 @@ void Barco::setDisparos(int num)
 
 void Barco::atacar()
 {
-
+	if (getUso() && !estaPoseido)
+	{
+		for (int i = 0; i < listaDeBalas.count(); i++)
+		{
+			if (!(listaDeBalas[i]->getUso()))
+			{
+				resetAtaque();
+				listaDeBalas[i]->restartUso();
+				listaDeBalas[i]->setPosition(getSprite().getPosition().x - getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
+				listaDeBalas[i]->getComportamiento()->setData(7, true);
+				i = listaDeBalas.count();
+			}
+		}
+	}
 }
 
-void impacto(); //efecto impacto y efecto explosion
+void Barco::impacto()
+{
+	//efecto impacto y efecto explosion
+}
+
 void morir();
 void abordar();
 

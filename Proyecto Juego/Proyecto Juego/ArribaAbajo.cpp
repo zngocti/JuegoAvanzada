@@ -5,7 +5,7 @@ namespace Octavio
 {
 
 const float ArribaAbajo::distanciaCorta = 410;
-sf::Time ArribaAbajo::cdAtaque = sf::seconds(1.5f);
+sf::Time ArribaAbajo::cdAtaque = sf::seconds(6.5f);
 bool ArribaAbajo::primero = true;
 
 ArribaAbajo::ArribaAbajo() : avanzando(true), arriba(false), abajo(false), recorrido(0),
@@ -128,6 +128,11 @@ void ArribaAbajo::cambiarPrimero()
 void ArribaAbajo::noReciclar()
 {
 	reciclar = false;
+}
+
+void ArribaAbajo::activarReciclar()
+{
+	reciclar = true;
 }
 
 void ArribaAbajo::setData(int num, bool enemigo)

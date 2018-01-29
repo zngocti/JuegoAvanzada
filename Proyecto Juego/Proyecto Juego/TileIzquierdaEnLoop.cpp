@@ -46,6 +46,11 @@ namespace Octavio
 
 	}
 
+	void TileIzquierdaEnLoop::activarReciclar()
+	{
+
+	}
+
 	void TileIzquierdaEnLoop::setData(int num, bool enemigo)
 	{
 

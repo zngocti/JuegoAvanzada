@@ -77,6 +77,8 @@ public:
 
 	void checkAtaques();
 	void checkUso();
+	void checkImpactosBala();
+	void colisionBarcoBala(Bala* miBala);
 };
 
 }

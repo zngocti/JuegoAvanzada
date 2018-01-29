@@ -52,6 +52,7 @@ public:
 	void setZ(int num);
 
 	void setComportamiento(IComportamientoDelObjeto* comportamiento);
+	IComportamientoDelObjeto* getComportamiento() const;
 	void activarComportamiento();
 
 	bool getPrimero() const;

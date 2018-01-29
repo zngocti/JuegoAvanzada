@@ -33,4 +33,25 @@ void BarcoDoble::setRotation2(float num)
 	sprite2->setRotation(num);
 }
 
+void BarcoDoble::atacar()
+{
+	if (getUso() && !estaPoseido)
+	{
+		for (int i = 0; i < listaDeBalas.count() - 1; i++)
+		{
+			if (!(listaDeBalas[i]->getUso()) && !(listaDeBalas[i + 1]->getUso()))
+			{
+				resetAtaque();
+				listaDeBalas[i]->restartUso();
+				listaDeBalas[i + 1]->restartUso();
+				listaDeBalas[i]->setPosition(getSprite().getPosition().x - 20, getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - 20);
+				listaDeBalas[i + 1]->setPosition(getSprite().getPosition().x - 20, getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + 20);
+				listaDeBalas[i]->getComportamiento()->setData(6, true);
+				listaDeBalas[i + 1]->getComportamiento()->setData(8, true);
+				i = listaDeBalas.count();
+			}
+		}
+	}
+}
+
 }

@@ -21,6 +21,7 @@ public:
 	void cambiarPrimero() override;
 	bool getPrimero() const override;
 	void noReciclar() override;
+	void activarReciclar() override;
 	void setData(int num, bool enemigo) override;
 	bool getEsEnemigo() const override;
 };

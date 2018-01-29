@@ -334,6 +334,74 @@ void AdministradorDeBarcos::checkUso()
 	}
 }
 
+void AdministradorDeBarcos::checkImpactosBala()
+{
+	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+	{
+		for (int c = 0; c < listaDeBarcos[i]->getListaDeBalas().count(); c++)
+		{
+			colisionBarcoBala((listaDeBarcos[i]->getListaDeBalas())[c]);
+		}
+		for (int c = 0; c < listaDeBarcosDobles[i]->getListaDeBalas().count(); c++)
+		{
+			colisionBarcoBala((listaDeBarcosDobles[i]->getListaDeBalas())[c]);
+		}
+		for (int c = 0; c < listaDeBarcosCuatro[i]->getListaDeBalas().count(); c++)
+		{
+			colisionBarcoBala((listaDeBarcosCuatro[i]->getListaDeBalas())[c]);
+		}
+	}
+}
+
+void AdministradorDeBarcos::colisionBarcoBala(Bala* miBala)
+{
+	if (miBala->getUso())
+	{
+		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+		{
+			if (listaDeBarcos[i]->getUso() && listaDeBarcos[i] != miBala->getBarcoOrigen())
+			{
+				if (miBala->getSprite().getGlobalBounds().intersects(listaDeBarcos[i]->getSprite().getGlobalBounds()))
+				{
+					if ((!(miBala->getComportamiento()->getEsEnemigo()) && !(listaDeBarcos[i]->getEstaPoseido())) ||
+						(miBala->getComportamiento()->getEsEnemigo() && listaDeBarcos[i]->getEstaPoseido()))
+					{
+						listaDeBarcos[i]->impacto();
+					}
+					miBala->getComportamiento()->activarReciclar();
+					return;
+				}
+			}
+			if(listaDeBarcosDobles[i]->getUso() && listaDeBarcosDobles[i] != miBala->getBarcoOrigen())
+			{
+				if (miBala->getSprite().getGlobalBounds().intersects(listaDeBarcosDobles[i]->getSprite().getGlobalBounds()))
+				{
+					if ((!(miBala->getComportamiento()->getEsEnemigo()) && !(listaDeBarcosDobles[i]->getEstaPoseido())) ||
+						(miBala->getComportamiento()->getEsEnemigo() && listaDeBarcosDobles[i]->getEstaPoseido()))
+					{
+						listaDeBarcosDobles[i]->impacto();
+					}
+					miBala->getComportamiento()->activarReciclar();
+					return;
+				}
+			}
+			if(listaDeBarcosCuatro[i]->getUso() && listaDeBarcosCuatro[i] != miBala->getBarcoOrigen())
+			{
+				if (miBala->getSprite().getGlobalBounds().intersects(listaDeBarcosCuatro[i]->getSprite().getGlobalBounds()))
+				{
+					if ((!(miBala->getComportamiento()->getEsEnemigo()) && !(listaDeBarcosCuatro[i]->getEstaPoseido())) ||
+						(miBala->getComportamiento()->getEsEnemigo() && listaDeBarcosCuatro[i]->getEstaPoseido()))
+					{
+						listaDeBarcosCuatro[i]->impacto();
+					}
+					miBala->getComportamiento()->activarReciclar();
+					return;
+				}
+			}
+		}
+	}
+}
+
 bool AdministradorDeBarcos::getPreparandoW1() const
 {
 	return preparandoW1;

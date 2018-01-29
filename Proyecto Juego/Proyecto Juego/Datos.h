@@ -24,6 +24,7 @@ private:
 	static int disparosBarcoDoble;
 	static int disparosBarcoCuatro;
 	static int balasPorBarco;
+	static int pixelesExtraEnElBarco;
 
 	static float velocidad;
 	static float tiempoEntreBarcos;
@@ -45,6 +46,7 @@ public:
 	static int getDisparosBarcoDoble();
 	static int getDisparosBarcoCuatro();
 	static int getBalasPorBarco();
+	static int getPixelesExtraDelBarco();
 
 	static float getVelocidad();
 	static float getTiempoEntreBarcos();

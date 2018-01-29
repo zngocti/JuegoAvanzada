@@ -5,7 +5,7 @@ namespace Octavio
 {
 
 bool CentroVolver::primero = true;
-sf::Time CentroVolver::cdAtaque = sf::seconds(2.5f);
+sf::Time CentroVolver::cdAtaque = sf::seconds(5.0f);
 
 CentroVolver::CentroVolver() : avanzando(false), entrando(true), recorrido(0), ultimoTiempo(Datos::timerJuego.getElapsedTime()), atacar(false), reciclar(true)
 {
@@ -100,6 +100,11 @@ void CentroVolver::cambiarPrimero()
 void CentroVolver::noReciclar()
 {
 	reciclar = false;
+}
+
+void CentroVolver::activarReciclar()
+{
+	reciclar = true;
 }
 
 void CentroVolver::setData(int num, bool enemigo)

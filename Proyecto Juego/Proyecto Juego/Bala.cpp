@@ -5,7 +5,7 @@ namespace Octavio
 
 sf::Texture* Bala::texturaBala = nullptr;
 
-Bala::Bala() : estaEnUso(false)
+Bala::Bala() : estaEnUso(false), miBarcoOrigen(nullptr)
 {
 	if (texturaBala == nullptr)
 	{
@@ -16,6 +16,7 @@ Bala::Bala() : estaEnUso(false)
 	setSprite(*texturaBala);
 	setMedio();
 	setPosition(-500, -500);
+	setComportamiento(new MovimientoBala());
 }
 
 Bala::~Bala()
@@ -25,6 +26,16 @@ Bala::~Bala()
 		delete(texturaBala);
 		texturaBala = nullptr;
 	}
+}
+
+void Bala::setBarcoOrigen(Barco* miBarco)
+{
+	miBarcoOrigen = miBarco;
+}
+
+Barco* Bala::getBarcoOrigen() const
+{
+	return miBarcoOrigen;
 }
 
 }

@@ -54,4 +54,43 @@ void BarcoCuatro::setRotation3(float num)
 	sprite3->setRotation(num);
 }
 
+void BarcoCuatro::atacar()
+{
+	if (getUso() && !estaPoseido)
+	{
+		if (getSprite().getPosition().x < 0 + getSprite().getLocalBounds().width / 2 || getSprite().getPosition().x > Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2 ||
+			getSprite().getPosition().y < 0 + getSprite().getLocalBounds().height / 2 || getSprite().getPosition().y > Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2)
+		{
+			resetAtaque();
+		}
+		else
+		{
+			for (int i = 0; i < listaDeBalas.count() - 3; i++)
+			{
+				if (!(listaDeBalas[i]->getUso()) && !(listaDeBalas[i + 1]->getUso()) && !(listaDeBalas[i + 2]->getUso()) && !(listaDeBalas[i + 3]->getUso()))
+				{
+					resetAtaque();
+					listaDeBalas[i]->restartUso();
+					listaDeBalas[i + 1]->restartUso();
+					listaDeBalas[i + 2]->restartUso();
+					listaDeBalas[i + 3]->restartUso();
+					listaDeBalas[i]->setPosition(getSprite().getPosition().x - Datos::getPixelesExtraDelBarco(),
+												 getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - Datos::getPixelesExtraDelBarco());
+					listaDeBalas[i + 1]->setPosition(getSprite().getPosition().x + Datos::getPixelesExtraDelBarco(),
+													 getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - Datos::getPixelesExtraDelBarco());
+					listaDeBalas[i + 2]->setPosition(getSprite().getPosition().x - Datos::getPixelesExtraDelBarco(),
+													 getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
+					listaDeBalas[i + 3]->setPosition(getSprite().getPosition().x + Datos::getPixelesExtraDelBarco(),
+													 getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
+					listaDeBalas[i]->getComportamiento()->setData(5, true);
+					listaDeBalas[i + 1]->getComportamiento()->setData(5, true);
+					listaDeBalas[i + 2]->getComportamiento()->setData(1, true);
+					listaDeBalas[i + 3]->getComportamiento()->setData(1, true);
+					i = listaDeBalas.count();
+				}
+			}
+		}
+	}
+}
+
 }

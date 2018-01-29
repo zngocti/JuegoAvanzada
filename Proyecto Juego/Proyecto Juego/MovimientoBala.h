@@ -20,10 +20,16 @@ private:
 public:
 	bool getReciclar() const override;
 
+	bool getAtaque() const override;
+	void resetAtaque() override;
+	void cambiarPrimero() override;
+	bool getPrimero() const override;
+
 	virtual void iniciarComportamiento(GameObject* miGameObject) override;
 	MovimientoBala();
 
 	void noReciclar() override;
+	void activarReciclar() override;
 	void setData(int num, bool enemigo) override;
 	bool getEsEnemigo() const override;
 };
