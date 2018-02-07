@@ -3,6 +3,9 @@
 namespace Octavio
 {
 
+
+Bala* Barco::marino = nullptr;
+
 Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), listaDeBalas(Lista<Bala*>(new Bala()))
 {
 	setPosition(-500, -500);
@@ -33,21 +36,6 @@ int Barco::getValorPuntos() const
 	return valorPuntos;
 }
 
-bool Barco::getEsBarcoDeAtaque() const
-{
-	return esBarcoDeAtaque;
-}
-
-bool Barco::getPuedeAtacar() const
-{
-	return puedeAtacar;
-}
-
-sf::Time Barco::getCDAtaque() const
-{
-	return cdAtaque;
-}
-
 bool Barco::getEstaPoseido() const
 {
 	return estaPoseido;
@@ -56,11 +44,6 @@ bool Barco::getEstaPoseido() const
 sf::Time Barco::getCDRecuperacion() const
 {
 	return cdRecuperacion;
-}
-
-sf::Time Barco::getCDAbordaje() const
-{
-	return cdAbordaje;
 }
 
 bool Barco::getEstaVivo() const
@@ -73,38 +56,28 @@ sf::Time Barco::getTiempoDeMuerte() const
 	return tiempoDeMuerte;
 }
 
-bool Barco::getPuedeAbordar() const
-{
-	return puedeAbordar;
-}
-
 bool Barco::getPuedeSerGolpeado() const
 {
 	return puedeSerGolpeado;
 }
 
-float Barco::getVelocidad() const
-{
-	return velocidad;
-}
-
 void Barco::mover(sf::Keyboard::Key tecla)
 {
-	if (tecla == sf::Keyboard::D)
+	if (tecla == sf::Keyboard::D && getX() + getSprite().getLocalBounds().width / 2 <= Datos::getAnchoPantalla())
 	{
-		getSprite().move(velocidad, 0.0f);
+		move(Datos::getVelocidadJugador(), 0.0f);
 	}
-	if (tecla == sf::Keyboard::A)
+	else if (tecla == sf::Keyboard::A && getX() - getSprite().getLocalBounds().width / 2 >= 0)
 	{
-		getSprite().move(-velocidad, 0.0f);
+		move(- (Datos::getVelocidadJugador()), 0.0f);
 	}
-	if (tecla == sf::Keyboard::W)
+	else if (tecla == sf::Keyboard::S && getY() + getSprite().getLocalBounds().height / 2 <= Datos::getAltoPantalla())
 	{
-		getSprite().move(0.0f, velocidad);
+		move(0.0f, Datos::getVelocidadJugador());
 	}
-	if (tecla == sf::Keyboard::S)
+	else if (tecla == sf::Keyboard::W && getY() - getSprite().getLocalBounds().height / 2 >= 0)
 	{
-		getSprite().move(0.0f, -velocidad);
+		move(0.0f, -(Datos::getVelocidadJugador()));
 	}
 }
 
@@ -129,6 +102,20 @@ void Barco::atacar()
 			}
 		}
 	}
+	else if (getUso() && estaPoseido && disparos > 0)
+	{
+		for (int i = 0; i < listaDeBalas.count(); i++)
+		{
+			if (!(listaDeBalas[i]->getUso()))
+			{
+				resetAtaque();
+				listaDeBalas[i]->restartUso();
+				listaDeBalas[i]->setPosition(getSprite().getPosition().x + getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
+				listaDeBalas[i]->getComportamiento()->setData(3, false);
+				i = listaDeBalas.count();
+			}
+		}
+	}
 }
 
 void Barco::impacto()
@@ -137,7 +124,21 @@ void Barco::impacto()
 }
 
 void morir();
-void abordar();
+
+void Barco::abordar()
+{
+	estaPoseido = true;
+	setRotation(Datos::getRotacionPoseido());
+}
+
+void Barco::dispararMarino()
+{
+	if (getUso() && estaPoseido && !(marino->getUso()))
+	{
+		marino->restartUso();
+		marino->setPosition(getSprite().getPosition().x + getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
+	}
+}
 
 void Barco::checkTimers()
 {
@@ -165,6 +166,28 @@ void Barco::checkTimers()
 Lista<Bala*> Barco::getListaDeBalas() const
 {
 	return listaDeBalas;
+}
+
+void Barco::activarComportamiento()
+{
+	if (miComportamiento != nullptr && !estaPoseido)
+	{
+		miComportamiento->iniciarComportamiento(this);
+	}
+}
+
+void Barco::crearMarino()
+{
+	if (marino == nullptr)
+	{
+		marino = new Bala();
+		marino->setMarino();
+	}
+}
+
+Bala* Barco::getMarino()
+{
+	return marino;
 }
 
 }

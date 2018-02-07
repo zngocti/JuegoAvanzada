@@ -17,18 +17,14 @@ protected:
 	int disparos;
 	int resistencia;
 	int valorPuntos;
-	bool esBarcoDeAtaque;
-	bool puedeAtacar;
-	bool puedeAbordar;
 	bool puedeSerGolpeado;
-	sf::Time cdAtaque;
 	bool estaPoseido;
 	sf::Time cdRecuperacion;
-	sf::Time cdAbordaje;
 	bool estaVivo;
 	sf::Time tiempoDeMuerte;
-	float velocidad;
 	Lista<Bala*> listaDeBalas;
+
+	static Bala* marino;
 
 public:
 	Barco();
@@ -37,17 +33,11 @@ public:
 	int getDisparos() const;
 	int getResistencia() const;
 	int getValorPuntos() const;
-	bool getEsBarcoDeAtaque() const;
-	bool getPuedeAtacar() const;
-	sf::Time getCDAtaque() const;
 	bool getEstaPoseido() const;
 	sf::Time getCDRecuperacion() const;
-	sf::Time getCDAbordaje() const;
 	bool getEstaVivo() const;
 	sf::Time getTiempoDeMuerte() const;
-	bool getPuedeAbordar() const;
 	bool getPuedeSerGolpeado() const;
-	float getVelocidad() const;
 
 	void setDisparos(int num);
 
@@ -55,10 +45,16 @@ public:
 	virtual void atacar();
 	void impacto();
 	void morir();
-	void abordar();
+	virtual void abordar();
+	void dispararMarino();
 	void checkTimers();
 
+	virtual void activarComportamiento() override;
+
 	Lista<Bala*> getListaDeBalas() const;
+
+	static void crearMarino();
+	static Bala* getMarino();
 };
 
 }

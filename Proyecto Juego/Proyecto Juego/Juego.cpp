@@ -3,7 +3,7 @@
 namespace Octavio
 {
 
-Juego::Juego() : jugador(new Jugador()), administradorEscenas(new AdministradorDeEscenas()), listaDeTexturas(Lista<sf::Texture*>(nullptr))
+Juego::Juego() : jugador(Jugador::crearJugador()), administradorEscenas(new AdministradorDeEscenas()), listaDeTexturas(Lista<sf::Texture*>(nullptr))
 {
 	listaDeTexturas.removeFirst();
 }
@@ -18,6 +18,7 @@ Juego::~Juego()
 void Juego::iniciar()
 {
 	crearEscenas();
+	administradorEscenas->setJugador(jugador);
 	administradorEscenas->iniciarUpdate();
 }
 
@@ -49,6 +50,8 @@ void Juego::crearEscenas()
 	Escena* primerNivel = administradorEscenas->crearEscena();
 	bJugar->setEscenaObjetivo(primerNivel);
 	generarNiveles(primerNivel);
+
+	Datos::setEscenaJuego(primerNivel);
 
 	administradorEscenas->administrarBarcos(primerNivel);
 

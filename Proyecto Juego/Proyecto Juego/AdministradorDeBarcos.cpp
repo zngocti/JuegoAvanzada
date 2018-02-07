@@ -15,7 +15,8 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 													preparandoW1(true), preparandoW2(true), preparandoW3(true),
 													posicionandoW1(false), posicionandoW2(false), posicionandoW3(false),
 													contador1(0), contador2(0), contador3(0),
-													tiempo1(sf::seconds(0)), tiempo2(sf::seconds(0)), tiempo3(sf::seconds(0))
+													tiempo1(sf::seconds(0)), tiempo2(sf::seconds(0)), tiempo3(sf::seconds(0)),
+													barcoDelJugador(nullptr)
 {
 	srand(time(0));
 
@@ -38,15 +39,15 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 		listaDeBarcos[i]->setSprite(*barco);
 		listaDeBarcos[i]->setZ(Datos::getZDeBarcos());
 		listaDeBarcos[i]->setMedio();
-		listaDeBarcos[i]->setRotation(90);
+		listaDeBarcos[i]->setRotation(Datos::getRotacionInicial());
 
 		listaDeBarcosDobles[i]->setSprite(*barcoDoble1);
 		listaDeBarcosDobles[i]->setSprite2(*barcoDoble2);
 		listaDeBarcosDobles[i]->setZ(Datos::getZDeBarcos());
 		listaDeBarcosDobles[i]->setMedio();
 		listaDeBarcosDobles[i]->setMedio2();
-		listaDeBarcosDobles[i]->setRotation(90);
-		listaDeBarcosDobles[i]->setRotation2(90);
+		listaDeBarcosDobles[i]->setRotation(Datos::getRotacionInicial());
+		listaDeBarcosDobles[i]->setRotation2(Datos::getRotacionInicial());
 
 		listaDeBarcosCuatro[i]->setSprite(*barcoCuatro1);
 		listaDeBarcosCuatro[i]->setSprite2(*barcoCuatro2);
@@ -55,10 +56,13 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 		listaDeBarcosCuatro[i]->setMedio();
 		listaDeBarcosCuatro[i]->setMedio2();
 		listaDeBarcosCuatro[i]->setMedio3();
-		listaDeBarcosCuatro[i]->setRotation(90);
-		listaDeBarcosCuatro[i]->setRotation2(90);
-		listaDeBarcosCuatro[i]->setRotation3(90);
+		listaDeBarcosCuatro[i]->setRotation(Datos::getRotacionInicial());
+		listaDeBarcosCuatro[i]->setRotation2(Datos::getRotacionInicial());
+		listaDeBarcosCuatro[i]->setRotation3(Datos::getRotacionInicial());
 	}
+
+	Barco::crearMarino();
+	setBarcoInicial();
 }
 
 AdministradorDeBarcos::~AdministradorDeBarcos()
@@ -97,6 +101,8 @@ void AdministradorDeBarcos::agregarBarcos(Escena* &miEscena)
 			miEscena->agregarGameObject(listaDeBarcosCuatro[i]->getListaDeBalas()[c]);
 		}
 	}
+
+	miEscena->agregarGameObject(Barco::getMarino());
 }
 
 AdministradorDeBarcos* AdministradorDeBarcos::crearAdministradorDeBarcos()
@@ -163,6 +169,11 @@ void AdministradorDeBarcos::setBarco(Barco* const &miBarco, int num)
 		miBarco->setComportamiento(new CentroVolver());
 		break;
 	}
+
+	if (miBarco->getEstaPoseido())
+	{
+		miBarco->restartUso();
+	}
 }
 
 void AdministradorDeBarcos::posicionarBarcos()
@@ -186,13 +197,16 @@ void AdministradorDeBarcos::posicionarBarcos()
 				{
 					contador1++;
 				}
-				else if (!(listaDeBarcos[contador1]->getUso()))
+				if (contador1 < Datos::getCantidadBarcos())
 				{
-					posicionInicial(listaDeBarcos[contador1]);
-					listaDeBarcos[contador1]->cambiarPrimero();
-					listaDeBarcos[contador1]->restartUso();
-					contador1++;
-					tiempo1 = Datos::timerJuego.getElapsedTime();
+					if (!(listaDeBarcos[contador1]->getUso()))
+					{
+						posicionInicial(listaDeBarcos[contador1]);
+						listaDeBarcos[contador1]->cambiarPrimero();
+						listaDeBarcos[contador1]->restartUso();
+						contador1++;
+						tiempo1 = Datos::timerJuego.getElapsedTime();
+					}
 				}
 			}
 		}
@@ -214,13 +228,16 @@ void AdministradorDeBarcos::posicionarBarcos()
 				{
 					contador2++;
 				}
-				else if (!(listaDeBarcosDobles[contador2]->getUso()))
+				if (contador2 < Datos::getCantidadBarcos())
 				{
-					posicionInicial(listaDeBarcosDobles[contador2]);
-					listaDeBarcosDobles[contador2]->cambiarPrimero();
-					listaDeBarcosDobles[contador2]->restartUso();
-					contador2++;
-					tiempo2 = Datos::timerJuego.getElapsedTime();
+					if (!(listaDeBarcosDobles[contador2]->getUso()))
+					{
+						posicionInicial(listaDeBarcosDobles[contador2]);
+						listaDeBarcosDobles[contador2]->cambiarPrimero();
+						listaDeBarcosDobles[contador2]->restartUso();
+						contador2++;
+						tiempo2 = Datos::timerJuego.getElapsedTime();
+					}
 				}
 			}
 		}
@@ -242,13 +259,16 @@ void AdministradorDeBarcos::posicionarBarcos()
 				{
 					contador3++;
 				}
-				else if (!(listaDeBarcosCuatro[contador3]->getUso()))
+				if (contador2 < Datos::getCantidadBarcos())
 				{
-					posicionInicial(listaDeBarcosCuatro[contador3]);
-					listaDeBarcosCuatro[contador3]->cambiarPrimero();
-					listaDeBarcosCuatro[contador3]->restartUso();
-					contador3++;
-					tiempo3 = Datos::timerJuego.getElapsedTime();
+					if (!(listaDeBarcosCuatro[contador3]->getUso()))
+					{
+						posicionInicial(listaDeBarcosCuatro[contador3]);
+						listaDeBarcosCuatro[contador3]->cambiarPrimero();
+						listaDeBarcosCuatro[contador3]->restartUso();
+						contador3++;
+						tiempo3 = Datos::timerJuego.getElapsedTime();
+					}
 				}
 			}
 		}
@@ -400,6 +420,18 @@ void AdministradorDeBarcos::colisionBarcoBala(Bala* miBala)
 			}
 		}
 	}
+}
+
+void AdministradorDeBarcos::setBarcoInicial()
+{
+	listaDeBarcos[0]->abordar();
+	listaDeBarcos[0]->setPosition(Datos::getPosicionInicialX(), Datos::getAltoPantalla() / 2);
+	barcoDelJugador = listaDeBarcos[0];
+}
+
+Barco* AdministradorDeBarcos::getBarcoDelJugador() const
+{
+	return barcoDelJugador;
 }
 
 bool AdministradorDeBarcos::getPreparandoW1() const

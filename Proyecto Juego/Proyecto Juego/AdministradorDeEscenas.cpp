@@ -7,7 +7,7 @@ namespace Octavio
 													   escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
 													   miInput(AdministradorDeInput::crearAdministradorDeInput()),
 													   ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!"),
-													   misBarcos(AdministradorDeBarcos::crearAdministradorDeBarcos())
+													   misBarcos(AdministradorDeBarcos::crearAdministradorDeBarcos()), miJugador(nullptr)
 	{
 
 	}
@@ -42,6 +42,11 @@ namespace Octavio
 		return primerEscena;
 	}
 
+	void AdministradorDeEscenas::setJugador(Jugador* unJugador)
+	{
+		miJugador = unJugador;
+	}
+
 	void AdministradorDeEscenas::iniciarUpdate()
 	{
 		gameObjectsActuales = escenaActual->getGameObjects();
@@ -61,6 +66,8 @@ namespace Octavio
 				miInput->verificarMouse(*escenaActual, event);
 				verificarBotones();
 			}
+
+			miInput->verificarTeclas(miJugador, event, misBarcos->getBarcoDelJugador());
 
 			verificarComportamientos();
 
@@ -128,6 +135,11 @@ namespace Octavio
 	{
 		escenaActual = proximaEscena;
 		gameObjectsActuales = escenaActual->getGameObjects();
+
+		if (escenaActual == Datos::getEscenaJuego())
+		{
+			miJugador->empezarJuego();
+		}
 	}
 
 	void AdministradorDeEscenas::administrarBarcos(Escena* &escena)

@@ -54,4 +54,11 @@ void BarcoDoble::atacar()
 	}
 }
 
+void BarcoDoble::abordar()
+{
+	estaPoseido = true;
+	setRotation(Datos::getRotacionPoseido());
+	setRotation2(Datos::getRotacionPoseido());
+}
+
 }

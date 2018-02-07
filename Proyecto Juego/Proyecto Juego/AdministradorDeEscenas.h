@@ -9,6 +9,7 @@
 #include "AdministradorDeInput.h"
 #include "AdministradorDeBarcos.h"
 #include "Datos.h"
+#include "Jugador.h"
 
 namespace Octavio
 {
@@ -22,6 +23,7 @@ private:
 	Lista<GameObject*> gameObjectsActuales;
 	AdministradorDeInput* miInput;
 	AdministradorDeBarcos* misBarcos;
+	Jugador* miJugador;
 
 	sf::RenderWindow ventana;
 
@@ -44,6 +46,8 @@ public:
 	void administrarBarcos(Escena* &escena);
 
 	void cerrarJuego();
+
+	void setJugador(Jugador* unJugador);
 };
 
 }

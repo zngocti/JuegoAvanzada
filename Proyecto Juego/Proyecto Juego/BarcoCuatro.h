@@ -27,6 +27,7 @@ public:
 	void setRotation3(float num);
 
 	virtual void atacar() override;
+	virtual void abordar() override;
 };
 
 }

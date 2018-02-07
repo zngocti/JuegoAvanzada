@@ -53,7 +53,7 @@ public:
 
 	void setComportamiento(IComportamientoDelObjeto* comportamiento);
 	IComportamientoDelObjeto* getComportamiento() const;
-	void activarComportamiento();
+	virtual void activarComportamiento();
 
 	bool getPrimero() const;
 	void cambiarPrimero();

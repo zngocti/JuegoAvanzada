@@ -18,13 +18,15 @@ private:
 	Barco* miBarcoOrigen;
 
 	static sf::Texture* texturaBala;
+	static sf::Texture* texturaMarino;
 
 public:
 	Bala();
-	~Bala();
+	virtual ~Bala();
 
 	void setBarcoOrigen(Barco* miBarco);
 	Barco* getBarcoOrigen() const;
+	void setMarino();
 
 };
 

@@ -93,4 +93,12 @@ void BarcoCuatro::atacar()
 	}
 }
 
+void BarcoCuatro::abordar()
+{
+	estaPoseido = true;
+	setRotation(Datos::getRotacionPoseido());
+	setRotation2(Datos::getRotacionPoseido());
+	setRotation3(Datos::getRotacionPoseido());
+}
+
 }

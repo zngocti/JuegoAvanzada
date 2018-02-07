@@ -18,13 +18,19 @@ int Datos::disparosBarcoDoble = 5;
 int Datos::disparosBarcoCuatro = 3;
 int Datos::balasPorBarco = 12;
 int Datos::pixelesExtraEnElBarco = 20;
+int Datos::posicionInicialX = 100;
+int Datos::rotacionInicial = 90;
+int Datos::rotacionPoseido = 270;
 
 float Datos::velocidad = 0.1;
+float Datos::velocidadJugador = 0.3;
 float Datos::tiempoEntreBarcos = 2;
 
 float Datos::velocidadBala = 0.2;
 
 sf::Clock Datos::timerJuego = sf::Clock();
+
+Escena* Datos::escenaDelJuego = nullptr;
 
 int Datos::getAnchoPantalla()
 {
@@ -70,6 +76,11 @@ float Datos::getVelocidad()
 	return velocidad;
 }
 
+float Datos::getVelocidadJugador()
+{
+	return velocidadJugador;
+}
+
 float Datos::getTiempoEntreBarcos()
 {
 	return tiempoEntreBarcos;
@@ -113,6 +124,31 @@ float Datos::getVelocidadBala()
 int Datos::getPixelesExtraDelBarco()
 {
 	return pixelesExtraEnElBarco;
+}
+
+int Datos::getPosicionInicialX()
+{
+	return posicionInicialX;
+}
+
+int Datos::getRotacionInicial()
+{
+	return rotacionInicial;
+}
+
+int Datos::getRotacionPoseido()
+{
+	return rotacionPoseido;
+}
+
+Escena* Datos::getEscenaJuego()
+{
+	return escenaDelJuego;
+}
+
+void Datos::setEscenaJuego(Escena* unaEscena)
+{
+	escenaDelJuego = unaEscena;
 }
 
 }

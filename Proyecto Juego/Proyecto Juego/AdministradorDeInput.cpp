@@ -5,7 +5,7 @@ namespace Octavio
 
 AdministradorDeInput* AdministradorDeInput::administradorCreado = nullptr;
 
-AdministradorDeInput::AdministradorDeInput() : clickeando(false)
+AdministradorDeInput::AdministradorDeInput() : clickeando(false), puedeAtacar(true), puedeAbordar(true)
 {
 
 }
@@ -69,6 +69,47 @@ void AdministradorDeInput::verificarMouse(const Escena &escenaActual, const sf::
 			{
 				escenaActual.getBotones()[i]->finClick();
 			}
+		}
+	}
+}
+
+void AdministradorDeInput::verificarTeclas(Jugador* miJugador, const sf::Event &evento, Barco* unBarco)
+{
+	if (miJugador->getJugando())
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			unBarco->mover(sf::Keyboard::D);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			unBarco->mover(sf::Keyboard::A);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			unBarco->mover(sf::Keyboard::W);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			unBarco->mover(sf::Keyboard::S);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J) && puedeAtacar)
+		{
+			puedeAtacar = false;
+			unBarco->atacar();
+		}
+		if (evento.type == sf::Event::KeyReleased && evento.key.code == sf::Keyboard::J)
+		{
+			puedeAtacar = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && puedeAbordar)
+		{
+			puedeAbordar = false;
+			unBarco->dispararMarino();
+		}
+		if (evento.type == sf::Event::KeyReleased && evento.key.code == sf::Keyboard::K)
+		{
+			puedeAbordar = true;
 		}
 	}
 }

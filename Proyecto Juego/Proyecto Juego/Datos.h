@@ -6,6 +6,8 @@
 namespace Octavio
 {
 
+class Escena;
+
 class Datos
 {
 private:
@@ -25,11 +27,18 @@ private:
 	static int disparosBarcoCuatro;
 	static int balasPorBarco;
 	static int pixelesExtraEnElBarco;
+	static int rotacionInicial;
+	static int rotacionPoseido;
+
+	static int posicionInicialX;
 
 	static float velocidad;
+	static float velocidadJugador;
 	static float tiempoEntreBarcos;
 
 	static float velocidadBala;
+
+	static Escena* escenaDelJuego;
 
 public:
 	static int getAnchoPantalla();
@@ -47,11 +56,18 @@ public:
 	static int getDisparosBarcoCuatro();
 	static int getBalasPorBarco();
 	static int getPixelesExtraDelBarco();
+	static int getPosicionInicialX();
+	static int getRotacionInicial();
+	static int getRotacionPoseido();
 
 	static float getVelocidad();
+	static float getVelocidadJugador();
 	static float getTiempoEntreBarcos();
 
 	static float getVelocidadBala();
+
+	static Escena* getEscenaJuego();
+	static void setEscenaJuego(Escena* unaEscena);
 
 	static sf::Clock timerJuego;
 };

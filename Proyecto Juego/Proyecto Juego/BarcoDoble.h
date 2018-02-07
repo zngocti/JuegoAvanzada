@@ -19,7 +19,9 @@ public:
 	void setSprite2(const sf::Texture &miTextura);
 	void setMedio2();
 	void setRotation2(float num);
+
 	virtual void atacar() override;
+	virtual void abordar() override;
 
 };
 

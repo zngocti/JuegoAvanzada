@@ -81,6 +81,9 @@
     <ClCompile Include="MovimientoBala.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Marinero.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -141,6 +144,9 @@
       <Filter>Archivos de origen</Filter>
     </ClInclude>
     <ClInclude Include="MovimientoBala.h">
+      <Filter>Archivos de origen</Filter>
+    </ClInclude>
+    <ClInclude Include="Marinero.h">
       <Filter>Archivos de origen</Filter>
     </ClInclude>
   </ItemGroup>

@@ -58,6 +58,8 @@ private:
 	void setBarco(Barco* const &miBarco, int num);
 	void posicionInicial(Barco* const &miBarco);
 
+	Barco* barcoDelJugador;
+
 public:
 	~AdministradorDeBarcos();
 
@@ -79,6 +81,10 @@ public:
 	void checkUso();
 	void checkImpactosBala();
 	void colisionBarcoBala(Bala* miBala);
+
+	void setBarcoInicial();
+
+	Barco* getBarcoDelJugador() const;
 };
 
 }
