@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include <SFML\Window.hpp>
 #include <SFML\System.hpp>
-#include "Bala.h"
+#include "Marinero.h"
 #include "Lista.cpp"
 #include "Datos.h"
 
@@ -13,6 +13,10 @@ namespace Octavio
 
 class Barco : public GameObject
 {
+private:
+	static sf::Texture* texturaBala;
+	static sf::Texture* texturaMarinero;
+
 protected:
 	int disparos;
 	int resistencia;
@@ -24,7 +28,7 @@ protected:
 	sf::Time tiempoDeMuerte;
 	Lista<Bala*> listaDeBalas;
 
-	static Bala* marino;
+	static Marinero* marinero;
 
 public:
 	Barco();
@@ -46,15 +50,14 @@ public:
 	void impacto();
 	void morir();
 	virtual void abordar();
-	void dispararMarino();
+	void dispararMarinero();
 	void checkTimers();
 
 	virtual void activarComportamiento() override;
 
 	Lista<Bala*> getListaDeBalas() const;
 
-	static void crearMarino();
-	static Bala* getMarino();
+	static Marinero* getMarinero();
 };
 
 }

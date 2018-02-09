@@ -155,7 +155,7 @@ void Juego::generarNiveles(Escena* const &miEscena)
 	{
 		for (int c = 0; c < num2; c++)
 		{
-			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTileAgua(), i * Datos::getAnchoDeTileAgua(), 5);
+			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTileAgua(), i * Datos::getAnchoDeTileAgua(), Datos::getZDelAgua());
 			nuevoObjeto->setEscala(2, 2);
 			TileIzquierdaEnLoop* unComportamiento = new TileIzquierdaEnLoop();
 			nuevoObjeto->setComportamiento(unComportamiento);

@@ -105,7 +105,7 @@ void AdministradorDeInput::verificarTeclas(Jugador* miJugador, const sf::Event &
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && puedeAbordar)
 		{
 			puedeAbordar = false;
-			unBarco->dispararMarino();
+			unBarco->dispararMarinero();
 		}
 		if (evento.type == sf::Event::KeyReleased && evento.key.code == sf::Keyboard::K)
 		{

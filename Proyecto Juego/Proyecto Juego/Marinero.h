@@ -10,8 +10,8 @@ class Marinero : public Bala
 {
 
 public:
-	Bala();
-	~Bala();
+	Marinero();
+	~Marinero();
 
 };
 

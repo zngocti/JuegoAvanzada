@@ -3,22 +3,46 @@
 namespace Octavio
 {
 
+sf::Texture* Barco::texturaBala = nullptr;
+sf::Texture* Barco::texturaMarinero = nullptr;
 
-Bala* Barco::marino = nullptr;
+Marinero* Barco::marinero = nullptr;
 
 Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), listaDeBalas(Lista<Bala*>(new Bala()))
 {
 	setPosition(-500, -500);
+
+	if (texturaBala == nullptr)
+	{
+		texturaBala = new sf::Texture();
+		Assets::cannonBall(*texturaBala);
+	}
+
 	for (int i = 0; i < Datos::getBalasPorBarco() - 1; i++)
 	{
 		listaDeBalas.addBack(new Bala());
 		listaDeBalas[i]->setBarcoOrigen(this);
+		listaDeBalas[i]->setSprite(*texturaBala);
+		listaDeBalas[i]->setMedio();
+		listaDeBalas[i]->setZ(Datos::getZDeBalas());
 	}
 }
 
 Barco::~Barco()
 {
 	listaDeBalas.removeAll();
+
+	if (texturaBala != nullptr)
+	{
+		delete(texturaBala);
+		texturaBala = nullptr;
+	}
+
+	if (texturaMarinero != nullptr)
+	{
+		delete(texturaMarinero);
+		texturaMarinero = nullptr;
+	}
 }
 
 int Barco::getDisparos() const
@@ -131,12 +155,12 @@ void Barco::abordar()
 	setRotation(Datos::getRotacionPoseido());
 }
 
-void Barco::dispararMarino()
+void Barco::dispararMarinero()
 {
-	if (getUso() && estaPoseido && !(marino->getUso()))
+	if (getUso() && estaPoseido && !(marinero->getUso()))
 	{
-		marino->restartUso();
-		marino->setPosition(getSprite().getPosition().x + getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
+		marinero->restartUso();
+		marinero->setPosition(getSprite().getPosition().x + getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
 	}
 }
 
@@ -176,18 +200,24 @@ void Barco::activarComportamiento()
 	}
 }
 
-void Barco::crearMarino()
+Marinero* Barco::getMarinero()
 {
-	if (marino == nullptr)
+	if (texturaMarinero == nullptr)
 	{
-		marino = new Bala();
-		marino->setMarino();
+		texturaMarinero = new sf::Texture();
+		Assets::crew1(*texturaMarinero);
 	}
-}
 
-Bala* Barco::getMarino()
-{
-	return marino;
+	if (marinero == nullptr)
+	{
+		marinero = new Marinero();
+
+		marinero->setSprite(*texturaMarinero);
+		marinero->setZ(Datos::getZDeMarinero());
+		marinero->setMedio();
+	}
+
+	return marinero;
 }
 
 }

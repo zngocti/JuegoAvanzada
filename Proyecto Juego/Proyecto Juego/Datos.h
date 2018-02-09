@@ -29,6 +29,8 @@ private:
 	static int pixelesExtraEnElBarco;
 	static int rotacionInicial;
 	static int rotacionPoseido;
+	static int zDeBalas;
+	static int zDeMarinero;
 
 	static int posicionInicialX;
 
@@ -59,6 +61,8 @@ public:
 	static int getPosicionInicialX();
 	static int getRotacionInicial();
 	static int getRotacionPoseido();
+	static int getZDeBalas();
+	static int getZDeMarinero();
 
 	static float getVelocidad();
 	static float getVelocidadJugador();

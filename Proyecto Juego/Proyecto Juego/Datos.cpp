@@ -6,13 +6,13 @@ namespace Octavio
 int Datos::anchoPantalla = 1024;
 int Datos::altoPantalla = 768;
 int Datos::anchoDeTileAgua = 128;
-int Datos::zDelAgua = 5;
+int Datos::zDelAgua = 8;
 int Datos::tilesExtra = 2;
 int Datos::maxAltoSprite = 64;
 int Datos::maxAnchoSprite = 128;
 int Datos::cantidadDeCadaBarco = 5;
-int Datos::zDeBarcos = 3;
-int Datos::zDelJugador = 2;
+int Datos::zDeBarcos = 6;
+int Datos::zDelJugador = 5;
 int Datos::disparosBarco = 8;
 int Datos::disparosBarcoDoble = 5;
 int Datos::disparosBarcoCuatro = 3;
@@ -21,6 +21,8 @@ int Datos::pixelesExtraEnElBarco = 20;
 int Datos::posicionInicialX = 100;
 int Datos::rotacionInicial = 90;
 int Datos::rotacionPoseido = 270;
+int Datos::zDeBalas = 4;
+int Datos::zDeMarinero = 3;
 
 float Datos::velocidad = 0.1;
 float Datos::velocidadJugador = 0.3;
@@ -139,6 +141,16 @@ int Datos::getRotacionInicial()
 int Datos::getRotacionPoseido()
 {
 	return rotacionPoseido;
+}
+
+int Datos::getZDeBalas()
+{
+	return zDeBalas;
+}
+
+int Datos::getZDeMarinero()
+{
+	return zDeMarinero;
 }
 
 Escena* Datos::getEscenaJuego()

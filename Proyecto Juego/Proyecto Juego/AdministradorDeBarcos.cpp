@@ -61,7 +61,7 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 		listaDeBarcosCuatro[i]->setRotation3(Datos::getRotacionInicial());
 	}
 
-	Barco::crearMarino();
+	Barco::getMarinero();
 	setBarcoInicial();
 }
 
@@ -102,7 +102,7 @@ void AdministradorDeBarcos::agregarBarcos(Escena* &miEscena)
 		}
 	}
 
-	miEscena->agregarGameObject(Barco::getMarino());
+	miEscena->agregarGameObject(Barco::getMarinero());
 }
 
 AdministradorDeBarcos* AdministradorDeBarcos::crearAdministradorDeBarcos()
