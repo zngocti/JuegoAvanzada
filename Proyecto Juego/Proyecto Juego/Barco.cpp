@@ -147,18 +147,46 @@ void Barco::impacto()
 	//efecto impacto y efecto explosion
 }
 
-void morir();
+void Barco::morir()
+{
+	miComportamiento->activarReciclar();
+}
 
 void Barco::abordar()
 {
 	estaPoseido = true;
 	setRotation(Datos::getRotacionPoseido());
+
+	if (getX() < 0 + getSprite().getLocalBounds().width / 2)
+	{
+		setPosition(getSprite().getLocalBounds().width / 2, getY());
+	}
+	if (getX() > Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2)
+	{
+		setPosition(Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2, getY());
+	}
+	if (getY() < 0 + getSprite().getLocalBounds().height / 2)
+	{
+		setPosition(getX(), getSprite().getLocalBounds().height / 2);
+	}
+	if (getY() > Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2)
+	{
+		setPosition(getX(), Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2);
+	}
+}
+
+void Barco::abandonar()
+{
+	estaPoseido = false;
+	setRotation(Datos::getRotacionInicial());
+	morir();
 }
 
 void Barco::dispararMarinero()
 {
 	if (getUso() && estaPoseido && !(marinero->getUso()))
 	{
+		marinero->setBarcoOrigen(this);
 		marinero->restartUso();
 		marinero->setPosition(getSprite().getPosition().x + getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
 	}

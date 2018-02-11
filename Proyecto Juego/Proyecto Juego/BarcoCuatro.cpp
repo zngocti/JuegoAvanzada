@@ -91,6 +91,33 @@ void BarcoCuatro::atacar()
 			}
 		}
 	}
+	else if (getUso() && estaPoseido && disparos > 0)
+	{
+		for (int i = 0; i < listaDeBalas.count() - 3; i++)
+		{
+			if (!(listaDeBalas[i]->getUso()) && !(listaDeBalas[i + 1]->getUso()) && !(listaDeBalas[i + 2]->getUso()) && !(listaDeBalas[i + 3]->getUso()))
+			{
+				resetAtaque();
+				listaDeBalas[i]->restartUso();
+				listaDeBalas[i + 1]->restartUso();
+				listaDeBalas[i + 2]->restartUso();
+				listaDeBalas[i + 3]->restartUso();
+				listaDeBalas[i]->setPosition(getSprite().getPosition().x - Datos::getPixelesExtraDelBarco(),
+					getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i + 1]->setPosition(getSprite().getPosition().x + Datos::getPixelesExtraDelBarco(),
+					getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i + 2]->setPosition(getSprite().getPosition().x - Datos::getPixelesExtraDelBarco(),
+					getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i + 3]->setPosition(getSprite().getPosition().x + Datos::getPixelesExtraDelBarco(),
+					getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i]->getComportamiento()->setData(5, false);
+				listaDeBalas[i + 1]->getComportamiento()->setData(5, false);
+				listaDeBalas[i + 2]->getComportamiento()->setData(1, false);
+				listaDeBalas[i + 3]->getComportamiento()->setData(1, false);
+				i = listaDeBalas.count();
+			}
+		}
+	}
 }
 
 void BarcoCuatro::abordar()
@@ -99,6 +126,15 @@ void BarcoCuatro::abordar()
 	setRotation(Datos::getRotacionPoseido());
 	setRotation2(Datos::getRotacionPoseido());
 	setRotation3(Datos::getRotacionPoseido());
+}
+
+void BarcoCuatro::abandonar()
+{
+	estaPoseido = false;
+	setRotation(Datos::getRotacionInicial());
+	setRotation2(Datos::getRotacionInicial());
+	setRotation3(Datos::getRotacionInicial());
+	morir();
 }
 
 }

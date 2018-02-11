@@ -44,10 +44,31 @@ void BarcoDoble::atacar()
 				resetAtaque();
 				listaDeBalas[i]->restartUso();
 				listaDeBalas[i + 1]->restartUso();
-				listaDeBalas[i]->setPosition(getSprite().getPosition().x - 20, getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - 20);
-				listaDeBalas[i + 1]->setPosition(getSprite().getPosition().x - 20, getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + 20);
+				listaDeBalas[i]->setPosition(getSprite().getPosition().x - Datos::getPixelesExtraDelBarco(),
+											 getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i + 1]->setPosition(getSprite().getPosition().x - Datos::getPixelesExtraDelBarco(),
+												 getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
 				listaDeBalas[i]->getComportamiento()->setData(6, true);
 				listaDeBalas[i + 1]->getComportamiento()->setData(8, true);
+				i = listaDeBalas.count();
+			}
+		}
+	}
+	else if (getUso() && estaPoseido && disparos > 0)
+	{
+		for (int i = 0; i < listaDeBalas.count() - 1; i++)
+		{
+			if (!(listaDeBalas[i]->getUso()) && !(listaDeBalas[i + 1]->getUso()))
+			{
+				resetAtaque();
+				listaDeBalas[i]->restartUso();
+				listaDeBalas[i + 1]->restartUso();
+				listaDeBalas[i]->setPosition(getSprite().getPosition().x + Datos::getPixelesExtraDelBarco(),
+					getSprite().getPosition().y + getSprite().getLocalBounds().height / 2 - Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i + 1]->setPosition(getSprite().getPosition().x + Datos::getPixelesExtraDelBarco(),
+					getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
+				listaDeBalas[i]->getComportamiento()->setData(4, false);
+				listaDeBalas[i + 1]->getComportamiento()->setData(2, false);
 				i = listaDeBalas.count();
 			}
 		}
@@ -59,6 +80,14 @@ void BarcoDoble::abordar()
 	estaPoseido = true;
 	setRotation(Datos::getRotacionPoseido());
 	setRotation2(Datos::getRotacionPoseido());
+}
+
+void BarcoDoble::abandonar()
+{
+	estaPoseido = false;
+	setRotation(Datos::getRotacionInicial());
+	setRotation2(Datos::getRotacionInicial());
+	morir();
 }
 
 }

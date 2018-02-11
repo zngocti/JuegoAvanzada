@@ -50,6 +50,7 @@ public:
 	void impacto();
 	void morir();
 	virtual void abordar();
+	virtual void abandonar();
 	void dispararMarinero();
 	void checkTimers();
 

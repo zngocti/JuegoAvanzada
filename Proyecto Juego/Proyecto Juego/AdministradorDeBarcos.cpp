@@ -370,6 +370,8 @@ void AdministradorDeBarcos::checkImpactosBala()
 		{
 			colisionBarcoBala((listaDeBarcosCuatro[i]->getListaDeBalas())[c]);
 		}
+
+		colisionBarcoMarinero(i, Barco::getMarinero());
 	}
 }
 
@@ -417,6 +419,48 @@ void AdministradorDeBarcos::colisionBarcoBala(Bala* miBala)
 					miBala->getComportamiento()->activarReciclar();
 					return;
 				}
+			}
+		}
+	}
+}
+
+void AdministradorDeBarcos::colisionBarcoMarinero(int numeroDeBarco, Marinero* miMarinero)
+{
+	if (miMarinero->getUso())
+	{
+		if (listaDeBarcos[numeroDeBarco]->getUso() && listaDeBarcos[numeroDeBarco] != miMarinero->getBarcoOrigen())
+		{
+			if (miMarinero->getSprite().getGlobalBounds().intersects(listaDeBarcos[numeroDeBarco]->getSprite().getGlobalBounds()))
+			{
+				listaDeBarcos[numeroDeBarco]->abordar();
+				barcoDelJugador = listaDeBarcos[numeroDeBarco];
+				miMarinero->getBarcoOrigen()->abandonar();
+				miMarinero->getComportamiento()->activarReciclar();
+				return;
+			}
+		}
+
+		if (listaDeBarcosDobles[numeroDeBarco]->getUso() && listaDeBarcosDobles[numeroDeBarco] != miMarinero->getBarcoOrigen())
+		{
+			if (miMarinero->getSprite().getGlobalBounds().intersects(listaDeBarcosDobles[numeroDeBarco]->getSprite().getGlobalBounds()))
+			{
+				listaDeBarcosDobles[numeroDeBarco]->abordar();
+				barcoDelJugador = listaDeBarcosDobles[numeroDeBarco];
+				miMarinero->getBarcoOrigen()->abandonar();
+				miMarinero->getComportamiento()->activarReciclar();
+				return;
+			}
+		}
+
+		if (listaDeBarcosCuatro[numeroDeBarco]->getUso() && listaDeBarcosCuatro[numeroDeBarco] != miMarinero->getBarcoOrigen())
+		{
+			if (miMarinero->getSprite().getGlobalBounds().intersects(listaDeBarcosCuatro[numeroDeBarco]->getSprite().getGlobalBounds()))
+			{
+				listaDeBarcosCuatro[numeroDeBarco]->abordar();
+				barcoDelJugador = listaDeBarcosCuatro[numeroDeBarco];
+				miMarinero->getBarcoOrigen()->abandonar();
+				miMarinero->getComportamiento()->activarReciclar();
+				return;
 			}
 		}
 	}
