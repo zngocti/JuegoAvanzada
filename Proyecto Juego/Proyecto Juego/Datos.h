@@ -25,6 +25,9 @@ private:
 	static int disparosBarco;
 	static int disparosBarcoDoble;
 	static int disparosBarcoCuatro;
+	static int vidaBarco;
+	static int vidaBarcoDoble;
+	static int vidaBarcoCuatro;
 	static int balasPorBarco;
 	static int pixelesExtraEnElBarco;
 	static int rotacionInicial;
@@ -56,6 +59,9 @@ public:
 	static int getDisparosBarco();
 	static int getDisparosBarcoDoble();
 	static int getDisparosBarcoCuatro();
+	static int getVidaBarco();
+	static int getVidaBarcoDoble();
+	static int getVidaBarcoCuatro();
 	static int getBalasPorBarco();
 	static int getPixelesExtraDelBarco();
 	static int getPosicionInicialX();

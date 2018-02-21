@@ -16,6 +16,9 @@ int Datos::zDelJugador = 5;
 int Datos::disparosBarco = 8;
 int Datos::disparosBarcoDoble = 5;
 int Datos::disparosBarcoCuatro = 3;
+int Datos::vidaBarco = 1;
+int Datos::vidaBarcoDoble = 2;
+int Datos::vidaBarcoCuatro = 3;
 int Datos::balasPorBarco = 12;
 int Datos::pixelesExtraEnElBarco = 20;
 int Datos::posicionInicialX = 100;
@@ -111,6 +114,21 @@ int Datos::getDisparosBarcoDoble()
 int Datos::getDisparosBarcoCuatro()
 {
 	return disparosBarcoCuatro;
+}
+
+int Datos::getVidaBarco()
+{
+	return vidaBarco;
+}
+
+int Datos::getVidaBarcoDoble()
+{
+	return vidaBarcoDoble;
+}
+
+int Datos::getVidaBarcoCuatro()
+{
+	return vidaBarcoCuatro;
 }
 
 int Datos::getBalasPorBarco()

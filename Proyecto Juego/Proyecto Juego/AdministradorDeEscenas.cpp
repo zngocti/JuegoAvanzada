@@ -89,6 +89,7 @@ namespace Octavio
 
 		misBarcos->checkUso();
 		misBarcos->checkAtaques();
+		misBarcos->checkImpactosBarcos();
 		misBarcos->checkImpactosBala();
 	}
 

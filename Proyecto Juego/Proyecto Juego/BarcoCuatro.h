@@ -29,6 +29,8 @@ public:
 	virtual void atacar() override;
 	virtual void abordar() override;
 	virtual void abandonar() override;
+	virtual void impacto() override;
+
 };
 
 }

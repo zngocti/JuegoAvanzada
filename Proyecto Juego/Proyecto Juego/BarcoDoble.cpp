@@ -6,6 +6,7 @@ namespace Octavio
 BarcoDoble::BarcoDoble() : sprite2(new sf::Sprite())
 {
 	setDisparos(Datos::getDisparosBarcoDoble());
+	setResistencia(Datos::getVidaBarcoDoble());
 }
 
 BarcoDoble::~BarcoDoble()
@@ -79,6 +80,7 @@ void BarcoDoble::abordar()
 {
 	estaPoseido = true;
 	setRotation(Datos::getRotacionPoseido());
+	setRotation1(Datos::getRotacionPoseido());
 	setRotation2(Datos::getRotacionPoseido());
 }
 
@@ -86,8 +88,27 @@ void BarcoDoble::abandonar()
 {
 	estaPoseido = false;
 	setRotation(Datos::getRotacionInicial());
+	setRotation1(Datos::getRotacionInicial());
 	setRotation2(Datos::getRotacionInicial());
 	morir();
+}
+
+void BarcoDoble::impacto()
+{
+	if (puedeSerGolpeado && resistencia != 0)
+	{
+		resistencia--;
+		switch (resistencia)
+		{
+		case 1:
+			sprite2->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
+			setSprite(*sprite2);
+			break;
+		default:
+			morir();
+			break;
+		}
+	}
 }
 
 }

@@ -80,8 +80,11 @@ public:
 	void checkAtaques();
 	void checkUso();
 	void checkImpactosBala();
+	void checkImpactosBarcos();
 	void colisionBarcoBala(Bala* miBala);
 	void colisionBarcoMarinero(int numeroDeBarco, Marinero* miBala);
+
+	void checkTimers();
 
 	void setBarcoInicial();
 

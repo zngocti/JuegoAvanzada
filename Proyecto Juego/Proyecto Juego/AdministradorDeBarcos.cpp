@@ -37,26 +37,35 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 	{
 		listaDeBarcos[i]->setSprite(*barco);
+		listaDeBarcos[i]->setSprite1(*barco);
 		listaDeBarcos[i]->setZ(Datos::getZDeBarcos());
 		listaDeBarcos[i]->setMedio();
+		listaDeBarcos[i]->setMedio1();
 		listaDeBarcos[i]->setRotation(Datos::getRotacionInicial());
+		listaDeBarcos[i]->setRotation1(Datos::getRotacionInicial());
 
 		listaDeBarcosDobles[i]->setSprite(*barcoDoble1);
+		listaDeBarcosDobles[i]->setSprite1(*barcoDoble1);
 		listaDeBarcosDobles[i]->setSprite2(*barcoDoble2);
 		listaDeBarcosDobles[i]->setZ(Datos::getZDeBarcos());
 		listaDeBarcosDobles[i]->setMedio();
+		listaDeBarcosDobles[i]->setMedio1();
 		listaDeBarcosDobles[i]->setMedio2();
 		listaDeBarcosDobles[i]->setRotation(Datos::getRotacionInicial());
+		listaDeBarcosDobles[i]->setRotation1(Datos::getRotacionInicial());
 		listaDeBarcosDobles[i]->setRotation2(Datos::getRotacionInicial());
 
 		listaDeBarcosCuatro[i]->setSprite(*barcoCuatro1);
+		listaDeBarcosCuatro[i]->setSprite1(*barcoCuatro1);
 		listaDeBarcosCuatro[i]->setSprite2(*barcoCuatro2);
 		listaDeBarcosCuatro[i]->setSprite3(*barcoCuatro3);
 		listaDeBarcosCuatro[i]->setZ(Datos::getZDeBarcos());
 		listaDeBarcosCuatro[i]->setMedio();
+		listaDeBarcosCuatro[i]->setMedio1();
 		listaDeBarcosCuatro[i]->setMedio2();
 		listaDeBarcosCuatro[i]->setMedio3();
 		listaDeBarcosCuatro[i]->setRotation(Datos::getRotacionInicial());
+		listaDeBarcosCuatro[i]->setRotation1(Datos::getRotacionInicial());
 		listaDeBarcosCuatro[i]->setRotation2(Datos::getRotacionInicial());
 		listaDeBarcosCuatro[i]->setRotation3(Datos::getRotacionInicial());
 	}
@@ -354,6 +363,36 @@ void AdministradorDeBarcos::checkUso()
 	}
 }
 
+void AdministradorDeBarcos::checkImpactosBarcos()
+{
+	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+	{
+		if (listaDeBarcos[i]->getUso() && listaDeBarcos[i] != barcoDelJugador)
+		{
+			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcos[i]->getSprite().getGlobalBounds()))
+			{
+				listaDeBarcos[i]->impactoDeBarco();
+			}
+		}
+
+		if (listaDeBarcosDobles[i]->getUso() && listaDeBarcosDobles[i] != barcoDelJugador)
+		{
+			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosDobles[i]->getSprite().getGlobalBounds()))
+			{
+				listaDeBarcosDobles[i]->impactoDeBarco();
+			}
+		}
+
+		if (listaDeBarcosCuatro[i]->getUso() && listaDeBarcosCuatro[i] != barcoDelJugador)
+		{
+			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosCuatro[i]->getSprite().getGlobalBounds()))
+			{
+				listaDeBarcosCuatro[i]->impactoDeBarco();
+			}
+		}
+	}
+}
+
 void AdministradorDeBarcos::checkImpactosBala()
 {
 	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
@@ -471,6 +510,16 @@ void AdministradorDeBarcos::setBarcoInicial()
 	listaDeBarcos[0]->abordar();
 	listaDeBarcos[0]->setPosition(Datos::getPosicionInicialX(), Datos::getAltoPantalla() / 2);
 	barcoDelJugador = listaDeBarcos[0];
+}
+
+void AdministradorDeBarcos::checkTimers()
+{
+	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+	{
+		listaDeBarcos[i]->checkTimers();
+		listaDeBarcosDobles[i]->checkTimers();
+		listaDeBarcosCuatro[i]->checkTimers();
+	}
 }
 
 Barco* AdministradorDeBarcos::getBarcoDelJugador() const

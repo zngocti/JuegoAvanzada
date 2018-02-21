@@ -6,6 +6,7 @@ namespace Octavio
 BarcoCuatro::BarcoCuatro() : sprite2(new sf::Sprite()), sprite3(new sf::Sprite())
 {
 	setDisparos(Datos::getDisparosBarcoCuatro());
+	setResistencia(Datos::getVidaBarcoCuatro());
 }
 
 BarcoCuatro::~BarcoCuatro()
@@ -124,6 +125,7 @@ void BarcoCuatro::abordar()
 {
 	estaPoseido = true;
 	setRotation(Datos::getRotacionPoseido());
+	setRotation1(Datos::getRotacionPoseido());
 	setRotation2(Datos::getRotacionPoseido());
 	setRotation3(Datos::getRotacionPoseido());
 }
@@ -132,9 +134,34 @@ void BarcoCuatro::abandonar()
 {
 	estaPoseido = false;
 	setRotation(Datos::getRotacionInicial());
+	setRotation1(Datos::getRotacionInicial());
 	setRotation2(Datos::getRotacionInicial());
 	setRotation3(Datos::getRotacionInicial());
 	morir();
+}
+
+void BarcoCuatro::impacto()
+{
+	if (puedeSerGolpeado && resistencia != 0)
+	{
+		resistencia--;
+		switch (resistencia)
+		{
+		case 1:
+			std::cout << "1" << std::endl;
+			sprite3->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
+			setSprite(*sprite3);
+			break;
+		case 2:
+			std::cout << "2" << std::endl;
+			sprite2->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
+			setSprite(*sprite2);
+			break;
+		default:
+			morir();
+			break;
+		}
+	}
 }
 
 }
