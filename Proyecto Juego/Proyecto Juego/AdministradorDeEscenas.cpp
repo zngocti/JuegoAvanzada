@@ -3,149 +3,174 @@
 namespace Octavio
 {
 
-	AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena()), listaDeEscenas(Lista<Escena*>(primerEscena)),
-													   escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
-													   miInput(AdministradorDeInput::crearAdministradorDeInput()),
-													   ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!"),
-													   misBarcos(AdministradorDeBarcos::crearAdministradorDeBarcos()), miJugador(nullptr)
-	{
+AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena()), listaDeEscenas(Lista<Escena*>(primerEscena)),
+													escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
+													miInput(AdministradorDeInput::crearAdministradorDeInput()),
+													ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!"),
+													misBarcos(AdministradorDeBarcos::crearAdministradorDeBarcos()), miJugador(nullptr)
+{
 
+}
+
+AdministradorDeEscenas::~AdministradorDeEscenas()
+{
+	for (int i = 0; i < listaDeEscenas.count(); i++)
+	{
+		delete (listaDeEscenas[i]);
 	}
 
-	AdministradorDeEscenas::~AdministradorDeEscenas()
+	listaDeEscenas.removeAll();
+	delete(miInput);
+	delete(misBarcos);
+
+}
+
+Escena* AdministradorDeEscenas::crearEscena()
+{
+	Escena* nuevaEscena = new Escena();
+	listaDeEscenas.addBack(nuevaEscena);
+	return nuevaEscena;
+}
+
+Escena* AdministradorDeEscenas::getEscenaActual() const
+{
+	return escenaActual;
+}
+
+Escena* AdministradorDeEscenas::getPrimerEscena() const
+{
+	return primerEscena;
+}
+
+void AdministradorDeEscenas::setJugador(Jugador* unJugador)
+{
+	miJugador = unJugador;
+}
+
+void AdministradorDeEscenas::iniciarUpdate()
+{
+	gameObjectsActuales = escenaActual->getGameObjects();
+
+	while (ventana.isOpen())
 	{
-		for (int i = 0; i < listaDeEscenas.count(); i++)
+		sf::Event event;
+		while (ventana.pollEvent(event))
 		{
-			delete (listaDeEscenas[i]);
+			if (event.type == sf::Event::Closed)
+				ventana.close();
+		}
+		ventana.clear();
+
+		if (escenaActual->getBotones().count() > 0)
+		{
+			miInput->verificarMouse(*escenaActual, event);
+			verificarBotones();
 		}
 
-		listaDeEscenas.removeAll();
-		delete(miInput);
-		delete(misBarcos);
+		miInput->verificarTeclas(miJugador, event, misBarcos->getBarcoDelJugador());
 
+		verificarEscape();
+
+		verificarComportamientos();
+
+		dibujarEscena(&ventana);
+
+		ventana.display();
+	}
+}
+
+void AdministradorDeEscenas::verificarComportamientos()
+{
+	misBarcos->setearComportamientos();
+	misBarcos->posicionarBarcos();
+
+	for (int i = 0; i < gameObjectsActuales.count(); i++)
+	{
+		gameObjectsActuales[i]->activarComportamiento();
 	}
 
-	Escena* AdministradorDeEscenas::crearEscena()
-	{
-		Escena* nuevaEscena = new Escena();
-		listaDeEscenas.addBack(nuevaEscena);
-		return nuevaEscena;
-	}
+	misBarcos->checkUso();
+	misBarcos->checkAtaques();
+	misBarcos->checkImpactosBarcos();
+	misBarcos->checkImpactosBala();
+	misBarcos->checkTimers();
+	checkJugador();
+}
 
-	Escena* AdministradorDeEscenas::getEscenaActual() const
+void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
+{
+	for (int i = GameObject::getMaximoZ(); i >= 0; i--)
 	{
-		return escenaActual;
-	}
-
-	Escena* AdministradorDeEscenas::getPrimerEscena() const
-	{
-		return primerEscena;
-	}
-
-	void AdministradorDeEscenas::setJugador(Jugador* unJugador)
-	{
-		miJugador = unJugador;
-	}
-
-	void AdministradorDeEscenas::iniciarUpdate()
-	{
-		gameObjectsActuales = escenaActual->getGameObjects();
-
-		while (ventana.isOpen())
+		for (int c = 0; c < gameObjectsActuales.count(); c++)
 		{
-			sf::Event event;
-			while (ventana.pollEvent(event))
+			if (gameObjectsActuales[c]->getUso() && gameObjectsActuales[c]->getZ() == i)
 			{
-				if (event.type == sf::Event::Closed)
-					ventana.close();
-			}
-			ventana.clear();
-
-			if (escenaActual->getBotones().count() > 0)
-			{
-				miInput->verificarMouse(*escenaActual, event);
-				verificarBotones();
-			}
-
-			miInput->verificarTeclas(miJugador, event, misBarcos->getBarcoDelJugador());
-
-			verificarComportamientos();
-
-			dibujarEscena(&ventana);
-
-			ventana.display();
-		}
-	}
-
-	void AdministradorDeEscenas::verificarComportamientos()
-	{
-		misBarcos->setearComportamientos();
-		misBarcos->posicionarBarcos();
-
-		for (int i = 0; i < gameObjectsActuales.count(); i++)
-		{
-			gameObjectsActuales[i]->activarComportamiento();
-		}
-
-		misBarcos->checkUso();
-		misBarcos->checkAtaques();
-		misBarcos->checkImpactosBarcos();
-		misBarcos->checkImpactosBala();
-		misBarcos->checkTimers();
-	}
-
-	void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
-	{
-		for (int i = GameObject::getMaximoZ(); i >= 0; i--)
-		{
-			for (int c = 0; c < gameObjectsActuales.count(); c++)
-			{
-				if (gameObjectsActuales[c]->getUso() && gameObjectsActuales[c]->getZ() == i)
-				{
-					window->draw(gameObjectsActuales[c]->getSprite());
-				}
-			}
-		}
-	}
-
-	void AdministradorDeEscenas::cerrarJuego()
-	{
-		ventana.close();
-	}
-
-	void AdministradorDeEscenas::verificarBotones()
-	{
-		for (int i = 0; i < escenaActual->getBotones().count(); i++)
-		{
-			if ((escenaActual->getBotones())[i]->getEstaActivado())
-			{
-				(escenaActual->getBotones())[i]->apagarBoton();
-				if ((escenaActual->getBotones())[i]->getEscenaObjetivo() == nullptr)
-				{
-					ventana.close();
-				}
-				else
-				{
-					cambiarEscena((escenaActual->getBotones())[i]->getEscenaObjetivo());
-					return;
-				}
+				window->draw(gameObjectsActuales[c]->getSprite());
 			}
 		}
 	}
+}
 
-	void AdministradorDeEscenas::cambiarEscena(Escena* const &proximaEscena)
+void AdministradorDeEscenas::checkJugador()
+{
+	if (miJugador->getJugando())
 	{
-		escenaActual = proximaEscena;
-		gameObjectsActuales = escenaActual->getGameObjects();
-
-		if (escenaActual == Datos::getEscenaJuego())
+		if (!(misBarcos->checkJugando()))
 		{
-			miJugador->empezarJuego();
+			miJugador->setJugando(false);
 		}
 	}
+}
 
-	void AdministradorDeEscenas::administrarBarcos(Escena* &escena)
+void AdministradorDeEscenas::verificarEscape()
+{
+	if (miInput->getSaliendo())
 	{
-		misBarcos->agregarBarcos(escena);
+		miInput->resetSaliendo();
+		misBarcos->resetAdministrador();
+		cambiarEscena(primerEscena);
 	}
+}
+
+void AdministradorDeEscenas::cerrarJuego()
+{
+	ventana.close();
+}
+
+void AdministradorDeEscenas::verificarBotones()
+{
+	for (int i = 0; i < escenaActual->getBotones().count(); i++)
+	{
+		if ((escenaActual->getBotones())[i]->getEstaActivado())
+		{
+			(escenaActual->getBotones())[i]->apagarBoton();
+			if ((escenaActual->getBotones())[i]->getEscenaObjetivo() == nullptr)
+			{
+				ventana.close();
+			}
+			else
+			{
+				cambiarEscena((escenaActual->getBotones())[i]->getEscenaObjetivo());
+				return;
+			}
+		}
+	}
+}
+
+void AdministradorDeEscenas::cambiarEscena(Escena* const &proximaEscena)
+{
+	escenaActual = proximaEscena;
+	gameObjectsActuales = escenaActual->getGameObjects();
+
+	if (escenaActual == Datos::getEscenaJuego())
+	{
+		miJugador->empezarJuego();
+	}
+}
+
+void AdministradorDeEscenas::administrarBarcos(Escena* &escena)
+{
+	misBarcos->agregarBarcos(escena);
+}
+
 }

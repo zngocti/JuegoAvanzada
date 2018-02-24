@@ -5,7 +5,7 @@ namespace Octavio
 
 Jugador* Jugador::elJugador = nullptr;
 
-Jugador::Jugador() : jugando(false), puntos(0)
+Jugador::Jugador() : jugando(false)
 {
 
 }
@@ -27,13 +27,7 @@ Jugador* Jugador::crearJugador()
 
 void Jugador::empezarJuego()
 {
-	puntos = 0;
 	jugando = true;
-}
-
-void Jugador::sumarPuntos(int num)
-{
-	puntos = puntos + num;
 }
 
 bool Jugador::getJugando() const
@@ -41,9 +35,9 @@ bool Jugador::getJugando() const
 	return jugando;
 }
 
-int Jugador::getPuntos() const
+void Jugador::setJugando(bool estaJugando)
 {
-	return puntos;
+	jugando = estaJugando;
 }
 
 }

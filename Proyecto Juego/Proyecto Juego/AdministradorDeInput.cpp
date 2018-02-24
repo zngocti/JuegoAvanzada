@@ -5,7 +5,7 @@ namespace Octavio
 
 AdministradorDeInput* AdministradorDeInput::administradorCreado = nullptr;
 
-AdministradorDeInput::AdministradorDeInput() : clickeando(false), puedeAtacar(true), puedeAbordar(true)
+AdministradorDeInput::AdministradorDeInput() : clickeando(false), puedeAtacar(true), puedeAbordar(true), saliendo(false)
 {
 
 }
@@ -111,7 +111,21 @@ void AdministradorDeInput::verificarTeclas(Jugador* miJugador, const sf::Event &
 		{
 			puedeAbordar = true;
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			saliendo = true;
+		}
 	}
+}
+
+bool AdministradorDeInput::getSaliendo() const
+{
+	return saliendo;
+}
+
+void AdministradorDeInput::resetSaliendo()
+{
+	saliendo = false;
 }
 
 }

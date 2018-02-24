@@ -18,6 +18,8 @@ private:
 	bool puedeAtacar;
 	bool puedeAbordar;
 
+	bool saliendo;
+
 	AdministradorDeInput();
 
 public:
@@ -26,6 +28,9 @@ public:
 
 	void verificarMouse(const Escena &escenaActual, const sf::Event &evento);
 	void verificarTeclas(Jugador* miJugador, const sf::Event &evento, Barco* unBarco);
+
+	bool getSaliendo() const;
+	void resetSaliendo();
 };
 
 }

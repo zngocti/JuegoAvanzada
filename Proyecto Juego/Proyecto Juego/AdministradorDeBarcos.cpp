@@ -549,6 +549,8 @@ void AdministradorDeBarcos::resetAdministrador()
 
 	Datos::timerJuego.restart();
 
+	numeroWave = 1;
+
 	preparandoW1 = true;
 	preparandoW2 = true;
 	preparandoW3 = true;
@@ -565,6 +567,18 @@ void AdministradorDeBarcos::resetAdministrador()
 	setBarcoInicial();
 
 	Datos::resetDatos();
+}
+
+bool AdministradorDeBarcos::checkJugando() const
+{
+	if (barcoDelJugador->getResistencia() <= 0 && !(Barco::getMarinero()->getUso()))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 Barco* AdministradorDeBarcos::getBarcoDelJugador() const

@@ -45,6 +45,9 @@ public:
 
 	void administrarBarcos(Escena* &escena);
 
+	void checkJugador();
+	void verificarEscape();
+
 	void cerrarJuego();
 
 	void setJugador(Jugador* unJugador);

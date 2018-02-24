@@ -12,7 +12,6 @@ private:
 	static Jugador* elJugador;
 
 	bool jugando;
-	int puntos;
 
 public:
 	~Jugador();
@@ -20,9 +19,8 @@ public:
 	static Jugador* crearJugador();
 
 	void empezarJuego();
-	void sumarPuntos(int num);
 	bool getJugando() const;
-	int getPuntos() const;
+	void setJugando(bool estaJugando);
 };
 
 }

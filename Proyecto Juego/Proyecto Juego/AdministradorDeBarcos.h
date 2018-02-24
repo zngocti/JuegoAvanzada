@@ -38,7 +38,7 @@ private:
 	sf::Texture* barcoCuatro3;
 
 	AdministradorDeBarcos();
-	
+
 	bool preparandoW1;
 	bool preparandoW2;
 	bool preparandoW3;
@@ -87,8 +87,9 @@ public:
 	void checkTimers();
 
 	void setBarcoInicial();
-
 	void resetAdministrador();
+
+	bool checkJugando() const;
 
 	Barco* getBarcoDelJugador() const;
 };
