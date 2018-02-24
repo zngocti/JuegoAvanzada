@@ -24,4 +24,10 @@ Barco* Bala::getBarcoOrigen() const
 	return miBarcoOrigen;
 }
 
+void Bala::resetBala()
+{
+	setPosition(-500, -500);
+	estaEnUso = false;
+}
+
 }

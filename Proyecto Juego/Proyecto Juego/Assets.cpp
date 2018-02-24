@@ -280,7 +280,7 @@ bool Assets::boteChicoRoto2(sf::Texture &textura)
 
 bool Assets::explosion1(sf::Texture &textura)
 {
-	return Assets::cargarAsset("explosion1.png", textura);
+	return Assets::cargarAsset("explosion3.png", textura);
 }
 
 bool Assets::explosion2(sf::Texture &textura)
@@ -290,7 +290,7 @@ bool Assets::explosion2(sf::Texture &textura)
 
 bool Assets::explosion3(sf::Texture &textura)
 {
-	return Assets::cargarAsset("explosion3.png", textura);
+	return Assets::cargarAsset("explosion1.png", textura);
 }
 
 bool Assets::fuego1(sf::Texture &textura)

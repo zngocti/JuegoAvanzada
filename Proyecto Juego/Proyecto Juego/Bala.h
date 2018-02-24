@@ -24,6 +24,8 @@ public:
 	void setBarcoOrigen(Barco* miBarco);
 	Barco* getBarcoOrigen() const;
 
+	void resetBala();
+
 };
 
 }

@@ -26,6 +26,12 @@ int Datos::rotacionInicial = 90;
 int Datos::rotacionPoseido = 270;
 int Datos::zDeBalas = 4;
 int Datos::zDeMarinero = 3;
+int Datos::puntosBarco = 10;
+int Datos::puntosBarcoDoble = 20;
+int Datos::puntosBarcoCuatro = 40;
+int Datos::disparosActuales = 0;
+int Datos::vidaActual = 0;
+int Datos::puntosDelJugador = 0;
 
 float Datos::velocidad = 0.1;
 float Datos::velocidadJugador = 0.3;
@@ -179,6 +185,64 @@ Escena* Datos::getEscenaJuego()
 void Datos::setEscenaJuego(Escena* unaEscena)
 {
 	escenaDelJuego = unaEscena;
+}
+
+void Datos::addPuntos(int num)
+{
+	switch (num)
+	{
+	case 1:
+		puntosDelJugador = puntosDelJugador + puntosBarco;
+		break;
+	case 2:
+		puntosDelJugador = puntosDelJugador + puntosBarcoDoble;
+		break;
+	case 3:
+		puntosDelJugador = puntosDelJugador + puntosBarcoCuatro;
+		break;
+	default:
+		break;
+	}
+}
+
+void Datos::setBalas(int num)
+{
+	switch (num)
+	{
+	case 1:
+		disparosActuales = disparosBarco;
+		break;
+	case 2:
+		disparosActuales = disparosBarcoDoble;
+		break;
+	case 3:
+		disparosActuales = disparosBarcoCuatro;
+		break;
+	default:
+		break;
+	}
+}
+
+void Datos::usarBalas()
+{
+	disparosActuales--;
+}
+
+void Datos::setVida(int num)
+{
+	vidaActual = num;
+}
+
+void Datos::restarVida()
+{
+	vidaActual--;
+}
+
+void Datos::resetDatos()
+{
+	vidaActual = vidaBarco;
+	disparosActuales = disparosBarco;
+	puntosDelJugador = 0;
 }
 
 }

@@ -34,6 +34,12 @@ private:
 	static int rotacionPoseido;
 	static int zDeBalas;
 	static int zDeMarinero;
+	static int puntosBarco;
+	static int puntosBarcoDoble;
+	static int puntosBarcoCuatro;
+	static int disparosActuales;
+	static int vidaActual;
+	static int puntosDelJugador;
 
 	static int posicionInicialX;
 
@@ -75,6 +81,13 @@ public:
 	static float getTiempoEntreBarcos();
 
 	static float getVelocidadBala();
+
+	static void addPuntos(int num);
+	static void setBalas(int num);
+	static void usarBalas();
+	static void setVida(int num);
+	static void restarVida();
+	static void resetDatos();
 
 	static Escena* getEscenaJuego();
 	static void setEscenaJuego(Escena* unaEscena);

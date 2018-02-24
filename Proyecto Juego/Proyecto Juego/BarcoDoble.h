@@ -25,6 +25,7 @@ public:
 	virtual void abandonar() override;
 	virtual void impacto() override;
 
+	virtual void resetBarco() override;
 };
 
 }

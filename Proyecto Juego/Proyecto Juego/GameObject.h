@@ -63,7 +63,7 @@ public:
 
 	void setMedio();
 
-	bool getUso() const;
+	virtual bool getUso() const;
 	void restartUso();
 };
 

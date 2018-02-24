@@ -72,6 +72,7 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 
 	Barco::getMarinero();
 	setBarcoInicial();
+	Datos::resetDatos();
 }
 
 AdministradorDeBarcos::~AdministradorDeBarcos()
@@ -93,18 +94,21 @@ void AdministradorDeBarcos::agregarBarcos(Escena* &miEscena)
 	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 	{
 		miEscena->agregarGameObject(listaDeBarcos[i]);
+		miEscena->agregarGameObject(listaDeBarcos[i]->getExplosion());
 		for (int c = 0; c < listaDeBarcos[i]->getListaDeBalas().count(); c++)
 		{
 			miEscena->agregarGameObject(listaDeBarcos[i]->getListaDeBalas()[c]);
 		}
 		
 		miEscena->agregarGameObject(listaDeBarcosDobles[i]);
+		miEscena->agregarGameObject(listaDeBarcosDobles[i]->getExplosion());
 		for (int c = 0; c < listaDeBarcosDobles[i]->getListaDeBalas().count(); c++)
 		{
 			miEscena->agregarGameObject(listaDeBarcosDobles[i]->getListaDeBalas()[c]);
 		}
 		
 		miEscena->agregarGameObject(listaDeBarcosCuatro[i]);
+		miEscena->agregarGameObject(listaDeBarcosCuatro[i]->getExplosion());
 		for (int c = 0; c < listaDeBarcosCuatro[i]->getListaDeBalas().count(); c++)
 		{
 			miEscena->agregarGameObject(listaDeBarcosCuatro[i]->getListaDeBalas()[c]);
@@ -182,6 +186,10 @@ void AdministradorDeBarcos::setBarco(Barco* const &miBarco, int num)
 	if (miBarco->getEstaPoseido())
 	{
 		miBarco->restartUso();
+	}
+	else
+	{
+		miBarco->resetBarco();
 	}
 }
 
@@ -371,6 +379,7 @@ void AdministradorDeBarcos::checkImpactosBarcos()
 		{
 			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcos[i]->getSprite().getGlobalBounds()))
 			{
+				barcoDelJugador->impactoDeBarco();
 				listaDeBarcos[i]->impactoDeBarco();
 			}
 		}
@@ -379,6 +388,7 @@ void AdministradorDeBarcos::checkImpactosBarcos()
 		{
 			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosDobles[i]->getSprite().getGlobalBounds()))
 			{
+				barcoDelJugador->impactoDeBarco();
 				listaDeBarcosDobles[i]->impactoDeBarco();
 			}
 		}
@@ -387,6 +397,7 @@ void AdministradorDeBarcos::checkImpactosBarcos()
 		{
 			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosCuatro[i]->getSprite().getGlobalBounds()))
 			{
+				barcoDelJugador->impactoDeBarco();
 				listaDeBarcosCuatro[i]->impactoDeBarco();
 			}
 		}
@@ -520,6 +531,40 @@ void AdministradorDeBarcos::checkTimers()
 		listaDeBarcosDobles[i]->checkTimers();
 		listaDeBarcosCuatro[i]->checkTimers();
 	}
+}
+
+void AdministradorDeBarcos::resetAdministrador()
+{
+	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+	{
+		listaDeBarcos[i]->resetBarco();
+		listaDeBarcos[i]->resetExtra();
+		listaDeBarcosDobles[i]->resetBarco();
+		listaDeBarcosDobles[i]->resetExtra();
+		listaDeBarcosCuatro[i]->resetBarco();
+		listaDeBarcosCuatro[i]->resetExtra();
+	}
+
+	Barco::getMarinero()->resetBala();
+
+	Datos::timerJuego.restart();
+
+	preparandoW1 = true;
+	preparandoW2 = true;
+	preparandoW3 = true;
+	posicionandoW1 = false;
+	posicionandoW2 = false;
+	posicionandoW3 = false;
+	contador1 = 0;
+	contador2 = 0;
+	contador3 = 0;
+	tiempo1 = sf::seconds(0);
+	tiempo2 = sf::seconds(0);
+	tiempo3 = sf::seconds(0);
+
+	setBarcoInicial();
+
+	Datos::resetDatos();
 }
 
 Barco* AdministradorDeBarcos::getBarcoDelJugador() const

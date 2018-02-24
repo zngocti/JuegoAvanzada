@@ -88,6 +88,8 @@ public:
 
 	void setBarcoInicial();
 
+	void resetAdministrador();
+
 	Barco* getBarcoDelJugador() const;
 };
 

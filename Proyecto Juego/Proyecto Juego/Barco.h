@@ -7,6 +7,7 @@
 #include "Marinero.h"
 #include "Lista.cpp"
 #include "Datos.h"
+#include "Explosion.h"
 
 namespace Octavio
 {
@@ -21,13 +22,14 @@ private:
 protected:
 	sf::Sprite* sprite1;
 
+	Explosion* miExplosion;
+
 	int disparos;
 	int resistencia;
 	int valorPuntos;
 	bool puedeSerGolpeado;
 	bool estaPoseido;
 	sf::Time cdRecuperacion;
-	sf::Time tiempoDeMuerte;
 	Lista<Bala*> listaDeBalas;
 
 	static Marinero* marinero;
@@ -41,7 +43,6 @@ public:
 	int getValorPuntos() const;
 	bool getEstaPoseido() const;
 	sf::Time getCDRecuperacion() const;
-	sf::Time getTiempoDeMuerte() const;
 	bool getPuedeSerGolpeado() const;
 
 	void setDisparos(int num);
@@ -64,7 +65,11 @@ public:
 
 	virtual void activarComportamiento() override;
 
+	virtual void resetBarco();
+	void resetExtra();
+
 	Lista<Bala*> getListaDeBalas() const;
+	Explosion* getExplosion() const;
 
 	static Marinero* getMarinero();
 };

@@ -10,7 +10,7 @@ sf::Time Barco::tiempoInmune = sf::seconds(2.0f);
 Marinero* Barco::marinero = nullptr;
 
 Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), listaDeBalas(Lista<Bala*>(new Bala())), sprite1(new sf::Sprite()), resistencia(Datos::getVidaBarco()),
-				 puedeSerGolpeado(true)
+				 puedeSerGolpeado(true), miExplosion(nullptr)
 {
 	setPosition(-500, -500);
 
@@ -28,6 +28,12 @@ Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), listaD
 		listaDeBalas[i]->setMedio();
 		listaDeBalas[i]->setZ(Datos::getZDeBalas());
 	}
+
+	miExplosion = new Explosion();
+	miExplosion->setSprite(*(Explosion::getTextura3()));
+	miExplosion->setMedio();
+	miExplosion->setZ(Datos::getZDeBalas());
+	miExplosion->resetExplosion();
 }
 
 Barco::~Barco()
@@ -72,11 +78,6 @@ bool Barco::getEstaPoseido() const
 sf::Time Barco::getCDRecuperacion() const
 {
 	return cdRecuperacion;
-}
-
-sf::Time Barco::getTiempoDeMuerte() const
-{
-	return tiempoDeMuerte;
 }
 
 bool Barco::getPuedeSerGolpeado() const
@@ -160,6 +161,8 @@ void Barco::atacar()
 				listaDeBalas[i]->restartUso();
 				listaDeBalas[i]->setPosition(getSprite().getPosition().x + getSprite().getLocalBounds().width / 2, getSprite().getPosition().y);
 				listaDeBalas[i]->getComportamiento()->setData(3, false);
+				disparos--;
+				Datos::usarBalas();
 				i = listaDeBalas.count();
 			}
 		}
@@ -171,6 +174,14 @@ void Barco::impacto()
 	if (puedeSerGolpeado && resistencia != 0)
 	{
 		resistencia--;
+		if (!estaPoseido)
+		{
+			Datos::addPuntos(1);
+		}
+		else
+		{
+			Datos::restarVida();
+		}
 		morir();
 	}
 }
@@ -179,6 +190,7 @@ void Barco::impactoDeBarco()
 {
 	if (puedeSerGolpeado)
 	{
+		impacto();
 		puedeSerGolpeado = false;
 		cdRecuperacion = Datos::timerJuego.getElapsedTime();
 	}
@@ -186,7 +198,9 @@ void Barco::impactoDeBarco()
 
 void Barco::morir()
 {
+	miExplosion->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 	miComportamiento->activarReciclar();
+	miExplosion->iniciarExplosion();
 }
 
 void Barco::abordar()
@@ -194,6 +208,8 @@ void Barco::abordar()
 	estaPoseido = true;
 	setRotation(Datos::getRotacionPoseido());
 	setRotation1(Datos::getRotacionPoseido());
+	Datos::setVida(resistencia);
+	Datos::setBalas(1);
 
 	if (getX() < 0 + getSprite().getLocalBounds().width / 2)
 	{
@@ -211,6 +227,8 @@ void Barco::abordar()
 	{
 		setPosition(getX(), Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2);
 	}
+
+	setZ(Datos::getZDelJugador());
 }
 
 void Barco::abandonar()
@@ -218,7 +236,30 @@ void Barco::abandonar()
 	estaPoseido = false;
 	setRotation(Datos::getRotacionInicial());
 	setRotation1(Datos::getRotacionInicial());
+	setZ(Datos::getZDeBarcos());
 	morir();
+}
+
+void Barco::resetBarco()
+{
+	estaPoseido = false;
+	resistencia = Datos::getVidaBarco();
+	puedeSerGolpeado = true;
+	setRotation(Datos::getRotacionInicial());
+	setRotation1(Datos::getRotacionInicial());
+	setZ(Datos::getZDeBarcos());
+	setDisparos(Datos::getDisparosBarco());
+	cdRecuperacion = sf::Time::Zero;
+}
+
+void Barco::resetExtra()
+{
+	miExplosion->resetExplosion();
+
+	for (int i = 0; i < Datos::getBalasPorBarco(); i++)
+	{
+		listaDeBalas[i]->resetBala();
+	}
 }
 
 void Barco::dispararMarinero()
@@ -270,6 +311,11 @@ Marinero* Barco::getMarinero()
 	}
 
 	return marinero;
+}
+
+Explosion* Barco::getExplosion() const
+{
+	return miExplosion;
 }
 
 }

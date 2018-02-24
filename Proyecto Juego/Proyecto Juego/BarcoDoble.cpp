@@ -70,6 +70,8 @@ void BarcoDoble::atacar()
 					getSprite().getPosition().y - getSprite().getLocalBounds().height / 2 + Datos::getPixelesExtraDelBarco());
 				listaDeBalas[i]->getComportamiento()->setData(4, false);
 				listaDeBalas[i + 1]->getComportamiento()->setData(2, false);
+				disparos--;
+				Datos::usarBalas();
 				i = listaDeBalas.count();
 			}
 		}
@@ -82,6 +84,28 @@ void BarcoDoble::abordar()
 	setRotation(Datos::getRotacionPoseido());
 	setRotation1(Datos::getRotacionPoseido());
 	setRotation2(Datos::getRotacionPoseido());
+
+	Datos::setVida(resistencia);
+	Datos::setBalas(2);
+
+	if (getX() < 0 + getSprite().getLocalBounds().width / 2)
+	{
+		setPosition(getSprite().getLocalBounds().width / 2, getY());
+	}
+	if (getX() > Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2)
+	{
+		setPosition(Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2, getY());
+	}
+	if (getY() < 0 + getSprite().getLocalBounds().height / 2)
+	{
+		setPosition(getX(), getSprite().getLocalBounds().height / 2);
+	}
+	if (getY() > Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2)
+	{
+		setPosition(getX(), Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2);
+	}
+
+	setZ(Datos::getZDelJugador());
 }
 
 void BarcoDoble::abandonar()
@@ -91,6 +115,20 @@ void BarcoDoble::abandonar()
 	setRotation1(Datos::getRotacionInicial());
 	setRotation2(Datos::getRotacionInicial());
 	morir();
+}
+
+void BarcoDoble::resetBarco()
+{
+	estaPoseido = false;
+	resistencia = Datos::getVidaBarcoDoble();
+	puedeSerGolpeado = true;
+	setSprite(*sprite1);
+	setRotation(Datos::getRotacionInicial());
+	setRotation1(Datos::getRotacionInicial());
+	setRotation2(Datos::getRotacionInicial());
+	setZ(Datos::getZDeBarcos());
+	setDisparos(Datos::getDisparosBarcoDoble());
+	cdRecuperacion = sf::Time::Zero;
 }
 
 void BarcoDoble::impacto()
@@ -103,8 +141,20 @@ void BarcoDoble::impacto()
 		case 1:
 			sprite2->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 			setSprite(*sprite2);
+			if (estaPoseido)
+			{
+				Datos::restarVida();
+			}
 			break;
 		default:
+			if (!estaPoseido)
+			{
+				Datos::addPuntos(2);
+			}
+			else
+			{
+				Datos::restarVida();
+			}
 			morir();
 			break;
 		}

@@ -115,6 +115,8 @@ void BarcoCuatro::atacar()
 				listaDeBalas[i + 1]->getComportamiento()->setData(5, false);
 				listaDeBalas[i + 2]->getComportamiento()->setData(1, false);
 				listaDeBalas[i + 3]->getComportamiento()->setData(1, false);
+				disparos--;
+				Datos::usarBalas();
 				i = listaDeBalas.count();
 			}
 		}
@@ -128,6 +130,28 @@ void BarcoCuatro::abordar()
 	setRotation1(Datos::getRotacionPoseido());
 	setRotation2(Datos::getRotacionPoseido());
 	setRotation3(Datos::getRotacionPoseido());
+
+	Datos::setVida(resistencia);
+	Datos::setBalas(3);
+
+	if (getX() < 0 + getSprite().getLocalBounds().width / 2)
+	{
+		setPosition(getSprite().getLocalBounds().width / 2, getY());
+	}
+	if (getX() > Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2)
+	{
+		setPosition(Datos::getAnchoPantalla() - getSprite().getLocalBounds().width / 2, getY());
+	}
+	if (getY() < 0 + getSprite().getLocalBounds().height / 2)
+	{
+		setPosition(getX(), getSprite().getLocalBounds().height / 2);
+	}
+	if (getY() > Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2)
+	{
+		setPosition(getX(), Datos::getAltoPantalla() - getSprite().getLocalBounds().height / 2);
+	}
+
+	setZ(Datos::getZDelJugador());
 }
 
 void BarcoCuatro::abandonar()
@@ -140,6 +164,21 @@ void BarcoCuatro::abandonar()
 	morir();
 }
 
+void BarcoCuatro::resetBarco()
+{
+	estaPoseido = false;
+	resistencia = Datos::getVidaBarcoCuatro();
+	puedeSerGolpeado = true;
+	setSprite(*sprite1);
+	setRotation(Datos::getRotacionInicial());
+	setRotation1(Datos::getRotacionInicial());
+	setRotation2(Datos::getRotacionInicial());
+	setRotation3(Datos::getRotacionInicial());
+	setZ(Datos::getZDeBarcos());
+	setDisparos(Datos::getDisparosBarcoCuatro());
+	cdRecuperacion = sf::Time::Zero;
+}
+
 void BarcoCuatro::impacto()
 {
 	if (puedeSerGolpeado && resistencia != 0)
@@ -148,16 +187,30 @@ void BarcoCuatro::impacto()
 		switch (resistencia)
 		{
 		case 1:
-			std::cout << "1" << std::endl;
 			sprite3->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 			setSprite(*sprite3);
+			if (estaPoseido)
+			{
+				Datos::restarVida();
+			}
 			break;
 		case 2:
-			std::cout << "2" << std::endl;
 			sprite2->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 			setSprite(*sprite2);
+			if (estaPoseido)
+			{
+				Datos::restarVida();
+			}
 			break;
 		default:
+			if (!estaPoseido)
+			{
+				Datos::addPuntos(3);
+			}
+			else
+			{
+				Datos::restarVida();
+			}
 			morir();
 			break;
 		}

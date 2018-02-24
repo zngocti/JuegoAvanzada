@@ -91,6 +91,7 @@ namespace Octavio
 		misBarcos->checkAtaques();
 		misBarcos->checkImpactosBarcos();
 		misBarcos->checkImpactosBala();
+		misBarcos->checkTimers();
 	}
 
 	void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
