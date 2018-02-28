@@ -167,6 +167,7 @@ void BarcoCuatro::abandonar()
 
 void BarcoCuatro::resetBarco()
 {
+	setPosition(-500, -500);
 	estaPoseido = false;
 	resistencia = Datos::getVidaBarcoCuatro();
 	puedeSerGolpeado = true;

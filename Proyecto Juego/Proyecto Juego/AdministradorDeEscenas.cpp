@@ -50,6 +50,7 @@ void AdministradorDeEscenas::setJugador(Jugador* unJugador)
 void AdministradorDeEscenas::iniciarUpdate()
 {
 	gameObjectsActuales = escenaActual->getGameObjects();
+	Assets::playMusica(0);
 
 	while (ventana.isOpen())
 	{
@@ -85,15 +86,12 @@ void AdministradorDeEscenas::verificarComportamientos()
 	{
 		misBarcos->setearComportamientos();
 		misBarcos->posicionarBarcos();
-	}
 
-	for (int i = 0; i < gameObjectsActuales.count(); i++)
-	{
-		gameObjectsActuales[i]->activarComportamiento();
-	}
+		for (int i = 0; i < gameObjectsActuales.count(); i++)
+		{
+			gameObjectsActuales[i]->activarComportamiento();
+		}
 
-	if (escenaActual == Datos::getEscenaJuego())
-	{
 		misBarcos->checkUso();
 		misBarcos->checkAtaques();
 		misBarcos->checkImpactosBarcos();
@@ -101,6 +99,13 @@ void AdministradorDeEscenas::verificarComportamientos()
 		misBarcos->checkTimers();
 		misBarcos->actualizarTexto();
 		checkJugador();
+	}
+	else
+	{
+		for (int i = 0; i < gameObjectsActuales.count(); i++)
+		{
+			gameObjectsActuales[i]->activarComportamiento();
+		}
 	}
 }
 
@@ -141,6 +146,7 @@ void AdministradorDeEscenas::verificarEscape()
 	if (miInput->getSaliendo())
 	{
 		miInput->resetSaliendo();
+		miJugador->setJugando(false);
 		misBarcos->resetAdministrador();
 		cambiarEscena(primerEscena);
 	}
@@ -178,7 +184,14 @@ void AdministradorDeEscenas::cambiarEscena(Escena* const &proximaEscena)
 
 	if (escenaActual == Datos::getEscenaJuego())
 	{
+		Assets::stopMusica();
+		Assets::playMusica(1);
 		miJugador->empezarJuego();
+	}
+	else if (escenaActual == primerEscena && !Datos::getMusicaMenuOn())
+	{
+		Assets::stopMusica();
+		Assets::playMusica(0);
 	}
 }
 

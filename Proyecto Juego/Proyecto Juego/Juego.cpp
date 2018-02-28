@@ -27,12 +27,18 @@ void Juego::iniciar()
 void Juego::crearEscenas()
 {
 	sf::Texture* fondo = new sf::Texture();
+	sf::Texture* fondoInstrucciones = new sf::Texture();
+	sf::Texture* fondoCreditos = new sf::Texture();
 
 	listaDeTexturas.addBack(fondo);
+	listaDeTexturas.addBack(fondoInstrucciones);
+	listaDeTexturas.addBack(fondoCreditos);
 
 	Assets::menuBackground(*fondo);
+	Assets::fondoInstrucciones(*fondoInstrucciones);
+	Assets::fondoCreditos(*fondoCreditos);
 
-	administradorEscenas->getPrimerEscena()->crearGameObject(*fondo, -200, 0, 2);
+	administradorEscenas->getPrimerEscena()->crearGameObject(*fondo, -200, 0, Datos::getZDeFondo());
 
 	sf::Texture* botonJugar1 = new sf::Texture();
 	sf::Texture* botonJugar2 = new sf::Texture();
@@ -128,7 +134,7 @@ void Juego::crearEscenas()
 	Assets::botonVolverOver(*botonVolver2);
 	Assets::botonVolverApretado(*botonVolver3);
 
-	Boton* bVolverControles = pantallaControles(bControles, fondo)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
+	Boton* bVolverControles = pantallaControles(bControles, fondo, fondoInstrucciones)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
 	bVolverControles->setEscalaBoton(0.5f, 0.5f);
 	bVolverControles->setEscenaObjetivo(administradorEscenas->getPrimerEscena());
 
@@ -136,7 +142,7 @@ void Juego::crearEscenas()
 	bVolverPuntajes->setEscalaBoton(0.5f, 0.5f);
 	bVolverPuntajes->setEscenaObjetivo(administradorEscenas->getPrimerEscena());
 
-	Boton* bVolverCreditos = pantallaCreditos(bCreditos, fondo)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
+	Boton* bVolverCreditos = pantallaCreditos(bCreditos, fondo, fondoCreditos)->crearBoton(*botonVolver1, *botonVolver2, *botonVolver3, 800, 650, 0);
 	bVolverCreditos->setEscalaBoton(0.5f, 0.5f);
 	bVolverCreditos->setEscenaObjetivo(administradorEscenas->getPrimerEscena());
 
@@ -174,10 +180,11 @@ void Juego::destruirTexturas()
 	listaDeTexturas.removeAll();
 }
 
-Escena* Juego::pantallaControles(Boton* const &miBoton, sf::Texture* const &miTextura)
+Escena* Juego::pantallaControles(Boton* const &miBoton, sf::Texture* const &miTextura, sf::Texture* const &miTextura2)
 {
 	Escena* controles = administradorEscenas->crearEscena();
-	controles->crearGameObject(*miTextura, -200, 0, 2);
+	controles->crearGameObject(*miTextura, -200, 0, Datos::getZDeFondo());
+	controles->crearGameObject(*miTextura2, (Datos::getAnchoPantalla() - 800)/2, (Datos::getAltoPantalla() - 600) / 2, Datos::getZDeFondo() - 1);
 	miBoton->setEscenaObjetivo(controles);
 	return controles;
 }
@@ -185,15 +192,16 @@ Escena* Juego::pantallaControles(Boton* const &miBoton, sf::Texture* const &miTe
 Escena* Juego::pantallaPuntajes(Boton* const &miBoton, sf::Texture* const &miTextura)
 {
 	Escena* puntajes = administradorEscenas->crearEscena();
-	puntajes->crearGameObject(*miTextura, -200, 0, 2);
+	puntajes->crearGameObject(*miTextura, -200, 0, Datos::getZDeFondo());
 	miBoton->setEscenaObjetivo(puntajes);
 	return puntajes;
 }
 
-Escena* Juego::pantallaCreditos(Boton* const &miBoton, sf::Texture* const &miTextura)
+Escena* Juego::pantallaCreditos(Boton* const &miBoton, sf::Texture* const &miTextura, sf::Texture* const &miTextura2)
 {
 	Escena* creditos = administradorEscenas->crearEscena();
-	creditos->crearGameObject(*miTextura, -200, 0, 2);
+	creditos->crearGameObject(*miTextura, -200, 0, Datos::getZDeFondo());
+	creditos->crearGameObject(*miTextura2, (Datos::getAnchoPantalla() - 800) / 2, (Datos::getAltoPantalla() - 600) / 2, Datos::getZDeFondo() - 1);
 	miBoton->setEscenaObjetivo(creditos);
 	return creditos;
 }

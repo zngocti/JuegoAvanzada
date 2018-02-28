@@ -9,7 +9,39 @@ bool Assets::menuBackground(sf::Texture &textura)
 
 	if (!miTextura.loadFromFile("../Assets/background.jpg", sf::IntRect()))
 	{
-		std::cout << "No cargo la imagen." << std::endl;
+		std::cout << "No cargo el fondo del menu." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
+bool Assets::fondoInstrucciones(sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	if (!miTextura.loadFromFile("../Assets/instrucciones.png", sf::IntRect()))
+	{
+		std::cout << "No cargaron las instrucciones." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
+bool Assets::fondoCreditos(sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	if (!miTextura.loadFromFile("../Assets/creditos.png", sf::IntRect()))
+	{
+		std::cout << "No cargaron los creditos." << std::endl;
 		return false;
 	}
 	else
@@ -847,6 +879,7 @@ sf::SoundBuffer* Assets::bufferAtaque = nullptr;
 sf::Sound* Assets::sonidoGolpe = nullptr;
 sf::Sound* Assets::sonidoMuerte = nullptr;
 sf::Sound* Assets::sonidoAtaque = nullptr;
+sf::Music* Assets::miMusica = nullptr;
 
 void Assets::playSonido(int num)
 {
@@ -896,6 +929,63 @@ void Assets::playSonido(int num)
 	}
 }
 
+void Assets::playMusica(int num)
+{
+	if (miMusica == nullptr)
+	{
+		miMusica = new sf::Music;
+	}
+
+	switch (num)
+	{
+	case 0:
+		if (!miMusica->openFromFile("../Assets/Incoming.ogg"))
+		{
+			std::cout << "No cargo Incoming.ogg" << std::endl;
+		}
+		else
+		{
+			Datos::setMusicaMenuOn(true);
+			miMusica->setLoop(true);
+			miMusica->play();
+		}
+		break;
+	case 1:
+		if (!miMusica->openFromFile("../Assets/HelipadSiege.ogg"))
+		{
+			std::cout << "No cargo HelipadSiege.ogg" << std::endl;
+		}
+		else
+		{
+			miMusica->setLoop(true);
+			miMusica->play();
+		}
+		break;
+	case 2:
+		if (!miMusica->openFromFile("../Assets/WARGODS.ogg"))
+		{
+			std::cout << "No cargo WARGODS.ogg" << std::endl;
+		}
+		else
+		{
+			miMusica->setLoop(true);
+			miMusica->play();
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+void Assets::stopMusica()
+{
+	if (miMusica != nullptr)
+	{
+		Datos::setMusicaMenuOn(false);
+		miMusica->stop();
+	}
+}
+
 void Assets::borrarAssets()
 {
 	if (bufferAtaque != nullptr)
@@ -921,6 +1011,10 @@ void Assets::borrarAssets()
 	if (sonidoMuerte != nullptr)
 	{
 		delete(sonidoMuerte);
+	}
+	if (miMusica != nullptr)
+	{
+		delete(miMusica);
 	}
 }
 

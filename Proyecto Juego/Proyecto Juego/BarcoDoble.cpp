@@ -120,6 +120,7 @@ void BarcoDoble::abandonar()
 
 void BarcoDoble::resetBarco()
 {
+	setPosition(-500, -500);
 	estaPoseido = false;
 	resistencia = Datos::getVidaBarcoDoble();
 	puedeSerGolpeado = true;

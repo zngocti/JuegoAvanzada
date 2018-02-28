@@ -38,12 +38,15 @@ int Datos::posXTexto1 = 10;
 int Datos::posXTexto2 = 700;
 int Datos::posYTexto1 = 10;
 int Datos::posYTexto2 = 40;
+int Datos::zDeFondo = 8;
 
 float Datos::velocidad = 0.1;
 float Datos::velocidadJugador = 0.3;
 float Datos::tiempoEntreBarcos = 2;
 
 float Datos::velocidadBala = 0.2;
+
+bool Datos::musicaMenuOn = false;
 
 sf::Clock Datos::timerJuego = sf::Clock();
 
@@ -188,6 +191,11 @@ int Datos::getZDeExplosion()
 	return zDeExplosion;
 }
 
+int Datos::getZDeFondo()
+{
+	return zDeFondo;
+}
+
 Escena* Datos::getEscenaJuego()
 {
 	return escenaDelJuego;
@@ -196,6 +204,16 @@ Escena* Datos::getEscenaJuego()
 void Datos::setEscenaJuego(Escena* unaEscena)
 {
 	escenaDelJuego = unaEscena;
+}
+
+bool Datos::getMusicaMenuOn()
+{
+	return musicaMenuOn;
+}
+
+void Datos::setMusicaMenuOn(bool estaPrendida)
+{
+	musicaMenuOn = estaPrendida;
 }
 
 void Datos::addPuntos(int num)

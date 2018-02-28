@@ -6,6 +6,7 @@
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
 #include <iostream>
+#include "Datos.h"
 
 namespace Octavio
 {
@@ -14,6 +15,8 @@ class Assets
 {
 public:
 	static bool menuBackground(sf::Texture &textura);
+	static bool fondoInstrucciones(sf::Texture &textura);
+	static bool fondoCreditos(sf::Texture &textura);
 
 	static bool cannon(sf::Texture &textura);
 	static bool cannonBall(sf::Texture &textura);
@@ -176,6 +179,8 @@ public:
 
 	static void playSonido(int num);
 	static void borrarAssets();
+	static void playMusica(int num);
+	static void stopMusica();
 
 private:
 	Assets();
@@ -191,6 +196,7 @@ private:
 	static sf::Sound* sonidoGolpe;
 	static sf::Sound* sonidoMuerte;
 	static sf::Sound* sonidoAtaque;
+	static sf::Music* miMusica;
 
 };
 

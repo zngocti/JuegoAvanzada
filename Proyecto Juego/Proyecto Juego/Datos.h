@@ -41,6 +41,7 @@ private:
 	static int vidaActual;
 	static int puntosDelJugador;
 	static int zDeExplosion;
+	static int zDeFondo;
 
 	static int posicionInicialX;
 
@@ -55,6 +56,8 @@ private:
 	static float tiempoEntreBarcos;
 
 	static float velocidadBala;
+
+	static bool musicaMenuOn;
 
 	static Escena* escenaDelJuego;
 
@@ -91,6 +94,7 @@ public:
 	static int getPosXTexto2();
 	static int getPosYTexto1();
 	static int getPosYTexto2();
+	static int getZDeFondo();
 
 	static float getVelocidad();
 	static float getVelocidadJugador();
@@ -104,6 +108,9 @@ public:
 	static void setVida(int num);
 	static void restarVida();
 	static void resetDatos();
+
+	static bool getMusicaMenuOn();
+	static void setMusicaMenuOn(bool estaPrendida);
 
 	static Escena* getEscenaJuego();
 	static void setEscenaJuego(Escena* unaEscena);
