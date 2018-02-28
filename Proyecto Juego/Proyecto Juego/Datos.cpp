@@ -32,6 +32,12 @@ int Datos::puntosBarcoCuatro = 40;
 int Datos::disparosActuales = 0;
 int Datos::vidaActual = 0;
 int Datos::puntosDelJugador = 0;
+int Datos::zDeExplosion = 7;
+int Datos::miTextSize = 20;
+int Datos::posXTexto1 = 10;
+int Datos::posXTexto2 = 700;
+int Datos::posYTexto1 = 10;
+int Datos::posYTexto2 = 40;
 
 float Datos::velocidad = 0.1;
 float Datos::velocidadJugador = 0.3;
@@ -177,6 +183,11 @@ int Datos::getZDeMarinero()
 	return zDeMarinero;
 }
 
+int Datos::getZDeExplosion()
+{
+	return zDeExplosion;
+}
+
 Escena* Datos::getEscenaJuego()
 {
 	return escenaDelJuego;
@@ -221,6 +232,46 @@ void Datos::setBalas(int num)
 	default:
 		break;
 	}
+}
+
+int Datos::getMiTextSize()
+{
+	return miTextSize;
+}
+
+int Datos::getPosXTexto1()
+{
+	return posXTexto1;
+}
+
+int Datos::getPosXTexto2()
+{
+	return posXTexto2;
+}
+
+int Datos::getPosYTexto1()
+{
+	return posYTexto1;
+}
+
+int Datos::getPosYTexto2()
+{
+	return posYTexto2;
+}
+
+int Datos::getVidaActual()
+{
+	return vidaActual;
+}
+
+int Datos::getDisparosActuales()
+{
+	return disparosActuales;
+}
+
+int Datos::getPuntosActuales()
+{
+	return puntosDelJugador;
 }
 
 void Datos::usarBalas()

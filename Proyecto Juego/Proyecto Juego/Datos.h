@@ -40,8 +40,15 @@ private:
 	static int disparosActuales;
 	static int vidaActual;
 	static int puntosDelJugador;
+	static int zDeExplosion;
 
 	static int posicionInicialX;
+
+	static int miTextSize;
+	static int posXTexto1;
+	static int posXTexto2;
+	static int posYTexto1;
+	static int posYTexto2;
 
 	static float velocidad;
 	static float velocidadJugador;
@@ -75,6 +82,15 @@ public:
 	static int getRotacionPoseido();
 	static int getZDeBalas();
 	static int getZDeMarinero();
+	static int getZDeExplosion();
+	static int getMiTextSize();
+	static int getVidaActual();
+	static int getDisparosActuales();
+	static int getPuntosActuales();
+	static int getPosXTexto1();
+	static int getPosXTexto2();
+	static int getPosYTexto1();
+	static int getPosYTexto2();
 
 	static float getVelocidad();
 	static float getVelocidadJugador();

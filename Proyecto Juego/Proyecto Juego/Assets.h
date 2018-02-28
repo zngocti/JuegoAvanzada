@@ -171,6 +171,8 @@ public:
 	static bool islaCompleta(sf::Texture &textura);
 	static bool agua(sf::Texture &textura);
 
+	static bool cargarFuenteJuego(sf::Font &fuente);
+
 private:
 	Assets();
 	static bool cargarAsset(const char* nombreAsset, sf::Texture &textura);

@@ -32,7 +32,7 @@ Barco::Barco() : disparos(Datos::getDisparosBarco()), estaPoseido(false), listaD
 	miExplosion = new Explosion();
 	miExplosion->setSprite(*(Explosion::getTextura3()));
 	miExplosion->setMedio();
-	miExplosion->setZ(Datos::getZDeBalas());
+	miExplosion->setZ(Datos::getZDeExplosion());
 	miExplosion->resetExplosion();
 }
 

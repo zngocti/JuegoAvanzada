@@ -69,9 +69,9 @@ void AdministradorDeEscenas::iniciarUpdate()
 
 		miInput->verificarTeclas(miJugador, event, misBarcos->getBarcoDelJugador());
 
-		verificarEscape();
-
 		verificarComportamientos();
+
+		verificarEscape();
 
 		dibujarEscena(&ventana);
 
@@ -81,20 +81,27 @@ void AdministradorDeEscenas::iniciarUpdate()
 
 void AdministradorDeEscenas::verificarComportamientos()
 {
-	misBarcos->setearComportamientos();
-	misBarcos->posicionarBarcos();
+	if (escenaActual == Datos::getEscenaJuego())
+	{
+		misBarcos->setearComportamientos();
+		misBarcos->posicionarBarcos();
+	}
 
 	for (int i = 0; i < gameObjectsActuales.count(); i++)
 	{
 		gameObjectsActuales[i]->activarComportamiento();
 	}
 
-	misBarcos->checkUso();
-	misBarcos->checkAtaques();
-	misBarcos->checkImpactosBarcos();
-	misBarcos->checkImpactosBala();
-	misBarcos->checkTimers();
-	checkJugador();
+	if (escenaActual == Datos::getEscenaJuego())
+	{
+		misBarcos->checkUso();
+		misBarcos->checkAtaques();
+		misBarcos->checkImpactosBarcos();
+		misBarcos->checkImpactosBala();
+		misBarcos->checkTimers();
+		misBarcos->actualizarTexto();
+		checkJugador();
+	}
 }
 
 void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
@@ -108,6 +115,13 @@ void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
 				window->draw(gameObjectsActuales[c]->getSprite());
 			}
 		}
+	}
+
+	if (escenaActual == Datos::getEscenaJuego())
+	{
+		window->draw(*(misBarcos->getTextoResistencia()));
+		window->draw(*(misBarcos->getTextoDisparos()));
+		window->draw(*(misBarcos->getTextoPuntaje()));
 	}
 }
 

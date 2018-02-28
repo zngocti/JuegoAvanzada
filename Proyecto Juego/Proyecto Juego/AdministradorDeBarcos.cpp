@@ -16,7 +16,8 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 													posicionandoW1(false), posicionandoW2(false), posicionandoW3(false),
 													contador1(0), contador2(0), contador3(0),
 													tiempo1(sf::seconds(0)), tiempo2(sf::seconds(0)), tiempo3(sf::seconds(0)),
-													barcoDelJugador(nullptr)
+													barcoDelJugador(nullptr), miFuente(new sf::Font) ,textoResistencia(new sf::Text),
+													textoDisparos(new sf::Text), textoPuntos(new sf::Text)
 {
 	srand(time(0));
 
@@ -33,6 +34,12 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 	Assets::barcoRojoNuevo(*barcoCuatro1);
 	Assets::barcoRojoRoto1(*barcoCuatro2);
 	Assets::barcoRojoRoto2(*barcoCuatro3);
+
+	Assets::cargarFuenteJuego(*miFuente);
+
+	setTextoInicial(textoResistencia, "Resistencia: ", Datos::getPosXTexto1(), Datos::getPosYTexto1());
+	setTextoInicial(textoDisparos, "Disparos: ", Datos::getPosXTexto1(), Datos::getPosYTexto2());
+	setTextoInicial(textoPuntos, "Puntaje: ", Datos::getPosXTexto2(), Datos::getPosYTexto1());
 
 	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 	{
@@ -87,6 +94,11 @@ AdministradorDeBarcos::~AdministradorDeBarcos()
 	listaDeBarcos.removeAll();
 	listaDeBarcosDobles.removeAll();
 	listaDeBarcosCuatro.removeAll();
+
+	delete(miFuente);
+	delete(textoResistencia);
+	delete(textoDisparos);
+	delete(textoPuntos);
 }
 
 void AdministradorDeBarcos::agregarBarcos(Escena* &miEscena)
@@ -373,32 +385,35 @@ void AdministradorDeBarcos::checkUso()
 
 void AdministradorDeBarcos::checkImpactosBarcos()
 {
-	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
+	if (barcoDelJugador->getUso())
 	{
-		if (listaDeBarcos[i]->getUso() && listaDeBarcos[i] != barcoDelJugador)
+		for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 		{
-			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcos[i]->getSprite().getGlobalBounds()))
+			if (listaDeBarcos[i]->getUso() && listaDeBarcos[i] != barcoDelJugador)
 			{
-				barcoDelJugador->impactoDeBarco();
-				listaDeBarcos[i]->impactoDeBarco();
+				if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcos[i]->getSprite().getGlobalBounds()))
+				{
+					barcoDelJugador->impactoDeBarco();
+					listaDeBarcos[i]->impactoDeBarco();
+				}
 			}
-		}
 
-		if (listaDeBarcosDobles[i]->getUso() && listaDeBarcosDobles[i] != barcoDelJugador)
-		{
-			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosDobles[i]->getSprite().getGlobalBounds()))
+			if (listaDeBarcosDobles[i]->getUso() && listaDeBarcosDobles[i] != barcoDelJugador)
 			{
-				barcoDelJugador->impactoDeBarco();
-				listaDeBarcosDobles[i]->impactoDeBarco();
+				if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosDobles[i]->getSprite().getGlobalBounds()))
+				{
+					barcoDelJugador->impactoDeBarco();
+					listaDeBarcosDobles[i]->impactoDeBarco();
+				}
 			}
-		}
 
-		if (listaDeBarcosCuatro[i]->getUso() && listaDeBarcosCuatro[i] != barcoDelJugador)
-		{
-			if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosCuatro[i]->getSprite().getGlobalBounds()))
+			if (listaDeBarcosCuatro[i]->getUso() && listaDeBarcosCuatro[i] != barcoDelJugador)
 			{
-				barcoDelJugador->impactoDeBarco();
-				listaDeBarcosCuatro[i]->impactoDeBarco();
+				if (barcoDelJugador->getSprite().getGlobalBounds().intersects(listaDeBarcosCuatro[i]->getSprite().getGlobalBounds()))
+				{
+					barcoDelJugador->impactoDeBarco();
+					listaDeBarcosCuatro[i]->impactoDeBarco();
+				}
 			}
 		}
 	}
@@ -614,6 +629,37 @@ bool AdministradorDeBarcos::getPosicionandoW2() const
 bool AdministradorDeBarcos::getPosicionandoW3() const
 {
 	return posicionandoW3;
+}
+
+void AdministradorDeBarcos::setTextoInicial(sf::Text* miTexto, const char* elTextoEscrito, int posX, int posY)
+{
+	miTexto->setFont(*miFuente);
+	miTexto->setCharacterSize(Datos::getMiTextSize());
+	miTexto->setFillColor(sf::Color::Black);
+	miTexto->setString(elTextoEscrito);
+	miTexto->setPosition(posX, posY);
+}
+
+void AdministradorDeBarcos::actualizarTexto()
+{
+	textoResistencia->setString("Resistencia: " + std::to_string(Datos::getVidaActual()));
+	textoDisparos->setString("Disparos: " + std::to_string(Datos::getDisparosActuales()));
+	textoPuntos->setString("Puntaje: " + std::to_string(Datos::getPuntosActuales()));
+}
+
+sf::Text* AdministradorDeBarcos::getTextoResistencia() const
+{
+	return textoResistencia;
+}
+
+sf::Text* AdministradorDeBarcos::getTextoDisparos() const
+{
+	return textoDisparos;
+}
+
+sf::Text* AdministradorDeBarcos::getTextoPuntaje() const
+{
+	return textoPuntos;
 }
 
 }

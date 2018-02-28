@@ -808,4 +808,21 @@ bool Assets::agua(sf::Texture &textura)
 	return Assets::cargarTile(73, textura);
 }
 
+
+bool Assets::cargarFuenteJuego(sf::Font &fuente)
+{
+	sf::Font miFuente;
+
+	if (!miFuente.loadFromFile("../Assets/Plumpfull.ttf"))
+	{
+		std::cout << "No cargo la fuente." << std::endl;
+		return false;
+	}
+	else
+	{
+		fuente = miFuente;
+		return true;
+	}
+}
+
 }

@@ -37,6 +37,11 @@ private:
 	sf::Texture* barcoCuatro2;
 	sf::Texture* barcoCuatro3;
 
+	sf::Font* miFuente;
+	sf::Text* textoResistencia;
+	sf::Text* textoDisparos;
+	sf::Text* textoPuntos;
+
 	AdministradorDeBarcos();
 
 	bool preparandoW1;
@@ -92,6 +97,12 @@ public:
 	bool checkJugando() const;
 
 	Barco* getBarcoDelJugador() const;
+
+	void setTextoInicial(sf::Text* miTexto, const char* elTextoEscrito, int posX, int posY);
+	void actualizarTexto();
+	sf::Text* getTextoResistencia() const;
+	sf::Text* getTextoDisparos() const;
+	sf::Text* getTextoPuntaje() const;
 };
 
 }
