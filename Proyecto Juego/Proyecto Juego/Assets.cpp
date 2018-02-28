@@ -825,4 +825,103 @@ bool Assets::cargarFuenteJuego(sf::Font &fuente)
 	}
 }
 
+bool Assets::cargarSonido(const char* nombreSonido, sf::SoundBuffer &buffer)
+{
+	sf::SoundBuffer miBuffer;
+
+	if (!miBuffer.loadFromFile(nombreSonido))
+	{
+		std::cout << "No cargo el sonido " << nombreSonido << std::endl;
+		return false;
+	}
+	else
+	{
+		buffer = miBuffer;
+		return true;
+	}
+}
+
+sf::SoundBuffer* Assets::bufferGolpe = nullptr;
+sf::SoundBuffer* Assets::bufferMuerte = nullptr;
+sf::SoundBuffer* Assets::bufferAtaque = nullptr;
+sf::Sound* Assets::sonidoGolpe = nullptr;
+sf::Sound* Assets::sonidoMuerte = nullptr;
+sf::Sound* Assets::sonidoAtaque = nullptr;
+
+void Assets::playSonido(int num)
+{
+	switch (num)
+	{
+	case 0:
+		if (bufferAtaque == nullptr)
+		{
+			bufferAtaque = new sf::SoundBuffer;
+			cargarSonido("../Assets/Ataque.wav", *bufferAtaque);
+		}
+		if (sonidoAtaque == nullptr)
+		{
+			sonidoAtaque = new sf::Sound;
+			sonidoAtaque->setBuffer(*bufferAtaque);
+		}
+		sonidoAtaque->play();
+		break;
+	case 1:
+		if (bufferGolpe == nullptr)
+		{
+			bufferGolpe = new sf::SoundBuffer;
+			cargarSonido("../Assets/Impacto.wav", *bufferGolpe);
+		}
+		if (sonidoGolpe == nullptr)
+		{
+			sonidoGolpe = new sf::Sound;
+			sonidoGolpe->setBuffer(*bufferGolpe);
+		}
+		sonidoGolpe->play();
+		break;
+	case 2:
+		if (bufferMuerte == nullptr)
+		{
+			bufferMuerte = new sf::SoundBuffer;
+			cargarSonido("../Assets/Muerte.wav", *bufferMuerte);
+		}
+		if (sonidoMuerte == nullptr)
+		{
+			sonidoMuerte = new sf::Sound;
+			sonidoMuerte->setBuffer(*bufferMuerte);
+		}
+		sonidoMuerte->play();
+		break;
+	default:
+		break;
+	}
+}
+
+void Assets::borrarAssets()
+{
+	if (bufferAtaque != nullptr)
+	{
+		delete(bufferAtaque);
+	}
+	if (bufferGolpe != nullptr)
+	{
+		delete(bufferGolpe);
+	}
+	if (bufferMuerte != nullptr)
+	{
+		delete(bufferMuerte);
+	}
+	if (sonidoAtaque != nullptr)
+	{
+		delete(sonidoAtaque);
+	}
+	if (sonidoGolpe != nullptr)
+	{
+		delete(sonidoGolpe);
+	}
+	if (sonidoMuerte != nullptr)
+	{
+		delete(sonidoMuerte);
+	}
+}
+
 }

@@ -2,6 +2,7 @@
 #define ASSETS_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
 #include <iostream>
@@ -173,12 +174,23 @@ public:
 
 	static bool cargarFuenteJuego(sf::Font &fuente);
 
+	static void playSonido(int num);
+	static void borrarAssets();
+
 private:
 	Assets();
 	static bool cargarAsset(const char* nombreAsset, sf::Texture &textura);
 	static bool cargarBoton(int num, sf::Texture &textura);
 	static bool cargarIsla(sf::Texture &textura);
 	static bool cargarTile(int num, sf::Texture &textura);
+	static bool cargarSonido(const char* nombreSonido, sf::SoundBuffer &buffer);
+
+	static sf::SoundBuffer* bufferGolpe;
+	static sf::SoundBuffer* bufferMuerte;
+	static sf::SoundBuffer* bufferAtaque;
+	static sf::Sound* sonidoGolpe;
+	static sf::Sound* sonidoMuerte;
+	static sf::Sound* sonidoAtaque;
 
 };
 

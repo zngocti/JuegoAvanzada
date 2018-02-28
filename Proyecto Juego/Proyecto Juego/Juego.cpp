@@ -13,6 +13,7 @@ Juego::~Juego()
 	delete(jugador);
 	delete(administradorEscenas);
 	destruirTexturas();
+	Assets::borrarAssets();
 }
 
 void Juego::iniciar()

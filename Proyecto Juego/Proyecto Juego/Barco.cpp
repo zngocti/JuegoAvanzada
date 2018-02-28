@@ -163,6 +163,7 @@ void Barco::atacar()
 				listaDeBalas[i]->getComportamiento()->setData(3, false);
 				disparos--;
 				Datos::usarBalas();
+				Assets::playSonido(0);
 				i = listaDeBalas.count();
 			}
 		}
@@ -198,6 +199,7 @@ void Barco::impactoDeBarco()
 
 void Barco::morir()
 {
+	Assets::playSonido(2);
 	miExplosion->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 	miComportamiento->activarReciclar();
 	miExplosion->iniciarExplosion();

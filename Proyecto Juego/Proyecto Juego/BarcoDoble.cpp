@@ -72,6 +72,7 @@ void BarcoDoble::atacar()
 				listaDeBalas[i + 1]->getComportamiento()->setData(2, false);
 				disparos--;
 				Datos::usarBalas();
+				Assets::playSonido(0);
 				i = listaDeBalas.count();
 			}
 		}
@@ -139,6 +140,7 @@ void BarcoDoble::impacto()
 		switch (resistencia)
 		{
 		case 1:
+			Assets::playSonido(1);
 			sprite2->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 			setSprite(*sprite2);
 			if (estaPoseido)

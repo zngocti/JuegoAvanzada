@@ -117,6 +117,7 @@ void BarcoCuatro::atacar()
 				listaDeBalas[i + 3]->getComportamiento()->setData(1, false);
 				disparos--;
 				Datos::usarBalas();
+				Assets::playSonido(0);
 				i = listaDeBalas.count();
 			}
 		}
@@ -187,6 +188,7 @@ void BarcoCuatro::impacto()
 		switch (resistencia)
 		{
 		case 1:
+			Assets::playSonido(1);
 			sprite3->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 			setSprite(*sprite3);
 			if (estaPoseido)
@@ -195,6 +197,7 @@ void BarcoCuatro::impacto()
 			}
 			break;
 		case 2:
+			Assets::playSonido(1);
 			sprite2->setPosition(getSprite().getPosition().x, getSprite().getPosition().y);
 			setSprite(*sprite2);
 			if (estaPoseido)
