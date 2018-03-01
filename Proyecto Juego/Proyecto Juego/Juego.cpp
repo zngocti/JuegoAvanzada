@@ -30,18 +30,22 @@ void Juego::crearEscenas()
 	sf::Texture* fondoInstrucciones = new sf::Texture();
 	sf::Texture* fondoCreditos = new sf::Texture();
 	sf::Texture* fondoPuntajes = new sf::Texture();
+	sf::Texture* titulo = new sf::Texture();
 
 	listaDeTexturas.addBack(fondo);
 	listaDeTexturas.addBack(fondoInstrucciones);
 	listaDeTexturas.addBack(fondoCreditos);
 	listaDeTexturas.addBack(fondoPuntajes);
+	listaDeTexturas.addBack(titulo);
 
 	Assets::menuBackground(*fondo);
 	Assets::fondoInstrucciones(*fondoInstrucciones);
 	Assets::fondoCreditos(*fondoCreditos);
 	Assets::fondoPuntajes(*fondoPuntajes);
+	Assets::titulo(*titulo);
 
 	administradorEscenas->getPrimerEscena()->crearGameObject(*fondo, -200, 0, Datos::getZDeFondo());
+	administradorEscenas->getPrimerEscena()->crearGameObject(*titulo, 0, 0, Datos::getZDeFondo() - 1);
 
 	sf::Texture* botonJugar1 = new sf::Texture();
 	sf::Texture* botonJugar2 = new sf::Texture();

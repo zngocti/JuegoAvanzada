@@ -92,7 +92,9 @@ copy "$(SolutionDir)Libs\SFML-2.4.2\bin\sfml-window-d-2.dll" "$(TargetDir)"
 copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\dbghelp.dll" "$(TargetDir)"
 copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\Microsoft.DTfW.DHL.manifest" "$(TargetDir)"
 copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.dll" "$(TargetDir)"
-copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDir)"</Command>
+copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDir)"
+mkdir "$(TargetDir)\Assets"
+xcopy "$(SolutionDir)Assets" "$(TargetDir)\Assets"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,7 +122,9 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDi
       <AdditionalDependencies>winmm.lib;sfml-system-s.lib;opengl32.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-window-s.lib;freetype.lib;jpeg.lib;sfml-graphics-s.lib;sfml-audio-s.lib;sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)Libs\SFML-2.4.2\bin\openal32.dll" "$(TargetDir)"</Command>
+      <Command>copy "$(SolutionDir)Libs\SFML-2.4.2\bin\openal32.dll" "$(TargetDir)"
+mkdir "$(TargetDir)\Assets"
+xcopy "$(SolutionDir)Assets" "$(TargetDir)\Assets"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

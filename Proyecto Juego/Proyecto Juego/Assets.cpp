@@ -83,6 +83,22 @@ bool Assets::imagenGameOver(sf::Texture &textura)
 	}
 }
 
+bool Assets::titulo(sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	if (!miTextura.loadFromFile("../Assets/titulo.png", sf::IntRect()))
+	{
+		std::cout << "No cargo la imagen del titulo." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
 bool Assets::cargarAsset(const char* nombreAsset, sf::Texture &textura)
 {
 	rapidxml::file<> miXML("../Assets/ships_sheet.xml");

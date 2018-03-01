@@ -19,6 +19,7 @@ public:
 	static bool fondoCreditos(sf::Texture &textura);
 	static bool fondoPuntajes(sf::Texture &textura);
 	static bool imagenGameOver(sf::Texture &textura);
+	static bool titulo(sf::Texture &textura);
 
 	static bool cannon(sf::Texture &textura);
 	static bool cannonBall(sf::Texture &textura);

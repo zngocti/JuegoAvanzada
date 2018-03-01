@@ -6,7 +6,7 @@ namespace Octavio
 AdministradorDeEscenas::AdministradorDeEscenas() : primerEscena(new Escena()), listaDeEscenas(Lista<Escena*>(primerEscena)),
 													escenaActual(primerEscena), gameObjectsActuales(primerEscena->getGameObjects()),
 													miInput(AdministradorDeInput::crearAdministradorDeInput()),
-													ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "SFML works!"),
+													ventana(sf::VideoMode(Datos::getAnchoPantalla(), Datos::getAltoPantalla()), "Septimo Mar"),
 													misBarcos(AdministradorDeBarcos::crearAdministradorDeBarcos()), miJugador(nullptr)
 {
 

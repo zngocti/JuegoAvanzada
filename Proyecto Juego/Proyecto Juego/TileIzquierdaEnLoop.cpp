@@ -12,7 +12,7 @@ namespace Octavio
 		}
 		else
 		{
-			miGameObject->move(-0.01, 0);
+			miGameObject->move(-0.05, 0);
 		}
 	}
 

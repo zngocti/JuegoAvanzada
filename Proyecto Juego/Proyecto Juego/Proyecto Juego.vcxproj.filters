@@ -13,147 +13,156 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Comportamientos">
+      <UniqueIdentifier>{b5973c66-4fb9-4ea7-af6d-f3d92c83596e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objetos del Juego">
+      <UniqueIdentifier>{ae8ded51-68fe-455c-bf1c-f7dfc9bab76d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor">
+      <UniqueIdentifier>{c0c584c5-9380-402c-b9c7-1b7dc23a01f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Juego.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Jugador.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="AdministradorDeEscenas.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Escena.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Lista.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Boton.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="AdministradorDeInput.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Barco.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Bala.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Datos.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="IComportamientoDelObjeto.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="TileIzquierdaEnLoop.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ArribaAbajo.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="AbiertoCerrado.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="CentroVolver.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="BarcoDoble.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="IComportamientoDelObjeto.cpp">
+      <Filter>Comportamientos</Filter>
     </ClCompile>
-    <ClCompile Include="BarcoCuatro.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="AdministradorDeBarcos.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="TileIzquierdaEnLoop.cpp">
+      <Filter>Comportamientos</Filter>
     </ClCompile>
     <ClCompile Include="MovimientoBala.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Comportamientos</Filter>
+    </ClCompile>
+    <ClCompile Include="CentroVolver.cpp">
+      <Filter>Comportamientos</Filter>
+    </ClCompile>
+    <ClCompile Include="ArribaAbajo.cpp">
+      <Filter>Comportamientos</Filter>
+    </ClCompile>
+    <ClCompile Include="AbiertoCerrado.cpp">
+      <Filter>Comportamientos</Filter>
     </ClCompile>
     <ClCompile Include="Marinero.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Objetos del Juego</Filter>
     </ClCompile>
     <ClCompile Include="Explosion.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Objetos del Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="BarcoDoble.cpp">
+      <Filter>Objetos del Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="BarcoCuatro.cpp">
+      <Filter>Objetos del Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="Barco.cpp">
+      <Filter>Objetos del Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="Bala.cpp">
+      <Filter>Objetos del Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="AdministradorDeBarcos.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="AdministradorDeEscenas.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="AdministradorDeInput.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Datos.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Escena.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Juego.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Jugador.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Lista.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Boton.cpp">
+      <Filter>Objetos del Juego</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Juego.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Jugador.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="AdministradorDeEscenas.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Escena.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Boton.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="AdministradorDeInput.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Barco.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Bala.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="Datos.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
     <ClInclude Include="IComportamientoDelObjeto.h">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Comportamientos</Filter>
     </ClInclude>
     <ClInclude Include="TileIzquierdaEnLoop.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="ArribaAbajo.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="AbiertoCerrado.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="CentroVolver.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="BarcoDoble.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="BarcoCuatro.h">
-      <Filter>Archivos de origen</Filter>
-    </ClInclude>
-    <ClInclude Include="AdministradorDeBarcos.h">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Comportamientos</Filter>
     </ClInclude>
     <ClInclude Include="MovimientoBala.h">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Comportamientos</Filter>
+    </ClInclude>
+    <ClInclude Include="CentroVolver.h">
+      <Filter>Comportamientos</Filter>
+    </ClInclude>
+    <ClInclude Include="ArribaAbajo.h">
+      <Filter>Comportamientos</Filter>
+    </ClInclude>
+    <ClInclude Include="AbiertoCerrado.h">
+      <Filter>Comportamientos</Filter>
     </ClInclude>
     <ClInclude Include="Marinero.h">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Objetos del Juego</Filter>
     </ClInclude>
     <ClInclude Include="Explosion.h">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Objetos del Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="BarcoDoble.h">
+      <Filter>Objetos del Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="BarcoCuatro.h">
+      <Filter>Objetos del Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="Barco.h">
+      <Filter>Objetos del Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="Bala.h">
+      <Filter>Objetos del Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="AdministradorDeBarcos.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="AdministradorDeEscenas.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="AdministradorDeInput.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Datos.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Escena.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Juego.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Jugador.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Boton.h">
+      <Filter>Objetos del Juego</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

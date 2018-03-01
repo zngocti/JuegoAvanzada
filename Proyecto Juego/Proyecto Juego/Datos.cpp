@@ -50,7 +50,7 @@ float Datos::velocidad = 0.1;
 float Datos::velocidadJugador = 0.3;
 float Datos::tiempoEntreBarcos = 2;
 
-float Datos::velocidadBala = 0.2;
+float Datos::velocidadBala = 0.5;
 
 bool Datos::musicaMenuOn = false;
 
@@ -426,9 +426,12 @@ void Datos::guardarPuntaje(int num)
 
 	if (pFile != nullptr)
 	{
-		const char* miChar = (std::to_string(num)).c_str();
+		char *miChar = new char[std::to_string(num).length() + 1];
+		strcpy(miChar, (std::to_string(num)).c_str());
 
 		fputs(miChar, pFile);
+
+		delete[] miChar;
 
 		fclose(pFile);
 	}
