@@ -93,8 +93,7 @@ copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\dbghelp.dll" "$(TargetDi
 copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\Microsoft.DTfW.DHL.manifest" "$(TargetDir)"
 copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.dll" "$(TargetDir)"
 copy "$(SolutionDir)Libs\Visual Leak Detector\bin\Win32\vld_x86.pdb" "$(TargetDir)"
-mkdir "$(TargetDir)\Assets"
-xcopy "$(SolutionDir)Assets" "$(TargetDir)\Assets"</Command>
+xcopy "$(SolutionDir)Proyecto Juego\Assets" "$(TargetDir)Assets" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,8 +122,7 @@ xcopy "$(SolutionDir)Assets" "$(TargetDir)\Assets"</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)Libs\SFML-2.4.2\bin\openal32.dll" "$(TargetDir)"
-mkdir "$(TargetDir)\Assets"
-xcopy "$(SolutionDir)Assets" "$(TargetDir)\Assets"</Command>
+xcopy "$(SolutionDir)Proyecto Juego\Assets" "$(TargetDir)Assets" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -7,7 +7,7 @@ bool Assets::menuBackground(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/background.jpg", sf::IntRect()))
+	if (!miTextura.loadFromFile("Assets/background.jpg", sf::IntRect()))
 	{
 		std::cout << "No cargo el fondo del menu." << std::endl;
 		return false;
@@ -23,7 +23,7 @@ bool Assets::fondoInstrucciones(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/instrucciones.png", sf::IntRect()))
+	if (!miTextura.loadFromFile("Assets/instrucciones.png", sf::IntRect()))
 	{
 		std::cout << "No cargaron las instrucciones." << std::endl;
 		return false;
@@ -39,7 +39,7 @@ bool Assets::fondoCreditos(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/creditos.png", sf::IntRect()))
+	if (!miTextura.loadFromFile("Assets/creditos.png", sf::IntRect()))
 	{
 		std::cout << "No cargaron los creditos." << std::endl;
 		return false;
@@ -55,7 +55,7 @@ bool Assets::fondoPuntajes(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/puntajes.png", sf::IntRect()))
+	if (!miTextura.loadFromFile("Assets/puntajes.png", sf::IntRect()))
 	{
 		std::cout << "No cargo la imagen de los puntajes." << std::endl;
 		return false;
@@ -71,7 +71,7 @@ bool Assets::imagenGameOver(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/gameover.png", sf::IntRect()))
+	if (!miTextura.loadFromFile("Assets/gameover.png", sf::IntRect()))
 	{
 		std::cout << "No cargo la imagen del Game Over." << std::endl;
 		return false;
@@ -87,7 +87,7 @@ bool Assets::titulo(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/titulo.png", sf::IntRect()))
+	if (!miTextura.loadFromFile("Assets/titulo.png", sf::IntRect()))
 	{
 		std::cout << "No cargo la imagen del titulo." << std::endl;
 		return false;
@@ -101,7 +101,7 @@ bool Assets::titulo(sf::Texture &textura)
 
 bool Assets::cargarAsset(const char* nombreAsset, sf::Texture &textura)
 {
-	rapidxml::file<> miXML("../Assets/ships_sheet.xml");
+	rapidxml::file<> miXML("Assets/ships_sheet.xml");
 	rapidxml::xml_document<> doc;
 
 	doc.parse<0>(miXML.data());
@@ -129,7 +129,7 @@ bool Assets::cargarAsset(const char* nombreAsset, sf::Texture &textura)
 			sf::Texture miTextura;
 
 			// Cargo un rectangulo de texturaW x texturaH que inicia en el (texturaX, texturaY) del archivo
-			if (!miTextura.loadFromFile("../Assets/ships_sheet.png", sf::IntRect(texturaX, texturaY, texturaW, texturaH)))
+			if (!miTextura.loadFromFile("Assets/ships_sheet.png", sf::IntRect(texturaX, texturaY, texturaW, texturaH)))
 			{
 				std::cout << "No cargo la imagen " << nombreAsset << "." << std::endl;
 				return false;
@@ -200,7 +200,7 @@ bool Assets::cargarBoton(int num, sf::Texture &textura)
 		texturaY = texturaH * 5;
 	}
 
-	if (!miTextura.loadFromFile("../Assets/botones.png", sf::IntRect(texturaX, texturaY, texturaW, texturaH)))
+	if (!miTextura.loadFromFile("Assets/botones.png", sf::IntRect(texturaX, texturaY, texturaW, texturaH)))
 	{
 		std::cout << "No cargo la imagen del boton." << std::endl;
 		return false;
@@ -216,7 +216,7 @@ bool Assets::cargarIsla(sf::Texture &textura)
 {
 	sf::Texture miTextura;
 
-	if (!miTextura.loadFromFile("../Assets/tiles_sheet.png", sf::IntRect(0, 0, 64*3, 64*3)))
+	if (!miTextura.loadFromFile("Assets/tiles_sheet.png", sf::IntRect(0, 0, 64*3, 64*3)))
 	{
 		std::cout << "No cargo la imagen de la isla." << std::endl;
 		return false;
@@ -266,7 +266,7 @@ bool Assets::cargarTile(int num, sf::Texture &textura)
 		y = 320;
 	}
 
-	if (!miTextura.loadFromFile("../Assets/tiles_sheet.png", sf::IntRect(x, y, 64, 64)))
+	if (!miTextura.loadFromFile("Assets/tiles_sheet.png", sf::IntRect(x, y, 64, 64)))
 	{
 		std::cout << "No cargo la imagen de la isla." << std::endl;
 		return false;
@@ -893,7 +893,7 @@ bool Assets::cargarFuenteJuego(sf::Font &fuente)
 {
 	sf::Font miFuente;
 
-	if (!miFuente.loadFromFile("../Assets/Plumpfull.ttf"))
+	if (!miFuente.loadFromFile("Assets/Plumpfull.ttf"))
 	{
 		std::cout << "No cargo la fuente." << std::endl;
 		return false;
@@ -937,7 +937,7 @@ void Assets::playSonido(int num)
 		if (bufferAtaque == nullptr)
 		{
 			bufferAtaque = new sf::SoundBuffer;
-			cargarSonido("../Assets/Ataque.wav", *bufferAtaque);
+			cargarSonido("Assets/Ataque.wav", *bufferAtaque);
 		}
 		if (sonidoAtaque == nullptr)
 		{
@@ -950,7 +950,7 @@ void Assets::playSonido(int num)
 		if (bufferGolpe == nullptr)
 		{
 			bufferGolpe = new sf::SoundBuffer;
-			cargarSonido("../Assets/Impacto.wav", *bufferGolpe);
+			cargarSonido("Assets/Impacto.wav", *bufferGolpe);
 		}
 		if (sonidoGolpe == nullptr)
 		{
@@ -963,7 +963,7 @@ void Assets::playSonido(int num)
 		if (bufferMuerte == nullptr)
 		{
 			bufferMuerte = new sf::SoundBuffer;
-			cargarSonido("../Assets/Muerte.wav", *bufferMuerte);
+			cargarSonido("Assets/Muerte.wav", *bufferMuerte);
 		}
 		if (sonidoMuerte == nullptr)
 		{
@@ -987,7 +987,7 @@ void Assets::playMusica(int num)
 	switch (num)
 	{
 	case 0:
-		if (!miMusica->openFromFile("../Assets/Incoming.ogg"))
+		if (!miMusica->openFromFile("Assets/Incoming.ogg"))
 		{
 			std::cout << "No cargo Incoming.ogg" << std::endl;
 		}
@@ -999,7 +999,7 @@ void Assets::playMusica(int num)
 		}
 		break;
 	case 1:
-		if (!miMusica->openFromFile("../Assets/HelipadSiege.ogg"))
+		if (!miMusica->openFromFile("Assets/HelipadSiege.ogg"))
 		{
 			std::cout << "No cargo HelipadSiege.ogg" << std::endl;
 		}
@@ -1010,7 +1010,7 @@ void Assets::playMusica(int num)
 		}
 		break;
 	case 2:
-		if (!miMusica->openFromFile("../Assets/WARGODS.ogg"))
+		if (!miMusica->openFromFile("Assets/WARGODS.ogg"))
 		{
 			std::cout << "No cargo WARGODS.ogg" << std::endl;
 		}

@@ -387,7 +387,7 @@ int Datos::getPuntajeRecord()
 
 void Datos::cargarPuntaje()
 {
-	FILE* pFile = fopen("../Assets/puntaje.txt", "r");
+	FILE* pFile = fopen("Assets/puntaje.txt", "r");
 
 	if (pFile != nullptr)
 	{
@@ -422,7 +422,7 @@ void Datos::guardarPuntaje(int num)
 {
 	puntajeRecord = num;
 
-	FILE* pFile = fopen("../Assets/puntaje.txt", "w");
+	FILE* pFile = fopen("Assets/puntaje.txt", "w");
 
 	if (pFile != nullptr)
 	{
