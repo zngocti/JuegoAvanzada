@@ -72,7 +72,7 @@ void AdministradorDeEscenas::iniciarUpdate()
 
 		verificarComportamientos();
 
-		verificarEscape();
+		verificarEscapeRestart();
 
 		dibujarEscena(&ventana);
 
@@ -127,6 +127,16 @@ void AdministradorDeEscenas::dibujarEscena(sf::RenderWindow* window)
 		window->draw(*(misBarcos->getTextoResistencia()));
 		window->draw(*(misBarcos->getTextoDisparos()));
 		window->draw(*(misBarcos->getTextoPuntaje()));
+
+		if (Datos::getGameOver())
+		{
+			window->draw(*(misBarcos->getTextoPuntajeGO()));
+		}
+
+	}
+	else if (escenaActual == Datos::getEscenaPuntos())
+	{
+		window->draw(*(misBarcos->getTextoPuntajeMax()));
 	}
 }
 
@@ -137,11 +147,12 @@ void AdministradorDeEscenas::checkJugador()
 		if (!(misBarcos->checkJugando()))
 		{
 			miJugador->setJugando(false);
+			misBarcos->activarGameOver();
 		}
 	}
 }
 
-void AdministradorDeEscenas::verificarEscape()
+void AdministradorDeEscenas::verificarEscapeRestart()
 {
 	if (miInput->getSaliendo())
 	{
@@ -149,6 +160,14 @@ void AdministradorDeEscenas::verificarEscape()
 		miJugador->setJugando(false);
 		misBarcos->resetAdministrador();
 		cambiarEscena(primerEscena);
+	}
+	else if (miInput->getRestart())
+	{
+		Assets::stopMusica();
+		Assets::playMusica(1);
+		miInput->resetRestart();
+		misBarcos->resetAdministrador();
+		miJugador->setJugando(true);
 	}
 }
 

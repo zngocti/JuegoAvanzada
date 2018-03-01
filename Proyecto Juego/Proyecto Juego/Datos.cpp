@@ -34,11 +34,17 @@ int Datos::vidaActual = 0;
 int Datos::puntosDelJugador = 0;
 int Datos::zDeExplosion = 7;
 int Datos::miTextSize = 20;
+int Datos::miTextSize2 = 30;
 int Datos::posXTexto1 = 10;
 int Datos::posXTexto2 = 700;
 int Datos::posYTexto1 = 10;
 int Datos::posYTexto2 = 40;
+int Datos::posXPuntajeMax = 450;
+int Datos::posYPuntajeMax = 300;
+int Datos::posXPuntajeGO = 450;
+int Datos::posYPuntajeGO = 300;
 int Datos::zDeFondo = 8;
+int Datos::puntajeRecord = 0;
 
 float Datos::velocidad = 0.1;
 float Datos::velocidadJugador = 0.3;
@@ -48,9 +54,14 @@ float Datos::velocidadBala = 0.2;
 
 bool Datos::musicaMenuOn = false;
 
+bool Datos::gameOver = false;
+
 sf::Clock Datos::timerJuego = sf::Clock();
 
 Escena* Datos::escenaDelJuego = nullptr;
+Escena* Datos::escenaPuntos = nullptr;
+
+GameObject* Datos::elGameOver = nullptr;
 
 int Datos::getAnchoPantalla()
 {
@@ -206,6 +217,36 @@ void Datos::setEscenaJuego(Escena* unaEscena)
 	escenaDelJuego = unaEscena;
 }
 
+Escena* Datos::getEscenaPuntos()
+{
+	return escenaPuntos;
+}
+
+void Datos::setEscenaPuntos(Escena* unaEscena)
+{
+	escenaPuntos = unaEscena;
+}
+
+GameObject* Datos::getImagenGameOver()
+{
+	return elGameOver;
+}
+
+void Datos::setImagenGameOver(GameObject* unGameObject)
+{
+	elGameOver = unGameObject;
+}
+
+bool Datos::getGameOver()
+{
+	return gameOver;
+}
+
+void Datos::setGameOver(bool terminoElJuego)
+{
+	gameOver = terminoElJuego;
+}
+
 bool Datos::getMusicaMenuOn()
 {
 	return musicaMenuOn;
@@ -257,6 +298,11 @@ int Datos::getMiTextSize()
 	return miTextSize;
 }
 
+int Datos::getMiTextSize2()
+{
+	return miTextSize2;
+}
+
 int Datos::getPosXTexto1()
 {
 	return posXTexto1;
@@ -275,6 +321,26 @@ int Datos::getPosYTexto1()
 int Datos::getPosYTexto2()
 {
 	return posYTexto2;
+}
+
+int Datos::getPosXPuntajeMax()
+{
+	return posXPuntajeMax;
+}
+
+int Datos::getPosYPuntajeMax()
+{
+	return posYPuntajeMax;
+}
+
+int Datos::getPosXPuntajeGO()
+{
+	return posXPuntajeGO;
+}
+
+int Datos::getPosYPuntajeGO()
+{
+	return posYPuntajeGO;
 }
 
 int Datos::getVidaActual()
@@ -312,6 +378,60 @@ void Datos::resetDatos()
 	vidaActual = vidaBarco;
 	disparosActuales = disparosBarco;
 	puntosDelJugador = 0;
+}
+
+int Datos::getPuntajeRecord()
+{
+	return puntajeRecord;
+}
+
+void Datos::cargarPuntaje()
+{
+	FILE* pFile = fopen("../Assets/puntaje.txt", "r");
+
+	if (pFile != nullptr)
+	{
+		int num = 0;
+		int puntaje = 0;
+
+		while (!feof(pFile))
+		{
+			fgetc(pFile);
+			num++;
+		}
+
+		char* miChar = (char*)calloc(num, sizeof(char));
+
+		rewind(pFile);
+
+		for (int i = 0; i < num - 1; i++)
+		{
+			puntaje = puntaje * 10;
+			miChar[i] = fgetc(pFile);
+			puntaje = puntaje + (miChar[i] - '0');
+		}
+
+		puntajeRecord = puntaje;
+
+		fclose(pFile);
+		free(miChar);
+	}
+}
+
+void Datos::guardarPuntaje(int num)
+{
+	puntajeRecord = num;
+
+	FILE* pFile = fopen("../Assets/puntaje.txt", "w");
+
+	if (pFile != nullptr)
+	{
+		const char* miChar = (std::to_string(num)).c_str();
+
+		fputs(miChar, pFile);
+
+		fclose(pFile);
+	}
 }
 
 }

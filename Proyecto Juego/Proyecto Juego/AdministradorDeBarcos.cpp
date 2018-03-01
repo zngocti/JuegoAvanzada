@@ -17,7 +17,8 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 													contador1(0), contador2(0), contador3(0),
 													tiempo1(sf::seconds(0)), tiempo2(sf::seconds(0)), tiempo3(sf::seconds(0)),
 													barcoDelJugador(nullptr), miFuente(new sf::Font) ,textoResistencia(new sf::Text),
-													textoDisparos(new sf::Text), textoPuntos(new sf::Text)
+													textoDisparos(new sf::Text), textoPuntos(new sf::Text), textoPuntosMax(new sf::Text),
+													textoPuntosGameOver(new sf::Text)
 {
 	srand(time(0));
 
@@ -37,9 +38,18 @@ AdministradorDeBarcos::AdministradorDeBarcos() : listaDeBarcos(Lista<Barco*>(new
 
 	Assets::cargarFuenteJuego(*miFuente);
 
+	Datos::cargarPuntaje();
+	actualizarPuntajeMax();
+
 	setTextoInicial(textoResistencia, "Resistencia: ", Datos::getPosXTexto1(), Datos::getPosYTexto1());
 	setTextoInicial(textoDisparos, "Disparos: ", Datos::getPosXTexto1(), Datos::getPosYTexto2());
 	setTextoInicial(textoPuntos, "Puntaje: ", Datos::getPosXTexto2(), Datos::getPosYTexto1());
+	setTextoInicial(textoPuntosMax, " ", Datos::getPosXPuntajeMax(), Datos::getPosYPuntajeMax());
+	setTextoInicial(textoPuntosGameOver, " ", Datos::getPosXPuntajeGO(), Datos::getPosYPuntajeGO());
+	textoPuntosMax->setFillColor(sf::Color::White);
+	textoPuntosGameOver->setFillColor(sf::Color::White);
+	textoPuntosMax->setCharacterSize(Datos::getMiTextSize2());
+	textoPuntosGameOver->setCharacterSize(Datos::getMiTextSize2());
 
 	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 	{
@@ -99,6 +109,8 @@ AdministradorDeBarcos::~AdministradorDeBarcos()
 	delete(textoResistencia);
 	delete(textoDisparos);
 	delete(textoPuntos);
+	delete(textoPuntosMax);
+	delete(textoPuntosGameOver);
 }
 
 void AdministradorDeBarcos::agregarBarcos(Escena* &miEscena)
@@ -550,6 +562,9 @@ void AdministradorDeBarcos::checkTimers()
 
 void AdministradorDeBarcos::resetAdministrador()
 {
+	Datos::getImagenGameOver()->setZ(Datos::getZDelAgua() + 1);
+	Datos::setGameOver(false);
+
 	for (int i = 0; i < Datos::getCantidadBarcos(); i++)
 	{
 		listaDeBarcos[i]->resetBarco();
@@ -647,6 +662,12 @@ void AdministradorDeBarcos::actualizarTexto()
 	textoPuntos->setString("Puntaje: " + std::to_string(Datos::getPuntosActuales()));
 }
 
+void AdministradorDeBarcos::actualizarPuntajeMax()
+{
+	textoPuntosMax->setString(std::to_string(Datos::getPuntajeRecord()));
+	textoPuntosGameOver->setString(std::to_string(Datos::getPuntosActuales()));
+}
+
 sf::Text* AdministradorDeBarcos::getTextoResistencia() const
 {
 	return textoResistencia;
@@ -660,6 +681,32 @@ sf::Text* AdministradorDeBarcos::getTextoDisparos() const
 sf::Text* AdministradorDeBarcos::getTextoPuntaje() const
 {
 	return textoPuntos;
+}
+
+sf::Text* AdministradorDeBarcos::getTextoPuntajeMax() const
+{
+	return textoPuntosMax;
+}
+
+sf::Text* AdministradorDeBarcos::getTextoPuntajeGO() const
+{
+	return textoPuntosGameOver;
+}
+
+void AdministradorDeBarcos::activarGameOver()
+{
+	Assets::stopMusica();
+	Assets::playMusica(2);
+
+	if (Datos::getPuntosActuales() > Datos::getPuntajeRecord())
+	{
+		Datos::guardarPuntaje(Datos::getPuntosActuales());
+	}
+	
+	actualizarPuntajeMax();
+
+	Datos::setGameOver(true);
+	Datos::getImagenGameOver()->setZ(1);
 }
 
 }

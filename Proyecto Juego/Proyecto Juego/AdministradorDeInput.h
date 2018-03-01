@@ -19,6 +19,7 @@ private:
 	bool puedeAbordar;
 
 	bool saliendo;
+	bool restart;
 
 	AdministradorDeInput();
 
@@ -31,6 +32,9 @@ public:
 
 	bool getSaliendo() const;
 	void resetSaliendo();
+
+	bool getRestart() const;
+	void resetRestart();
 };
 
 }

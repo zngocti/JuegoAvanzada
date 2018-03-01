@@ -41,6 +41,8 @@ private:
 	sf::Text* textoResistencia;
 	sf::Text* textoDisparos;
 	sf::Text* textoPuntos;
+	sf::Text* textoPuntosMax;
+	sf::Text* textoPuntosGameOver;
 
 	AdministradorDeBarcos();
 
@@ -100,9 +102,14 @@ public:
 
 	void setTextoInicial(sf::Text* miTexto, const char* elTextoEscrito, int posX, int posY);
 	void actualizarTexto();
+	void actualizarPuntajeMax();
 	sf::Text* getTextoResistencia() const;
 	sf::Text* getTextoDisparos() const;
 	sf::Text* getTextoPuntaje() const;
+	sf::Text* getTextoPuntajeMax() const;
+	sf::Text* getTextoPuntajeGO() const;
+
+	void activarGameOver();
 };
 
 }

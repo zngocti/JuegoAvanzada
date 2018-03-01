@@ -7,6 +7,7 @@ namespace Octavio
 {
 
 class Escena;
+class GameObject;
 
 class Datos
 {
@@ -46,10 +47,17 @@ private:
 	static int posicionInicialX;
 
 	static int miTextSize;
+	static int miTextSize2;
 	static int posXTexto1;
 	static int posXTexto2;
 	static int posYTexto1;
 	static int posYTexto2;
+	static int posXPuntajeMax;
+	static int posYPuntajeMax;
+	static int posXPuntajeGO;
+	static int posYPuntajeGO;
+
+	static int puntajeRecord;
 
 	static float velocidad;
 	static float velocidadJugador;
@@ -59,7 +67,12 @@ private:
 
 	static bool musicaMenuOn;
 
+	static bool gameOver;
+
 	static Escena* escenaDelJuego;
+	static Escena* escenaPuntos;
+
+	static GameObject* elGameOver;
 
 public:
 	static int getAnchoPantalla();
@@ -87,6 +100,7 @@ public:
 	static int getZDeMarinero();
 	static int getZDeExplosion();
 	static int getMiTextSize();
+	static int getMiTextSize2();
 	static int getVidaActual();
 	static int getDisparosActuales();
 	static int getPuntosActuales();
@@ -95,6 +109,11 @@ public:
 	static int getPosYTexto1();
 	static int getPosYTexto2();
 	static int getZDeFondo();
+	static int getPuntajeRecord();
+	static int getPosXPuntajeMax();
+	static int getPosYPuntajeMax();
+	static int getPosXPuntajeGO();
+	static int getPosYPuntajeGO();
 
 	static float getVelocidad();
 	static float getVelocidadJugador();
@@ -114,6 +133,18 @@ public:
 
 	static Escena* getEscenaJuego();
 	static void setEscenaJuego(Escena* unaEscena);
+
+	static Escena* getEscenaPuntos();
+	static void setEscenaPuntos(Escena* unaEscena);
+
+	static GameObject* getImagenGameOver();
+	static void setImagenGameOver(GameObject* unGameObject);
+
+	static bool getGameOver();
+	static void setGameOver(bool terminoElJuego);
+
+	static void cargarPuntaje();
+	static void guardarPuntaje(int num);
 
 	static sf::Clock timerJuego;
 };

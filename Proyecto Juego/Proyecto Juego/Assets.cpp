@@ -51,6 +51,38 @@ bool Assets::fondoCreditos(sf::Texture &textura)
 	}
 }
 
+bool Assets::fondoPuntajes(sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	if (!miTextura.loadFromFile("../Assets/puntajes.png", sf::IntRect()))
+	{
+		std::cout << "No cargo la imagen de los puntajes." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
+bool Assets::imagenGameOver(sf::Texture &textura)
+{
+	sf::Texture miTextura;
+
+	if (!miTextura.loadFromFile("../Assets/gameover.png", sf::IntRect()))
+	{
+		std::cout << "No cargo la imagen del Game Over." << std::endl;
+		return false;
+	}
+	else
+	{
+		textura = miTextura;
+		return true;
+	}
+}
+
 bool Assets::cargarAsset(const char* nombreAsset, sf::Texture &textura)
 {
 	rapidxml::file<> miXML("../Assets/ships_sheet.xml");

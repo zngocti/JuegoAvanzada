@@ -21,7 +21,7 @@ private:
 	void destruirTexturas();
 
 	Escena* pantallaControles(Boton* const &miBoton, sf::Texture* const &miTextura, sf::Texture* const &miTextura2);
-	Escena* pantallaPuntajes(Boton* const &miBoton, sf::Texture* const &miTextura);
+	Escena* pantallaPuntajes(Boton* const &miBoton, sf::Texture* const &miTextura, sf::Texture* const &miTextura2);
 	Escena* pantallaCreditos(Boton* const &miBoton, sf::Texture* const &miTextura, sf::Texture* const &miTextura2);
 
 	void generarNiveles(Escena* const &miEscena);

@@ -17,6 +17,8 @@ public:
 	static bool menuBackground(sf::Texture &textura);
 	static bool fondoInstrucciones(sf::Texture &textura);
 	static bool fondoCreditos(sf::Texture &textura);
+	static bool fondoPuntajes(sf::Texture &textura);
+	static bool imagenGameOver(sf::Texture &textura);
 
 	static bool cannon(sf::Texture &textura);
 	static bool cannonBall(sf::Texture &textura);
