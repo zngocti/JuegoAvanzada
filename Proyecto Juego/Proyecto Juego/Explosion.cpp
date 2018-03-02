@@ -7,7 +7,7 @@ sf::Texture* Explosion::textura1 = nullptr;
 sf::Texture* Explosion::textura2 = nullptr;
 sf::Texture* Explosion::textura3 = nullptr;
 
-sf::Time Explosion::tiempoEntreSprites = sf::seconds(0.03f);
+sf::Time Explosion::tiempoEntreSprites = sf::seconds(0.07f);
 
 Explosion::Explosion() : estaExplotando(false), tiempoDeExplosion(sf::Time::Zero), faseExplosion(0)
 {

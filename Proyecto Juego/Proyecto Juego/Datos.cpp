@@ -47,10 +47,10 @@ int Datos::zDeFondo = 8;
 int Datos::puntajeRecord = 0;
 
 float Datos::velocidad = 0.1;
-float Datos::velocidadJugador = 0.3;
+float Datos::velocidadJugador = 0.15;
 float Datos::tiempoEntreBarcos = 2;
 
-float Datos::velocidadBala = 0.5;
+float Datos::velocidadBala = 0.3;
 
 bool Datos::musicaMenuOn = false;
 
