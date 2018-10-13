@@ -162,15 +162,16 @@ void Juego::generarNiveles(Escena* const &miEscena)
 	listaDeTexturas.addBack(tileAgua);
 	Assets::agua(*tileAgua);
 	
-	int num1 = Datos::getAltoPantalla() / Datos::getAnchoDeTileAgua();
-	int num2 = (Datos::getAnchoPantalla() / Datos::getAnchoDeTileAgua()) + Datos::getTilesExtra();
+	float num1 = Datos::getAltoPantalla() / Datos::getAnchoDeTileAgua();
+	float num2 = (Datos::getAnchoPantalla() / Datos::getAnchoDeTileAgua()) + Datos::getTilesExtra();
 
 	for (int i = 0; i < num1; i++)
 	{
 		for (int c = 0; c < num2; c++)
 		{
-			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * Datos::getAnchoDeTileAgua(), i * Datos::getAnchoDeTileAgua(), Datos::getZDelAgua());
-			nuevoObjeto->setEscala(2, 2);
+			//ese -1 es para que no se separen tanto los sprites porque causaba una linea vertical negra
+			GameObject* nuevoObjeto = miEscena->crearGameObject(*tileAgua, c * (Datos::getAnchoDeTileAgua() - 1.0f), i * Datos::getAnchoDeTileAgua(), Datos::getZDelAgua());
+			nuevoObjeto->setEscala(2.0f, 2.0f);
 			TileIzquierdaEnLoop* unComportamiento = new TileIzquierdaEnLoop();
 			nuevoObjeto->setComportamiento(unComportamiento);
 		}

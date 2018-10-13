@@ -3,9 +3,9 @@
 namespace Octavio
 {
 
-int Datos::anchoPantalla = 1024;
-int Datos::altoPantalla = 768;
-int Datos::anchoDeTileAgua = 128;
+float Datos::anchoPantalla = 1024.0f;
+float Datos::altoPantalla = 768.0f;
+float Datos::anchoDeTileAgua = 128.0f;
 int Datos::zDelAgua = 8;
 int Datos::tilesExtra = 2;
 int Datos::maxAltoSprite = 64;
@@ -63,16 +63,16 @@ Escena* Datos::escenaPuntos = nullptr;
 
 GameObject* Datos::elGameOver = nullptr;
 
-int Datos::getAnchoPantalla()
+float Datos::getAnchoPantalla()
 {
 	return anchoPantalla;
 }
 
-int Datos::getAltoPantalla()
+float Datos::getAltoPantalla()
 {
 	return altoPantalla;
 }
-int Datos::getAnchoDeTileAgua()
+float Datos::getAnchoDeTileAgua()
 {
 	return anchoDeTileAgua;
 }

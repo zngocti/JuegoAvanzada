@@ -13,9 +13,9 @@ class Datos
 {
 private:
 	Datos();
-	static int anchoPantalla;
-	static int altoPantalla;
-	static int anchoDeTileAgua;
+	static float anchoPantalla;
+	static float altoPantalla;
+	static float anchoDeTileAgua;
 	static int zDelAgua;
 	static int tilesExtra;
 	static int maxAltoSprite;
@@ -75,9 +75,9 @@ private:
 	static GameObject* elGameOver;
 
 public:
-	static int getAnchoPantalla();
-	static int getAltoPantalla();
-	static int getAnchoDeTileAgua();
+	static float getAnchoPantalla();
+	static float getAltoPantalla();
+	static float getAnchoDeTileAgua();
 	static int getZDelAgua();
 	static int getTilesExtra();
 	static int getMaxAltoSprite();
